@@ -1,0 +1,115 @@
+<div class="landing-wrapper">
+
+  <!-- TOP NAVIGATION SUBHEADER -->
+  <header class="navbar">
+    <div class="logo">
+      <span class="icon">🩸</span> Diagnostyka<span class="dot">.</span>
+    </div>
+    <div class="nav-actions">
+      <a href="#about" class="nav-link">O systemie</a>
+      <a href="#features" class="nav-link">Funkcje</a>
+      <button class="btn-login-trigger" (click)="toggleLoginModal(true)">Zaloguj się</button>
+    </div>
+  </header>
+
+  <!-- HERO PRESENTATION HEADER SECTION -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <span class="badge">Platforma Medyczna Nowej Generacji</span>
+      <h1>Zarządzaj swoimi wynikami badań w jednym miejscu.</h1>
+      <p>System Diagnostyka umożliwia bezpieczne agregowanie wskaźników laboratoryjnych, śledzenie zmian parametrów życiowych oraz natychmiastową autodiagnozę wspieraną przez algorytmy analityczne.</p>
+      <div class="cta-group">
+        <button class="btn-primary" (click)="toggleLoginModal(true)">Uzyskaj Dostęp</button>
+        <a href="#about" class="btn-secondary">Dowiedz się więcej ↓</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="mock-card shadow-lg">
+        <div class="card-line long"></div>
+        <div class="card-line short"></div>
+        <div class="card-grid">
+          <div class="grid-box"></div>
+          <div class="grid-box"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT & FEATURE SUBSYSTEM LAYOUT -->
+  <section id="about" class="info-section">
+    <div class="section-title">
+      <h2>Jak działa nasz system?</h2>
+      <p>Zaprojektowany zarówno dla pacjentów dbających o profilaktykę, jak i placówek medycznych.</p>
+    </div>
+
+    <div class="features-grid" id="features">
+      <div class="feature-card">
+        <div class="f-icon">📊</div>
+        <h3>Analiza Trendów Laboratoryjnych</h3>
+        <p>Wprowadzaj wyniki morfologii, TSH czy lipidogramu. System automatycznie wygeneruje przejrzyste wykresy obrazujące dynamikę zmian.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🔒</div>
+        <h3>Pełne Bezpieczeństwo Danych</h3>
+        <p>Wszystkie rekordy medyczne są szyfrowane end-to-end, zapewniając pełną prywatność i zgodność ze standardami dokumentacji medycznej.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">⚡</div>
+        <h3>Szybka Weryfikacja Norm</h3>
+        <p>Automatyczne flagowanie wyników przekraczających normy laboratoryjne za pomocą czytelnych alertów wizualnych (Normal/Warning/Critical).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTHENTICATION DIALOG COMPONENT OVERLAY (MODAL) -->
+  @if (isLoginModalOpen()) {
+    <div class="modal-overlay" (click)="toggleLoginModal(false)">
+      <div class="modal-card" (click)="$event.stopPropagation()">
+
+        <div class="modal-header">
+          <h3>Panel Logowania</h3>
+          <button class="btn-close" (click)="toggleLoginModal(false)">✕</button>
+        </div>
+
+        <form (ngSubmit)="handleLoginSubmit()" #loginForm="ngForm" novalidate>
+
+          <!-- Explicit Error Boundary Structure -->
+          @if (errorMessage()) {
+            <div class="alert-error">
+              ⚠️ {{ errorMessage() }}
+            </div>
+          }
+
+          <div class="form-group">
+            <label for="username">Nazwa użytkownika</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              [(ngModel)]="loginData.username"
+              placeholder="np. admin"
+              [disabled]="isSubmitting()" />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Hasło dostępu</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              [(ngModel)]="loginData.password"
+              placeholder="••••••••"
+              [disabled]="isSubmitting()" />
+          </div>
+
+          <button type="submit" class="btn-submit" [disabled]="isSubmitting()">
+            {{ isSubmitting() ? 'Autoryzacja...' : 'Zaloguj się' }}
+          </button>
+
+          <p class="demo-notice">Dane demonstracyjne: <strong>admin</strong> / <strong>admin123</strong></p>
+        </form>
+
+      </div>
+    </div>
+  }
+</div>
