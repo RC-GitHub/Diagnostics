@@ -66,6 +66,19 @@ export class IndexComponent {
     this.errorMessage.set(null);
   }
 
+  protected readonly isLangOpen = signal<boolean>(false);
+  protected readonly currentLang = signal<string>('PL');
+  protected readonly languages = ['PL', 'EN'];
+
+  protected toggleLang(): void {
+    this.isLangOpen.update(v => !v);
+  }
+
+  protected selectLang(lang: string): void {
+    this.currentLang.set(lang);
+    this.isLangOpen.set(false);
+  }
+
   navigateToLogin(): void {
     this.router.navigate(['/login']);
   }

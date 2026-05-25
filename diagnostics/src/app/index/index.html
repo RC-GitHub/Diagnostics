@@ -10,6 +10,19 @@
       <a href="#how-it-works" class="nav-link">Jak to działa</a>
       <a href="#features" class="nav-link">Funkcje</a>
       <a href="#roles" class="nav-link">Dla kogo</a>
+
+      <div class="lang-dropdown" (click)="toggleLang()" [class.open]="isLangOpen()">
+        <span class="lang-current">{{ currentLang() }}</span>
+        <span class="lang-caret">&#x25BE;</span>
+        @if (isLangOpen()) {
+          <ul class="lang-menu" (click)="$event.stopPropagation()">
+            @for (lang of languages; track lang) {
+              <li [class.active]="lang === currentLang()" (click)="selectLang(lang)">{{ lang }}</li>
+            }
+          </ul>
+        }
+      </div>
+
       <button class="btn-login-trigger" (click)="navigateToLogin()">Zaloguj się</button>
     </nav>
   </header>
@@ -157,18 +170,88 @@
     </div>
   </section>
 
+  <section class="newsletter-section">
+    <div class="newsletter-content">
+      <h2>Jeszcze więcej dla Ciebie<br>w naszym <span class="accent">newsletterze</span></h2>
+      <p>Zapisz się do naszego newslettera, a na Twoją skrzynkę będą trafiać informacje dotyczące usług i nowości w ofercie badań.</p>
+      <div class="newsletter-form">
+        <input type="text" placeholder="Imię" class="nl-input" />
+        <input type="email" placeholder="Adres e-mail" class="nl-input" />
+        <button class="btn-nl">Zapisz się</button>
+      </div>
+    </div>
+    <div class="newsletter-visual">
+      <div class="mail-icon-wrap">&#9993;</div>
+    </div>
+  </section>
+
+  <!-- EU LOGOS -->
+  <div class="eu-strip">
+    <div class="eu-logo">
+      <div class="eu-flag-block fe">&#9733;</div>
+      <div class="eu-logo-text">
+        <strong>Fundusze Europejskie</strong>
+        <span>Inteligentny Rozwój</span>
+      </div>
+    </div>
+    <div class="eu-divider"></div>
+    <div class="eu-logo">
+      <div class="eu-flag-block pl"><div class="pl-flag"></div></div>
+      <div class="eu-logo-text">
+        <strong>Rzeczpospolita Polska</strong>
+      </div>
+    </div>
+    <div class="eu-divider"></div>
+    <div class="eu-logo">
+      <div class="eu-logo-text ncbr">
+        <strong>NCBR</strong>
+        <span>Narodowe Centrum Badań i Rozwoju</span>
+      </div>
+    </div>
+    <div class="eu-divider"></div>
+    <div class="eu-logo">
+      <div class="eu-flag-block eu">&#9733;&#9733;&#9733;</div>
+      <div class="eu-logo-text">
+        <strong>Unia Europejska</strong>
+        <span>Europejski Fundusz Rozwoju Regionalnego</span>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-logo">
-      <span class="logo-mark">D</span>
-      Diagnostyka
+    <div class="footer-main">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo-mark">D</span>
+          Diagnostyka
+        </div>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Pacjent</span>
+        <a href="#">Oferta badań</a>
+        <a href="#">Umów wizytę</a>
+        <a href="#">Historia wyników</a>
+        <a href="#">Sprawdź wynik QR</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Dla lekarza</span>
+        <a href="#">Harmonogram</a>
+        <a href="#">Wystaw wynik</a>
+        <a href="#">Profil i specjalizacja</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Platforma</span>
+        <a href="#how-it-works">Jak to działa</a>
+        <a href="#roles">Dla kogo</a>
+        <a href="#">Kontakt</a>
+        <a href="#">FAQ</a>
+      </div>
     </div>
-    <div class="footer-links">
-      <a href="#how-it-works">Jak to działa</a>
-      <a href="#features">Funkcje</a>
-      <a href="#roles">Dla kogo</a>
+    <div class="footer-bottom">
+      <span>Regulamin i polityka prywatności &nbsp;|&nbsp; RODO &nbsp;|&nbsp; Pliki cookie</span>
+      <span>Copyright 2026 Diagnostyka S.A. &mdash; All rights reserved</span>
     </div>
-    <span class="footer-copy">&copy; 2026 Diagnostyka</span>
   </footer>
 
 </div>
