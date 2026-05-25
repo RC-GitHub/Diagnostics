@@ -65,12 +65,4 @@ export class IndexComponent {
     this.loginData = { username: '', password: '' };
     this.errorMessage.set(null);
   }
-
-  navigateToLogin(): void {
-    this.router.navigate(['/login']);
-  }
-
-  navigateToRegister(): void {
-    this.router.navigate(['/register']);
-  }
 }
