@@ -1,6 +1,6 @@
 # Diagnostics
 
-Web front-end made in [**Angular**](https://angular.dev/) for the [Diagnostyka-App](https://github.com/Hosokava/Diagnostyka-App) made by [Hosokava](https://github.com/Hosokava/)
+Web front-end made in [**Angular**](https://angular.dev/) for [Hosokava's](https://github.com/Hosokava/) [Diagnostyka-App](https://github.com/Hosokava/Diagnostyka-App)
 
 ---
 
