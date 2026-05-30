@@ -1,53 +1,64 @@
+<app-header></app-header>
 <div class="auth-wrapper">
   <div class="auth-card">
 
-    <!-- BRAND ELEMENT -->
     <div class="auth-header">
       <span class="logo-icon">🩺</span>
-      <h2>Utwórz konto<span class="dot">.</span></h2>
-      <p class="subtitle">Dołącz do systemu Diagnostyka-App</p>
+      <h2>{{ text().AUTH?.HEADER?.REGISTER_TITLE }}</h2>
+      <p class="subtitle">{{ text().AUTH?.HEADER?.REGISTER_SUBTITLE }}</p>
     </div>
 
-    <!-- ERROR BOUNDARY FRAMEWORK -->
     @if (errorMessage()) {
       <div class="alert-error" role="alert">
         <span class="alert-icon">⚠️</span>
-        <span class="alert-text">{{ errorMessage() }}</span>
+        <span class="alert-text">
+          @if (errorMessage() === 'MISSING_FIELDS') {
+            {{ text().AUTH?.ERRORS?.MISSING_ALL_FIELDS || "Please fill in all required form fields." }}
+          }
+          @if (errorMessage() === 'SHORT_PASSWORD') {
+            {{ text().AUTH?.ERRORS?.SHORT_PASSWORD || "Password must be at least 8 characters long." }}
+          }
+          @if (errorMessage() === 'INVALID_CREDENTIALS') {
+            {{ text().AUTH?.ERRORS?.INVALID_CREDENTIALS || "Invalid email, password, or account role selection." }}
+          }
+          @if (errorMessage() === 'SERVER_ERROR') {
+            {{ text().AUTH?.ERRORS?.SERVER_ERROR || "Server connection error" }} ({{ serverStatusCode() }}). {{ text().AUTH?.ERRORS?.RETRY || "Please try again." }}
+          }
+          @if (errorMessage() === 'UNEXPECTED') {
+            {{ text().AUTH?.ERRORS?.UNEXPECTED || "An unexpected application error occurred." }}
+          }
+        </span>
       </div>
     }
 
-    <!-- INTERACTIVE SUBMISSION PANEL -->
     <form (ngSubmit)="handleRegistration()" #registerForm="ngForm" novalidate>
 
-      <!-- EMAIL INPUT CONTROL -->
       <div class="form-group">
-        <label for="email">Adres e-mail</label>
+        <label for="email">{{ text().AUTH?.FORM?.EMAIL_LABEL }}</label>
         <input
           type="email"
           id="email"
           name="email"
           [(ngModel)]="registerData.email"
-          placeholder="user@example.com"
+          [placeholder]="text().AUTH?.FORM?.EMAIL_PLACEHOLDER"
           [disabled]="isSubmitting()"
           required />
       </div>
 
-      <!-- PASSWORD INPUT CONTROL -->
       <div class="form-group">
-        <label for="password">Hasło</label>
+        <label for="password">{{ text().AUTH?.FORM?.PASSWORD_LABEL }}</label>
         <input
           type="password"
           id="password"
           name="password"
           [(ngModel)]="registerData.password"
-          placeholder="Min. 8 znaków"
+          [placeholder]="text().AUTH?.FORM?.PASSWORD_HINT"
           [disabled]="isSubmitting()"
           required />
       </div>
 
-      <!-- ROLE MUTATION RADIAL CONTAINER -->
       <div class="form-group">
-        <label>Typ konta (Rola)</label>
+        <label>{{ text().AUTH?.FORM?.ROLE_LABEL }}</label>
         <div class="role-selector">
           <label class="radio-label" [class.checked]="registerData.role === 'patient'">
             <input
@@ -56,7 +67,7 @@
               value="patient"
               [(ngModel)]="registerData.role"
               [disabled]="isSubmitting()" />
-            <span>Pacjent</span>
+            <span>{{ text().AUTH?.FORM?.ROLE_PATIENT }}</span>
           </label>
 
           <label class="radio-label" [class.checked]="registerData.role === 'doctor'">
@@ -66,40 +77,41 @@
               value="doctor"
               [(ngModel)]="registerData.role"
               [disabled]="isSubmitting()" />
-            <span>Lekarz</span>
+            <span>{{ text().AUTH?.FORM?.ROLE_DOCTOR }}</span>
           </label>
         </div>
       </div>
 
-      <!-- CONDITIONAL DOCTOR SPECIALIZATION FRAMEWORK -->
       @if (isDoctor()) {
         <div class="form-group conditional-field">
-          <label for="specialization">Specjalizacja lekarska</label>
+          <label for="specialization">{{ text().AUTH?.FORM?.SPECIALIZATION_LABEL }}</label>
           <input
             type="text"
             id="specialization"
             name="specialization"
             [(ngModel)]="registerData.specialization"
-            placeholder="np. Cardiology, Diagnostician"
+            [placeholder]="text().AUTH?.FORM?.SPECIALIZATION_PLACEHOLDER"
             [disabled]="isSubmitting()"
             required />
         </div>
       }
 
-      <!-- SYSTEM TRANSACTION BUTTON -->
       <button type="submit" class="btn-submit" [disabled]="isSubmitting()">
         @if (isSubmitting()) {
-          <span class="spinner">Rejestracja konta...</span>
+          <span class="spinner">{{ text().AUTH?.FORM?.BTN_REGISTERING }}</span>
         } @else {
-          <span>Zarejestruj się</span>
+          <span>{{ text().AUTH?.FORM?.BTN_REGISTER }}</span>
         }
       </button>
     </form>
 
-    <!-- ALTERNATIVE SCREEN ROUTING INTERFACES -->
     <div class="auth-footer">
-      <p>Masz już konto? <a routerLink="/login">Zaloguj się tutaj</a></p>
+      <p>
+        {{ text().AUTH?.FOOTER?.ALREADY_HAVE_ACCOUNT }}
+        <a routerLink="/login">{{ text().AUTH?.FOOTER?.LOGIN_LINK_TEXT }}</a>
+      </p>
     </div>
 
   </div>
 </div>
+<app-footer></app-footer>

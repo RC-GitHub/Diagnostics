@@ -3,58 +3,70 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router, RouterLink } from '@angular/router';
+import { LanguageService } from '../core/services/language';
 import { firstValueFrom } from 'rxjs';
+
+import { Header } from '../header/header';
+import { Footer } from '../footer/footer';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, Header, Footer],
   templateUrl: './register.html',
-  styleUrl: './register.scss'
+  styleUrl: '../../styles/auth.scss'
 })
 export class RegisterComponent {
   private readonly http = inject(HttpClient);
   private readonly router = inject(Router);
-  private readonly apiUrl = 'http://localhost:8080/auth/register';
+  private languageService = inject(LanguageService);
+  private readonly baseUrl = 'http://localhost:8080';
 
-  // Subsystem States
+  readonly text = this.languageService.text;
+
+  // Subsystem States managed via Signals
   protected readonly isSubmitting = signal<boolean>(false);
   protected readonly errorMessage = signal<string | null>(null);
+  protected readonly serverStatusCode = signal<number | null>(null);
 
   // Form Model Bound Properties
   protected registerData = {
     email: '',
     password: '',
-    role: 'patient', // Default initialization
+    role: 'patient',
     specialization: ''
   };
 
+  // Derived State Framework
   protected readonly isDoctor = computed(() => this.registerData.role === 'doctor');
 
   protected async handleRegistration(): Promise<void> {
     this.errorMessage.set(null);
+    this.serverStatusCode.set(null);
 
+    // Comprehensive Input Validation
     if (!this.registerData.email || !this.registerData.password) {
-      this.errorMessage.set('Email oraz hasło są wymagane.');
+      this.errorMessage.set('MISSING_FIELDS');
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(this.registerData.email)) {
-      this.errorMessage.set('Wprowadź poprawny adres e-mail.');
+      this.errorMessage.set('INVALID_CREDENTIALS'); // Mapuje na niepoprawny format danych logowania/rejestracji
       return;
     }
 
     if (this.registerData.password.length < 8) {
-      this.errorMessage.set('Hasło musi składać się z co najmniej 8 znaków.');
+      this.errorMessage.set('SHORT_PASSWORD'); // Nowy kod klucza dodany do walidacji JSON
       return;
     }
 
     if (this.isDoctor() && !this.registerData.specialization.trim()) {
-      this.errorMessage.set('Lekarz musi podać swoją specjalizację.');
+      this.errorMessage.set('MISSING_FIELDS');
       return;
     }
 
+    // Payload Isolation
     const payload: any = {
       email: this.registerData.email,
       password: this.registerData.password,
@@ -66,8 +78,11 @@ export class RegisterComponent {
     }
 
     this.isSubmitting.set(true);
+
     try {
-      await firstValueFrom(this.http.post(this.apiUrl, payload));
+      await firstValueFrom(
+        this.http.post(`${this.baseUrl}/auth/register`, payload)
+      );
 
       // Navigate users onto login view upon 200 OK success state
       this.router.navigate(['/login']);
@@ -80,13 +95,15 @@ export class RegisterComponent {
 
   private handleErrorResponse(error: any): void {
     if (error instanceof HttpErrorResponse) {
+      this.serverStatusCode.set(error.status);
+
       if (error.status === 400) {
-        this.errorMessage.set(error.error?.message || 'Nieprawidłowe dane lub e-mail już istnieje w bazie.');
+        this.errorMessage.set('INVALID_CREDENTIALS'); // Email zajęty lub złe dane traktujemy jako błąd kryteriów
       } else {
-        this.errorMessage.set(`Błąd serwera (${error.status}). Spróbuj ponownie później.`);
+        this.errorMessage.set('SERVER_ERROR');
       }
     } else {
-      this.errorMessage.set('Wystąpił nieoczekiwany błąd sieciowy.');
+      this.errorMessage.set('UNEXPECTED');
     }
   }
 }

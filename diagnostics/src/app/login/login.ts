@@ -22,7 +22,7 @@ interface UserStatusResponse {
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink, Header, Footer],
   templateUrl: './login.html',
-  styleUrl: './login.scss'
+  styleUrl: '../../styles/auth.scss'
 })
 export class LoginComponent {
 

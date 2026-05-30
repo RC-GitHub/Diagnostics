@@ -1,36 +1,21 @@
-@use 'sass:map';
-
-$theme: (
-  primary: #2563eb,
-  primary-hover: #1d4ed8,
-  bg-canvas: #f8fafc,
-  bg-surface: #ffffff,
-  text-dark: #0f172a,
-  text-light: #64748b,
-  border: #e2e8f0,
-  error-bg: #fef2f2,
-  error-text: #ef4444
-);
-
-@function color($key) {
-  @return map.get($theme, $key);
-}
+@use '_colors.scss' as colors;
 
 .auth-wrapper {
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: color(bg-canvas);
-  padding: 2rem;
+  background-color: colors.get(bg-alt);
+  padding: 3rem;
+  background: linear-gradient(180deg, rgba(colors.get(primary), 0.2) 10%, colors.get(bg) 100%);
 
   .auth-card {
-    background-color: color(bg-surface);
+    background-color: rgba(colors.get(bg-alt), 0.55);
     width: 100%;
-    max-width: 460px;
+    max-width: 440px;
     padding: 3rem;
-    border-radius: 20px;
-    border: 1px solid color(border);
+    border-radius: 1rem;
+    border: 1px solid colors.get(border);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
 
     .auth-header {
@@ -43,15 +28,15 @@ $theme: (
         font-weight: 800;
         margin: 0.5rem 0 0 0;
         letter-spacing: -0.5px;
-        .dot { color: color(primary); }
+        .dot { color: colors.get(primary); }
       }
-      .subtitle { color: color(text-light); margin: 0.25rem 0 0 0; font-size: 0.95rem; }
+      .subtitle { color: colors.get(text-light); margin: 0.25rem 0 0 0; font-size: 0.95rem; }
     }
 
     .alert-error {
-      background-color: color(error-bg);
-      border: 1px solid #fca5a5;
-      color: color(error-text);
+      background-color: colors.get(warn-bg);
+      border: 1px solid colors.get(warn-text);
+      color: colors.get(error-text);
       padding: 0.85rem 1rem;
       border-radius: 10px;
       font-size: 0.875rem;
@@ -68,28 +53,24 @@ $theme: (
       gap: 0.5rem;
       margin-bottom: 1.5rem;
 
-      &.conditional-field {
-        animation: slideDown 0.25s ease-out;
-      }
-
       label {
         font-size: 0.875rem;
         font-weight: 600;
-        color: color(text-dark);
+        color: colors.get(text-dark);
       }
 
-      input[type="email"], input[type="text"], input[type="password"] {
+      input[type="email"], input[type="password"] {
         padding: 0.8rem 1rem;
         border-radius: 10px;
-        border: 1px solid color(border);
-        background-color: color(bg-canvas);
+        border: 1px solid colors.get(border);
+        background-color: colors.get(bg-canvas);
         font-size: 0.95rem;
         outline: none;
         transition: all 0.2s;
 
         &:focus {
-          border-color: color(primary);
-          background-color: color(bg-surface);
+          border-color: colors.get(primary);
+          background-color: colors.get(bg-surface);
           box-shadow: 0 0 0 4px #dbeafe;
         }
 
@@ -111,20 +92,26 @@ $theme: (
           justify-content: center;
           gap: 0.5rem;
           padding: 0.75rem;
-          border: 1px solid color(border);
+          border: 2px solid colors.get(border);
           border-radius: 10px;
           cursor: pointer;
           font-weight: 600;
           font-size: 0.95rem;
-          background-color: color(bg-canvas);
+          background-color: rgba(colors.get(bg-alt), 0.75);
           transition: all 0.2s;
 
           input[type="radio"] { display: none; }
 
           &.checked {
-            border-color: color(primary);
-            background-color: #eff6ff;
-            color: color(primary);
+            border: 2px solid colors.get(primary);
+            border-color: colors.get(primary);
+            background-color: rgba(colors.get(primary), 0.1);
+            color: colors.get(primary-dark);
+          }
+
+          &:hover {
+            color: colors.get(primary-dark);
+            border-color: colors.get(primary);
           }
         }
       }
@@ -132,7 +119,7 @@ $theme: (
 
     .btn-submit {
       width: 100%;
-      background-color: color(primary);
+      background-color: colors.get(primary-dark);
       color: white;
       padding: 0.9rem;
       border: none;
@@ -143,7 +130,7 @@ $theme: (
       margin-top: 1rem;
       transition: background-color 0.2s;
 
-      &:hover:not(:disabled) { background-color: color(primary-hover); }
+      &:hover:not(:disabled) { background-color: colors.get(primary); }
       &:disabled { opacity: 0.6; cursor: not-allowed; }
     }
 
@@ -151,19 +138,14 @@ $theme: (
       text-align: center;
       margin-top: 2rem;
       font-size: 0.9rem;
-      color: color(text-light);
+      color: colors.get(text-light);
 
       a {
-        color: color(primary);
+        color: colors.get(primary);
         text-decoration: none;
         font-weight: 600;
         &:hover { text-decoration: underline; }
       }
     }
   }
-}
-
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
 }

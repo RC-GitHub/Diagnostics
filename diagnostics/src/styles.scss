@@ -15,7 +15,7 @@ body {
   padding: 0.75rem 1.75rem;
   font-family: "League Spartan", sans-serif;
   font-optical-sizing: auto;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 0.925rem;
   font-weight: 600;
   cursor: pointer;
@@ -24,11 +24,11 @@ body {
 .btn-primary {
   background: colors.get(primary);
   color: colors.get(bg);
-  outline: 3px solid colors.get(primary);
+  border: 3px solid colors.get(primary);
   transition: background 0.25s;
   &:hover {
     transition: background 0.25s;
-    outline: 3px solid colors.get(muted);
+    border: 3px solid colors.get(muted);
     background-color: colors.get(muted);
     text-shadow: 0 0 1px colors.get(bg);
   }
