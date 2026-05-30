@@ -1,6 +1,9 @@
 @use '../../styles/_colors.scss' as colors;
 
-// ─── Navbar ──────────────────────────────────────────────────────────────
+a {
+  text-decoration: none;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -11,7 +14,8 @@
   top: 0;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
-  z-index: 100;
+  z-index: 9999;
+  overflow: visible !important;
 
   .logo {
     display: flex;
@@ -20,7 +24,6 @@
     font-size: 1.3rem;
     font-weight: 800;
     letter-spacing: -0.5px;
-    text-decoration: none;
     color: colors.get(text);
 
     .logo-mark {
@@ -35,10 +38,10 @@
       font-size: 0.9rem;
       font-weight: 900;
     }
-
     .dot { color: colors.get(primary); }
   }
 
+  // Domyslny układ poziomy (Desktop)
   .nav-actions {
     display: flex;
     align-items: center;
@@ -46,7 +49,6 @@
 
     .nav-link {
       color: colors.get(muted);
-      text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
       transition: color 0.15s;
@@ -56,6 +58,12 @@
     .btn {
       padding: 0.55rem 1.15rem;
       font-size: 0.875rem;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 20px;
+      background-color: colors.get(border);
     }
   }
 }
@@ -83,7 +91,6 @@
     color: colors.get(muted);
     transition: transform 0.15s;
   }
-
   &.open .lang-caret { transform: rotate(180deg); }
 
   .lang-menu {
@@ -110,6 +117,74 @@
 
       &:hover  { background: colors.get(bg-alt); }
       &.active { color: colors.get(primary); font-weight: 700; }
+    }
+  }
+}
+
+// ─── Hamburger Toggle Trigger Button ─────────────────────────────────────
+.hamburger-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 22px;
+  height: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10000;
+
+  .hamburger-bar {
+    width: 100%;
+    height: 2px;
+    background-color: colors.get(primary);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  &.open {
+    .hamburger-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger-bar:nth-child(2) { opacity: 0; }
+    .hamburger-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .hamburger-toggle {
+    display: flex;
+  }
+
+  .navbar .nav-actions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-bottom: 1px solid colors.get(border);
+    box-sizing: border-box;
+    z-index: 9998;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+
+    padding: 6%;
+    padding-top: 0;
+
+    a, .btn, .lang-dropdown {
+      width: 100%;
+      box-sizing: border-box;
+      display: block;
+    }
+
+    .btn {
+      text-align: center;
+    }
+
+    .stat-divider {
+      display: none;
     }
   }
 }

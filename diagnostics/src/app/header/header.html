@@ -1,31 +1,53 @@
-  <!-- NAVBAR -->
-  <header class="navbar">
+<header class="navbar">
+  <a routerLink="/">
     <div class="logo">
       <span class="logo-mark">{{ text().HEADER?.LETTER }}</span>
       {{ text().HEADER?.BRAND_NAME }}
     </div>
-    <nav class="nav-actions">
-      <a href="#how-it-works"><button class="btn btn-primary">{{ text().HEADER?.NAV?.HOW_IT_WORKS }}</button></a>
-      <a href="#roles"><button class="btn btn-primary">{{ text().HEADER?.NAV?.FOR_WHOM }}</button></a>
-      <a href="#contact"><button class="btn btn-primary">{{ text().HEADER?.NAV?.CONTACT }}</button></a>
-      <a href="#faq"><button class="btn btn-primary">{{ text().HEADER?.NAV?.FAQ }}</button></a>
+  </a>
 
-      <div class="stat-divider"></div>
+  <button
+    class="hamburger-toggle"
+    (click)="toggleMenu()"
+    [class.open]="isMenuOpen()"
+    aria-label="Toggle navigation menu">
+    <span class="hamburger-bar"></span>
+    <span class="hamburger-bar"></span>
+    <span class="hamburger-bar"></span>
+  </button>
 
-      <div class="lang-dropdown" (click)="toggleLang()" [class.open]="isLangOpen()">
-        <span class="lang-current">{{ getLanguageName(currentLang()) }}</span>
-        <span class="lang-caret">&#x25BE;</span>
-        @if (isLangOpen()) {
-          <ul class="lang-menu" (click)="$event.stopPropagation()">
-            @for (lang of languages; track lang) {
-              <li [class.active]="lang === currentLang()" (click)="changeLang(lang)">
-                {{ getLanguageName(lang) }}
-              </li>
-            }
-          </ul>
-        }
-      </div>
+  <nav class="nav-actions" [@toggleMenu]="getMenuAnimationState()">
+    <a routerLink="#how-it-works" (click)="closeMenu()">
+      <button class="btn btn-primary">{{ text().HEADER?.NAV?.HOW_IT_WORKS }}</button>
+    </a>
+    <a routerLink="#roles" (click)="closeMenu()">
+      <button class="btn btn-primary">{{ text().HEADER?.NAV?.FOR_WHOM }}</button>
+    </a>
+    <a routerLink="#contact" (click)="closeMenu()">
+      <button class="btn btn-primary">{{ text().HEADER?.NAV?.CONTACT }}</button>
+    </a>
+    <a routerLink="#faq" (click)="closeMenu()">
+      <button class="btn btn-primary">{{ text().HEADER?.NAV?.FAQ }}</button>
+    </a>
 
-      <button class="btn btn-secondary" (click)="navigateToLogin()">{{ text().HEADER?.ACTIONS?.LOGIN }}</button>
-    </nav>
-  </header>
+    <div class="stat-divider"></div>
+
+    <div class="lang-dropdown" (click)="toggleLang(); $event.stopPropagation()" [class.open]="isLangOpen()">
+      <span class="lang-current">{{ getLanguageName(currentLang()) }}</span>
+      <span class="lang-caret">&#x25BE;</span>
+      @if (isLangOpen()) {
+        <ul class="lang-menu" (click)="$event.stopPropagation()">
+          @for (lang of languages; track lang) {
+            <li [class.active]="lang === currentLang()" (click)="changeLang(lang); closeMenu()">
+              {{ getLanguageName(lang) }}
+            </li>
+          }
+        </ul>
+      }
+    </div>
+
+    <button class="btn btn-secondary" (click)="navigateToLogin(); closeMenu()">
+      {{ text().HEADER?.ACTIONS?.LOGIN }}
+    </button>
+  </nav>
+</header>

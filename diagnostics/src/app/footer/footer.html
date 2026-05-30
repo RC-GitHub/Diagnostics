@@ -2,30 +2,30 @@
 <footer class="footer">
   <div class="footer-main">
     <div class="footer-brand">
-      <div class="footer-logo">
+      <a routerLink="/"><div class="footer-logo">
         <span class="logo-mark">{{ text().FOOTER?.LETTER }}</span>
         {{ text().FOOTER?.BRAND_NAME }}
-      </div>
+      </div></a>
     </div>
     <div class="footer-col">
       <span class="footer-col-title">{{ text().FOOTER?.COL_TITLES?.PATIENT }}</span>
-      <a href="#">{{ text().FOOTER?.NAV_PATIENT?.OFFER }}</a>
-      <a href="#">{{ text().FOOTER?.NAV_PATIENT?.BOOKING }}</a>
-      <a href="#">{{ text().FOOTER?.NAV_PATIENT?.HISTORY }}</a>
-      <a href="#">{{ text().FOOTER?.NAV_PATIENT?.QR_CHECK }}</a>
+      <a routerLink="#">{{ text().FOOTER?.NAV_PATIENT?.OFFER }}</a>
+      <a routerLink="#">{{ text().FOOTER?.NAV_PATIENT?.BOOKING }}</a>
+      <a routerLink="#">{{ text().FOOTER?.NAV_PATIENT?.HISTORY }}</a>
+      <a routerLink="#">{{ text().FOOTER?.NAV_PATIENT?.QR_CHECK }}</a>
     </div>
     <div class="footer-col">
       <span class="footer-col-title">{{ text().FOOTER?.COL_TITLES?.DOCTOR }}</span>
-      <a href="#">{{ text().FOOTER?.NAV_DOCTOR?.SCHEDULE }}</a>
-      <a href="#">{{ text().FOOTER?.NAV_DOCTOR?.ISSUE_RESULT }}</a>
-      <a href="#">{{ text().FOOTER?.NAV_DOCTOR?.PROFILE }}</a>
+      <a routerLink="#">{{ text().FOOTER?.NAV_DOCTOR?.SCHEDULE }}</a>
+      <a routerLink="#">{{ text().FOOTER?.NAV_DOCTOR?.ISSUE_RESULT }}</a>
+      <a routerLink="#">{{ text().FOOTER?.NAV_DOCTOR?.PROFILE }}</a>
     </div>
     <div class="footer-col">
       <span class="footer-col-title">{{ text().FOOTER?.COL_TITLES?.PLATFORM }}</span>
-      <a href="#how-it-works">{{ text().FOOTER?.NAV_PLATFORM?.HOW_IT_WORKS }}</a>
-      <a href="#roles">{{ text().FOOTER?.NAV_PLATFORM?.FOR_WHOM }}</a>
-      <a href="#">{{ text().FOOTER?.NAV_PLATFORM?.CONTACT }}</a>
-      <a href="#">{{ text().FOOTER?.NAV_PLATFORM?.FAQ }}</a>
+      <a routerLink="#how-it-works">{{ text().FOOTER?.NAV_PLATFORM?.HOW_IT_WORKS }}</a>
+      <a routerLink="#roles">{{ text().FOOTER?.NAV_PLATFORM?.FOR_WHOM }}</a>
+      <a routerLink="#">{{ text().FOOTER?.NAV_PLATFORM?.CONTACT }}</a>
+      <a routerLink="#">{{ text().FOOTER?.NAV_PLATFORM?.FAQ }}</a>
     </div>
   </div>
   <div class="footer-bottom">

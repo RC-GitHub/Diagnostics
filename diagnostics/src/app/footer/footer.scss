@@ -1,12 +1,16 @@
 @use '../../styles/_colors.scss' as colors;
 
 // ─── Footer ──────────────────────────────────────────────────────────────
+a {
+  text-decoration: none;
+}
+
 .footer {
   .footer-main {
     display: flex;
     gap: 3rem;
     padding: 3rem 6%;
-    background-color: rgba(0, 81, 167, 0.55);
+    background-color: rgba(colors.get(primary-dark), .95);
     flex-wrap: wrap;
 
     .footer-brand .footer-logo {
@@ -43,7 +47,7 @@
       .footer-col-title {
         font-size: 1.2rem;
         font-weight: 700;
-        color: white;
+        color: colors.get(bg);;
         margin-bottom: 0.2rem;
       }
 
@@ -52,7 +56,7 @@
         color: rgba(255, 255, 255, 0.7);
         text-decoration: none;
         transition: color 0.15s;
-        &:hover { color: white; }
+        &:hover { color: colors.get(bg); }
       }
     }
   }
@@ -62,8 +66,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 6%;
-    background: #0f172a;
-    color: #94a3b8;
+    background: colors.get(text);
+    color: colors.get(text-light);
     font-weight: 500;
     font-size: 0.75rem;
     flex-wrap: wrap;

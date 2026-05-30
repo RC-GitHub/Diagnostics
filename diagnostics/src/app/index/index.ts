@@ -18,11 +18,6 @@ export class IndexComponent {
   private languageService = inject(LanguageService);
 
   readonly text = this.languageService.text;
-  constructor() {
-    effect(() => {
-      console.log('Current translations state:', this.text());
-    });
-  }
 
   navigateToRegister(): void {
     this.router.navigate(['/register']);

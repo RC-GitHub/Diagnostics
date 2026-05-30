@@ -3,13 +3,8 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
       path: '',
-      redirectTo: 'dashboard',
-      pathMatch: 'full'
-    },
-    {
-      path: 'dashboard',
       loadComponent: () => import('./index/index').then(m => m.IndexComponent),
-      title: 'Diagnostyka - Dashboard'
+      title: 'Diagnostyka'
     },
     {
       path: 'register',
@@ -22,7 +17,7 @@ export const routes: Routes = [
       title: 'Diagnostyka - Login'
     },
     {
-      path: 'setup',
+      path: 'complete',
       loadComponent: () => import('./setup/setup').then(m => m.ProfileSetupComponent),
       title: 'Diagnostyka - Setup'
     },
