@@ -4,18 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router, RouterLink } from '@angular/router';
 import { LanguageService } from '../core/services/language';
+import { ProfileService } from '../core/services/user';
 import { firstValueFrom } from 'rxjs';
 
 import { Header } from '../header/header';
 import { Footer } from '../footer/footer';
-
-interface UserStatusResponse {
-  authenticated: boolean;
-  message: string;
-  profile_complete: boolean;
-  role: 'patient' | 'doctor';
-  user_id: number;
-}
 
 @Component({
   selector: 'app-login',
@@ -29,6 +22,7 @@ export class LoginComponent {
   private router = inject(Router);
   private languageService = inject(LanguageService);
   private readonly http = inject(HttpClient);
+  private profileService = inject(ProfileService);
   private readonly baseUrl = 'http://localhost:8080';
 
   readonly text = this.languageService.text;
@@ -48,6 +42,8 @@ export class LoginComponent {
   protected async handleLogin(): Promise<void> {
     this.errorMessage.set(null);
 
+    console.log(this.loginData)
+
     if (!this.loginData.email || !this.loginData.password) {
       this.errorMessage.set('MISSING_FIELDS');
       return;
@@ -60,11 +56,9 @@ export class LoginComponent {
         this.http.post(`${this.baseUrl}/auth/login`, this.loginData)
       );
 
-      const status = await firstValueFrom(
-        this.http.get<UserStatusResponse>(`${this.baseUrl}/api/me`)
-      );
+      await this.profileService.checkCurrentSession();
 
-      this.routeUserBasedOnStatus(status);
+      this.routeUserBasedOnStatus(this.profileService.isProfileComplete());
 
     } catch (error: any) {
       this.handleErrorResponse(error);
@@ -73,8 +67,8 @@ export class LoginComponent {
     }
   }
 
-  private routeUserBasedOnStatus(status: UserStatusResponse): void {
-    if (!status.profile_complete) {
+  private routeUserBasedOnStatus(isProfileComplete: boolean): void {
+    if (!isProfileComplete) {
       this.router.navigate(['/complete']);
     } else {
       this.router.navigate(['/profile']);

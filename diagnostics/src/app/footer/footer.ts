@@ -1,18 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { LanguageService } from '../core/services/language';
-import { Router, RouterLink } from '@angular/router';
+
+import { Logo } from '../logo/logo';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [Logo],
   templateUrl: './footer.html',
   styleUrl: './footer.scss',
 })
 export class Footer {
-
-  private router = inject(Router);
   private languageService = inject(LanguageService);
-
   readonly text = this.languageService.text;
-
 }

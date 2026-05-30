@@ -18,7 +18,7 @@ export const routes: Routes = [
     },
     {
       path: 'complete',
-      loadComponent: () => import('./setup/setup').then(m => m.ProfileSetupComponent),
+      loadComponent: () => import('./complete/complete').then(m => m.CompleteSetup),
       title: 'Diagnostyka - Setup'
     },
     {

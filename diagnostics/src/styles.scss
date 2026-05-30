@@ -9,6 +9,43 @@ body {
   font-style: normal;
 }
 
+// Logo
+.logo-link {
+  text-decoration: none;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: colors.get(text);
+
+  .logo-mark {
+    width: 30px;
+    height: 30px;
+    background: colors.get(primary);
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 900;
+  }
+
+  &.inverse {
+    color: colors.get(bg);
+
+    .logo-mark {
+      background: colors.get(bg);
+      color: colors.get(primary);
+    }
+  }
+}
+
 // ─── Buttons (shared) ────────────────────────────────────────────────────
 .btn {
   border: none;

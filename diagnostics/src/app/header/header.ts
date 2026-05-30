@@ -1,12 +1,17 @@
-import { Component, signal, inject, PLATFORM_ID } from '@angular/core';
+import { Component, signal, inject, PLATFORM_ID, computed } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { LanguageService } from '../core/services/language';
+import { ProfileService } from '../core/services/user';
 import { isPlatformBrowser } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
+
+import { Logo } from '../logo/logo';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink],
+  imports: [RouterLink, Logo],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   animations: [
@@ -39,51 +44,70 @@ import { Router, RouterLink } from '@angular/router';
 export class Header {
   private platformId = inject(PLATFORM_ID);
 
-  private router = inject(Router);
-  private languageService = inject(LanguageService);
+  private readonly router = inject(Router);
+  private readonly http = inject(HttpClient);
+  private readonly languageService = inject(LanguageService);
+  protected readonly profileService = inject(ProfileService);
+
+  private readonly baseUrl = 'http://localhost:8080';
 
   readonly languages = this.languageService.languages;
   readonly currentLang = this.languageService.currentLang;
-
   readonly text = this.languageService.text;
 
-  protected readonly isLangOpen = signal<boolean>(false);
   protected isMobile = signal<boolean>(false);
+  protected readonly isLangOpen = signal<boolean>(false);
   protected readonly isMenuOpen = signal<boolean>(false);
+  protected readonly isProfileOpen = signal<boolean>(false);
+
+  protected readonly isUserLoggedIn = computed(() => {
+    return this.profileService.userRole() !== null;
+  });
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
-      // Set initial screen state on load
       this.isMobile.set(window.innerWidth <= 1024);
 
-      // Listen for window resize adjustments to switch layout contexts dynamically
       window.addEventListener('resize', () => {
         const mobileView = window.innerWidth <= 1024;
         this.isMobile.set(mobileView);
         if (!mobileView) {
-          this.isMenuOpen.set(false); // Reset open states when going to desktop
+          this.isMenuOpen.set(false);
         }
+      });
+
+      window.addEventListener('click', () => {
+        this.isLangOpen.set(false);
+        this.isProfileOpen.set(false);
       });
     }
   }
 
-  getMenuAnimationState(): string {
+  protected getMenuAnimationState(): string {
     if (!this.isMobile()) {
       return 'none';
     }
     return this.isMenuOpen() ? 'open' : 'closed';
   }
 
-  toggleMenu(): void {
+  protected toggleMenu(): void {
     this.isMenuOpen.update((v) => !v);
   }
 
-  closeMenu(): void {
+  protected closeMenu(): void {
     this.isMenuOpen.set(false);
+    this.isLangOpen.set(false);
+    this.isProfileOpen.set(false);
   }
 
   protected toggleLang(): void {
-    this.isLangOpen.update((v) => !v);
+    this.isProfileOpen.set(false);
+    this.isLangOpen.update(v => !v);
+  }
+
+  protected toggleProfile(): void {
+    this.isLangOpen.set(false);
+    this.isProfileOpen.update(v => !v);
   }
 
   protected changeLang(lang: string): void {
@@ -98,5 +122,25 @@ export class Header {
   // Routes
   navigateToLogin(): void {
     this.router.navigate(['/login']);
+  }
+
+  protected navigateTo(path: string): void {
+    this.closeMenu();
+    this.router.navigate([path]);
+  }
+  protected async handleLogout(): Promise<void> {
+    this.closeMenu();
+
+    this.profileService.clearProfile();
+
+    try {
+      await firstValueFrom(
+        this.http.post(`${this.baseUrl}/auth/logout`, {}, { withCredentials: true })
+      );
+    } catch (error) {
+      console.error('Błąd podczas usuwania sesji na serwerze:', error);
+    } {
+      this.navigateToLogin();
+    }
   }
 }

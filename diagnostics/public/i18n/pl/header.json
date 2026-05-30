@@ -13,6 +13,11 @@
       "REGISTER": "Utwórz konto",
       "LOGOUT": "Wyloguj się"
     },
+    "PROFILE": {
+      "VIEW_PROFILE": "Profil",
+      "SETTINGS": "Ustawienia",
+      "LOGOUT": "Wyloguj się"
+    },
     "LANGUAGES": {
       "PL": "Polski",
       "EN": "English"

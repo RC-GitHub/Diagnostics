@@ -1,0 +1,16 @@
+{
+  "PROFILE": {
+    "PATIENT": {
+      "PROFILE": {
+        "NAME": "Name: ",
+        "SURNAME": "Surname: ",
+        "PESEL": "PESEL Id: "
+      },
+      "TABS": {
+        "ACTIVE": "Active",
+        "HISTORY": "History",
+        "SETTINGS": "Settings"
+      }
+    }
+  }
+}

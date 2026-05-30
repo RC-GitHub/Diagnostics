@@ -1,0 +1,141 @@
+<app-header></app-header>
+<div class="auth-wrapper">
+  <div class="auth-card">
+
+    <div class="auth-header">
+      <span class="logo-icon">📋</span>
+      <h2>{{ text().AUTH?.SETUP?.TITLE }}</h2>
+      <p class="subtitle">{{ text().AUTH?.SETUP?.SUBTITLE }}</p>
+    </div>
+
+    @if (errorMessage()) {
+      <div class="alert-error" role="alert">
+        <span class="alert-icon">⚠️</span>
+        <span class="alert-text">
+          @if (errorMessage() === 'REQUIRED_NAME') {
+            {{ text().AUTH?.SETUP?.ERRORS?.REQUIRED_NAME }}
+          }
+
+          @if (errorMessage() === 'INVALID_PESEL') {
+            {{ text().AUTH?.SETUP?.ERRORS?.INVALID_PESEL }}
+          }
+
+          @if (errorMessage() === 'REQUIRED_SPECIALIZATION') {
+            {{ text().AUTH?.SETUP?.ERRORS?.REQUIRED_SPECIALIZATION }}
+          }
+
+          @if (errorMessage() === 'SESSION_EXPIRED') {
+            {{ text().AUTH?.SETUP?.ERRORS?.SESSION_EXPIRED }}
+          }
+
+          @if (errorMessage() === 'SERVER_ERROR') {
+            {{ text().AUTH?.ERRORS?.SERVER_ERROR || "Server connection error" }} ({{ serverStatusCode() }}). {{ text().AUTH?.ERRORS?.RETRY }}
+          }
+
+          @if (errorMessage() === 'UNEXPECTED') {
+            {{ text().AUTH?.ERRORS?.UNEXPECTED }}
+          }
+
+          @if (errorMessage() !== 'REQUIRED_NAME' && errorMessage() !== 'INVALID_PESEL' && errorMessage() !== 'REQUIRED_SPECIALIZATION' && errorMessage() !== 'SESSION_EXPIRED' && errorMessage() !== 'SERVER_ERROR' && errorMessage() !== 'UNEXPECTED') {
+            {{ errorMessage() }}
+          }
+
+        </span>
+      </div>
+    }
+
+    @if (userRole()) {
+      <form (ngSubmit)="handleProfileUpdate()" #profileForm="ngForm" novalidate>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">{{ text().AUTH?.SETUP?.FIRST_NAME_LABEL }}</label>
+            <input
+              type="text"
+              id="firstName"
+              name="first_name"
+              [(ngModel)]="profileData.first_name"
+              placeholder="{{ text().AUTH?.SETUP?.FIRST_NAME_EXAMPLE }}"
+              [disabled]="isSubmitting()"
+              required />
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">{{ text().AUTH?.SETUP?.LAST_NAME_LABEL }}</label>
+            <input
+              type="text"
+              id="lastName"
+              name="last_name"
+              [(ngModel)]="profileData.last_name"
+              placeholder="{{ text().AUTH?.SETUP?.LAST_NAME_EXAMPLE }}"
+              [disabled]="isSubmitting()"
+              required />
+          </div>
+        </div>
+
+        @if (userRole() === 'patient') {
+          <div class="form-group">
+            <label for="pesel">{{ text().AUTH?.SETUP?.PESEL_LABEL }}</label>
+            <input
+              type="text"
+              id="pesel"
+              name="pesel"
+              maxlength="11"
+              [(ngModel)]="profileData.pesel"
+              [placeholder]="text().AUTH?.SETUP?.PESEL_PLACEHOLDER"
+              [disabled]="isSubmitting()"
+              required />
+            <small class="help-text">{{ text().AUTH?.SETUP?.PESEL_HELP }}</small>
+          </div>
+        }
+
+        @if (userRole() === 'doctor') {
+          <div class="form-group">
+            <label for="specialization">{{ text().AUTH?.FORM?.SPECIALIZATION_LABEL }}</label>
+            <input
+              type="text"
+              id="specialization"
+              name="specialization"
+              [(ngModel)]="profileData.specialization"
+              [placeholder]="text().AUTH?.FORM?.SPECIALIZATION_PLACEHOLDER"
+              [disabled]="isSubmitting()"
+              required />
+          </div>
+
+          <div class="form-group">
+            <label class="section-sub-label">{{ text().AUTH?.SETUP?.EXAMINATIONS_LABEL }}</label>
+
+            <div class="checkbox-grid-container">
+              @for (examination of examinations(); track examination.id) {
+                <label class="checkbox-wrapper-label" [class.checked]="isExaminationSelected(examination.id)">
+                  <input
+                    type="checkbox"
+                    [value]="examination.id"
+                    [disabled]="isSubmitting()"
+                    [checked]="isExaminationSelected(examination.id)"
+                    (change)="examinationChecked(examination.id)" />
+                  <span class="custom-label-text">{{ examination.name }}</span>
+                </label>
+              }
+            </div>
+          </div>
+        }
+
+        <button type="submit" class="btn-submit" [disabled]="isSubmitting()">
+          @if (isSubmitting()) {
+            <span class="spinner">{{ text().AUTH?.SETUP?.BTN_SAVING }}</span>
+          } @else {
+            <span>{{ text().AUTH?.SETUP?.BTN_SAVE }}</span>
+          }
+        </button>
+
+      </form>
+    } @else {
+      <div class="loading-state">
+        <span class="spinner">{{ text().AUTH?.SETUP?.LOADING_VERIFICATION }}</span>
+      </div>
+    }
+
+  </div>
+</div>
+<app-footer></app-footer>

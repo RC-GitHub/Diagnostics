@@ -1,10 +1,5 @@
 <header class="navbar">
-  <a routerLink="/">
-    <div class="logo">
-      <span class="logo-mark">{{ text().HEADER?.LETTER }}</span>
-      {{ text().HEADER?.BRAND_NAME }}
-    </div>
-  </a>
+  <app-logo></app-logo>
 
   <button
     class="hamburger-toggle"
@@ -46,8 +41,53 @@
       }
     </div>
 
-    <button class="btn btn-secondary" (click)="navigateToLogin(); closeMenu()">
-      {{ text().HEADER?.ACTIONS?.LOGIN }}
-    </button>
+    @if (isUserLoggedIn()) {
+      <div class="profile-dropdown" (click)="toggleProfile(); $event.stopPropagation()" [class.open]="isProfileOpen()">
+        <div class="profile-trigger">
+
+          <div class="avatar" [class.incomplete]="!profileService.isProfileComplete()">
+            @if (profileService.isProfileComplete()) {
+              {{ profileService.profile()?.firstName?.charAt(0) }}{{ profileService.profile()?.lastName?.charAt(0) }}
+            } @else {
+              ?
+            }
+          </div>
+
+          <span class="profile-name">
+            @if (profileService.isProfileComplete()) {
+              {{ profileService.profile()?.firstName }}
+            } @else {
+              {{ text().AUTH?.SETUP?.TITLE  }}
+            }
+          </span>
+          <span class="lang-caret">&#x25BE;</span>
+        </div>
+
+        @if (isProfileOpen()) {
+          <ul class="profile-menu" (click)="$event.stopPropagation()">
+            @if (profileService.isProfileComplete()) {
+              <li (click)="navigateTo('/profile')">
+                {{ text().HEADER?.PROFILE?.VIEW_PROFILE }}
+              </li>
+              <li (click)="navigateTo('/settings')">
+                {{ text().HEADER?.PROFILE?.SETTINGS }}
+              </li>
+            } @else {
+              <li (click)="navigateTo('/complete')">
+                {{ text().AUTH?.SETUP?.TITLE }}
+              </li>
+            }
+            <li class="divider"></li>
+            <li class="logout-item" (click)="handleLogout()">
+              {{ text().HEADER?.PROFILE?.LOGOUT }}
+            </li>
+          </ul>
+        }
+      </div>
+    } @else {
+      <button class="btn btn-secondary" (click)="navigateToLogin(); closeMenu()">
+        {{ text().HEADER?.ACTIONS?.LOGIN }}
+      </button>
+    }
   </nav>
 </header>

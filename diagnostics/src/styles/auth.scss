@@ -47,6 +47,11 @@
       margin-bottom: 2rem;
     }
 
+    .spinner {
+      display: flex;
+      justify-content: center;
+    }
+
     .form-group {
       display: flex;
       flex-direction: column;
@@ -59,7 +64,7 @@
         color: colors.get(text-dark);
       }
 
-      input[type="email"], input[type="password"] {
+      input {
         padding: 0.8rem 1rem;
         border-radius: 10px;
         border: 1px solid colors.get(border);
@@ -78,6 +83,12 @@
           opacity: 0.6;
           cursor: not-allowed;
         }
+      }
+
+      .help-text {
+        font-size: 0.8rem;
+        color: colors.get(text-light);
+        margin-top: 0.2rem;
       }
 
       .role-selector {

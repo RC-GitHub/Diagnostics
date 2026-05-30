@@ -4,14 +4,19 @@
     "BRAND_NAME": "Diagnostics",
     "NAV": {
       "HOW_IT_WORKS": "How it works",
-      "FOR_WHOM": "Who is it for",
+      "FOR_WHOM": "For whom",
       "CONTACT": "Contact",
       "FAQ": "FAQ"
     },
     "ACTIONS": {
-      "LOGIN": "Sign In",
+      "LOGIN": "Log in",
       "REGISTER": "Create account",
-      "LOGOUT": "Sign Out"
+      "LOGOUT": "Log out"
+    },
+    "PROFILE": {
+      "VIEW_PROFILE": "Profile",
+      "SETTINGS": "Settings",
+      "LOGOUT": "Log out"
     },
     "LANGUAGES": {
       "PL": "Polski",

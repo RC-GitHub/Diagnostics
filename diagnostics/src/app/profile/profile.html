@@ -1,12 +1,6 @@
+<app-header></app-header>
 <div class="dashboard-container">
-
-  <!-- LEFT SIDEBAR: Navigation & Navigation Profiles -->
   <aside class="sidebar">
-    <div class="brand">
-      <div class="logo-icon">🩸</div>
-      <h2>Diagnostyka<span class="dot">.</span></h2>
-    </div>
-
     <div class="user-profile">
       <div class="avatar">{{ userName.charAt(0) }}</div>
       <div class="user-info">
@@ -16,10 +10,9 @@
     </div>
 
     <nav class="nav-menu">
-      <a routerLink="#" class="active"><span class="icon">📊</span> Dashboard</a>
-      <a routerLink="#"><span class="icon">📄</span> Lab Results</a>
-      <a routerLink="#"><span class="icon">🗓️</span> Appointments</a>
-      <a routerLink="#"><span class="icon">⚙️</span> Settings</a>
+      <a routerLink="#" class="active"><span class="icon">🗓️</span> {{ text().PROFILE?.PATIENT?.TABS?.ACTIVE }}</a>
+      <a routerLink="#"><span class="icon">📄</span> {{ text().PROFILE?.PATIENT?.TABS?.HISTORY }}</a>
+      <a routerLink="#"><span class="icon">⚙️</span> {{ text().PROFILE?.PATIENT?.TABS?.SETTINGS }}</a>
     </nav>
   </aside>
 
@@ -41,22 +34,6 @@
         <button class="btn-primary">+ Add New Result</button>
       </div>
     </header>
-
-    <!-- Essential Vitals Grid -->
-    <section class="metrics-grid">
-      @for (item of healthMetrics; track item.label) {
-        <div class="metric-card" [className]="'metric-card ' + item.status">
-          <div class="card-header">
-            <span class="label">{{ item.label }}</span>
-            <span class="trend-badge">{{ item.trend }}</span>
-          </div>
-          <div class="card-body">
-            <h1 class="value">{{ item.value }}</h1>
-            <span class="unit">{{ item.unit }}</span>
-          </div>
-        </div>
-      }
-    </section>
 
     <!-- Lab Results Analytical Subsystem -->
     <section class="results-section">
@@ -116,3 +93,4 @@
 
   </main>
 </div>
+<app-footer></app-footer>

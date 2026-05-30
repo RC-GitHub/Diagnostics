@@ -1,28 +1,4 @@
-@use 'sass:map';
-
-// ==========================================================================
-// 1. Theme Configuration & Core Tokens
-// ==========================================================================
-$colors: (
-  bg-primary: #f8fafc,
-  bg-surface: #ffffff,
-  text-main: #0f172a,
-  text-muted: #64748b,
-  border-color: #e2e8f0,
-  accent-color: #2563eb,
-  accent-hover: #1d4ed8,
-  success-bg: #d1fae5,
-  success-text: #065f46,
-  warning-bg: #fef3c7,
-  warning-text: #92400e,
-  critical-bg: #fee2e2,
-  critical-text: #991b1b
-);
-
-// Quick function helper to grab color map values
-@function color($key) {
-  @return map.get($colors, $key);
-}
+@use '../../styles/_colors.scss' as colors;
 
 // Reusable Flexbox Center Mixin
 @mixin flex-center {
@@ -37,16 +13,16 @@ $colors: (
 .dashboard-container {
   display: flex;
   min-height: 100vh;
-  background-color: color(bg-primary);
-  color: color(text-main);
+  background-color: colors.get(bg);
+  color: colors.get(text);
 
   // ==========================================================================
   // 3. Navigation Sidebar Subsystem
   // ==========================================================================
   .sidebar {
     width: 280px;
-    background-color: color(bg-surface);
-    border-right: 1px solid color(border-color);
+    background-color: colors.get(primary);
+    border-right: 1px solid colors.get(border);
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -63,7 +39,7 @@ $colors: (
         margin: 0;
 
         .dot {
-          color: color(accent-color);
+          color: colors.get(text-dark);
         }
       }
     }
@@ -79,7 +55,7 @@ $colors: (
       .avatar {
         width: 44px;
         height: 44px;
-        background-color: color(accent-color);
+        background-color: colors.get(primary);
         color: white;
         border-radius: 50%;
         font-weight: bold;
@@ -88,7 +64,7 @@ $colors: (
 
       .user-info {
         h4 { margin: 0 0 0.2rem 0; font-size: 0.95rem; }
-        p { margin: 0; color: color(text-muted); font-size: 0.8rem; }
+        p { margin: 0; color: colors.get(muted); font-size: 0.8rem; }
       }
     }
 
@@ -101,8 +77,9 @@ $colors: (
         display: flex;
         align-items: center;
         gap: 1rem;
+        font-size: 1.25rem;
         padding: 0.85rem 1rem;
-        color: color(text-muted);
+        color: colors.get(bg);
         text-decoration: none;
         border-radius: 8px;
         font-weight: 500;
@@ -110,7 +87,7 @@ $colors: (
 
         &:hover, &.active {
           background-color: #eff6ff;
-          color: color(accent-color);
+          color: colors.get(primary);
         }
       }
     }
@@ -138,13 +115,13 @@ $colors: (
           width: 100%;
           padding: 0.75rem 1rem 0.75rem 2.5rem;
           border-radius: 10px;
-          border: 1px solid color(border-color);
-          background-color: color(bg-surface);
+          border: 1px solid colors.get(border);
+          background-color: colors.get(bg);
           outline: none;
           transition: border-color 0.2s;
 
           &:focus {
-            border-color: color(accent-color);
+            border-color: colors.get(primary);
           }
         }
 
@@ -170,14 +147,14 @@ $colors: (
 
         .btn-refresh {
           background-color: #f1f5f9;
-          color: color(text-main);
+          color: colors.get(text);
           &:hover { background-color: #e2e8f0; }
         }
 
         .btn-primary {
-          background-color: color(accent-color);
-          color: white;
-          &:hover { background-color: color(accent-hover); }
+          background-color: colors.get(primary);
+          color: colors.get(bg);
+          &:hover { background-color: colors.get(primary-dark); }
         }
       }
     }
@@ -192,16 +169,16 @@ $colors: (
       margin-bottom: 3rem;
 
       .metric-card {
-        background-color: color(bg-surface);
+        background-color: colors.get(bg);
         padding: 1.5rem;
         border-radius: 16px;
-        border-left: 5px solid color(border-color);
+        border-left: 5px solid colors.get(border);
         box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 
         .card-header {
           display: flex;
           justify-content: space-between;
-          color: color(text-muted);
+          color: colors.get(muted);
           font-size: 0.875rem;
           margin-bottom: 1rem;
 
@@ -219,7 +196,7 @@ $colors: (
           gap: 0.25rem;
 
           .value { margin: 0; font-size: 1.8rem; font-weight: 700; }
-          .unit { color: color(text-muted); font-size: 0.85rem; }
+          .unit { color: colors.get(muted); font-size: 0.85rem; }
         }
 
         // Contextual Border Variants
@@ -233,10 +210,10 @@ $colors: (
     // 6. Medical Analytical Table Panel
     // ==========================================================================
     .results-section {
-      background-color: color(bg-surface);
+      background-color: colors.get(bg);
       border-radius: 16px;
       padding: 2rem;
-      border: 1px solid color(border-color);
+      border: 1px solid colors.get(border);
 
       .section-header {
         display: flex;
@@ -254,13 +231,13 @@ $colors: (
             margin-left: 0.5rem;
             cursor: pointer;
             font-weight: 600;
-            color: color(text-muted);
+            color: colors.get(text);
             border-radius: 6px;
             transition: all 0.2s;
 
             &:hover { background-color: #f1f5f9; }
             &.active {
-              background-color: color(text-main);
+              background-color: colors.get(text);
               color: white;
             }
           }
@@ -277,11 +254,11 @@ $colors: (
 
           th, td {
             padding: 1rem;
-            border-bottom: 1px solid color(border-color);
+            border-bottom: 1px solid colors.get(border);
           }
 
           th {
-            color: color(text-muted);
+            color: colors.get(muted);
             font-weight: 600;
             font-size: 0.875rem;
           }
@@ -290,7 +267,7 @@ $colors: (
             font-size: 0.95rem;
 
             &.font-bold { font-weight: 600; }
-            &.text-muted { color: color(text-muted); }
+            &.text-muted { color: colors.get(muted); }
             &.diagnostic-val { font-family: monospace; font-size: 1rem; }
           }
 
@@ -308,15 +285,15 @@ $colors: (
             font-weight: 700;
             text-transform: uppercase;
 
-            &.normal   { background-color: color(success-bg); color: color(success-text); }
-            &.warning  { background-color: color(warning-bg); color: color(warning-text); }
-            &.critical { background-color: color(critical-bg); color: color(critical-text); }
+            &.normal   { background-color: colors.get(ok-bg); color: colors.get(ok-text); }
+            &.warning  { background-color: colors.get(warn-bg); color: colors.get(warn-text); }
+            &.critical { background-color: colors.get(crit-bg); color: colors.get(crit-text); }
           }
 
           .btn-view {
             background: none;
             border: none;
-            color: color(accent-color);
+            color: colors.get(primary);
             font-weight: 600;
             cursor: pointer;
             &:hover { text-decoration: underline; }
@@ -325,7 +302,7 @@ $colors: (
           .empty-state {
             text-align: center;
             padding: 3rem;
-            color: color(text-muted);
+            color: colors.get(muted);
           }
         }
       }

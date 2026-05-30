@@ -17,35 +17,11 @@ a {
   z-index: 9999;
   overflow: visible !important;
 
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.3rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    color: colors.get(text);
-
-    .logo-mark {
-      width: 30px;
-      height: 30px;
-      background: colors.get(primary);
-      color: white;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      font-weight: 900;
-    }
-    .dot { color: colors.get(primary); }
-  }
-
   // Domyslny układ poziomy (Desktop)
   .nav-actions {
     display: flex;
     align-items: center;
-    gap: 1.75rem;
+    gap: 1rem;
 
     .nav-link {
       color: colors.get(muted);
@@ -171,7 +147,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 1.25rem;
+    gap: 1.75rem;
 
     padding: 6%;
     padding-top: 0;
@@ -188,6 +164,121 @@ a {
 
     .stat-divider {
       display: none;
+    }
+  }
+}
+
+.profile-dropdown {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  .profile-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 12px;
+    transition: background-color 0.2s;
+    width: 100%;
+
+    &:hover {
+      background-color: rgba(colors.get(primary), 0.08);
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: colors.get(primary-dark);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: colors.get(text-dark);
+      flex: 1;
+    }
+
+    .lang-caret {
+      color: colors.get(text-light);
+      font-size: 0.8rem;
+      transition: transform 0.2s;
+    }
+  }
+
+  &.open {
+    .profile-trigger {
+      background-color: rgba(colors.get(primary), 0.1);
+      .lang-caret { transform: rotate(180deg); }
+    }
+  }
+
+  // Okno rozwijane menu (na wzór .lang-menu)
+  .profile-menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: -0.5rem;
+    background-color: rgba(colors.get(bg), 0.55);
+    border: 1px solid colors.get(border);
+    border-radius: 12px;
+    padding: 0.5rem;
+    min-width: 170px;
+    list-style: none;
+    margin: 0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 100%;
+
+    li {
+      padding: 0.6rem 0.8rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: colors.get(text-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+
+      .icon {
+        font-size: 1.1rem;
+        width: 1.25rem;
+        text-align: center;
+      }
+
+      &:hover {
+        background-color: rgba(colors.get(primary), 0.08);
+        color: colors.get(primary-dark);
+      }
+
+      &.divider {
+        padding: 0;
+        height: 1px;
+        background-color: colors.get(border);
+        margin: 0.4rem 0;
+        cursor: default;
+        &:hover { background-color: colors.get(border); }
+      }
+
+      &.logout-item {
+        color: colors.get(crit-text);
+        &:hover {
+          background-color: colors.get(crit-bg);
+        }
+      }
     }
   }
 }
