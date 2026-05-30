@@ -1,0 +1,30 @@
+{
+  "FOOTER": {
+    "LETTER": "D",
+    "BRAND_NAME": "Diagnostyka",
+    "COL_TITLES": {
+      "PATIENT": "Pacjent",
+      "DOCTOR": "Dla lekarza",
+      "PLATFORM": "Platforma"
+    },
+    "NAV_PATIENT": {
+      "OFFER": "Oferta badań",
+      "BOOKING": "Umów wizytę",
+      "HISTORY": "Historia wyników",
+      "QR_CHECK": "Sprawdź wynik QR"
+    },
+    "NAV_DOCTOR": {
+      "SCHEDULE": "Harmonogram",
+      "ISSUE_RESULT": "Wystaw wynik",
+      "PROFILE": "Profil i specjalizacja"
+    },
+    "NAV_PLATFORM": {
+      "HOW_IT_WORKS": "Jak to działa",
+      "FOR_WHOM": "Dla kogo",
+      "CONTACT": "Kontakt",
+      "FAQ": "FAQ"
+    },
+    "LEGAL": "Regulamin i polityka prywatności \u00A0|\u00A0 RODO \u00A0|\u00A0 Pliki cookie",
+    "COPYRIGHT": "Copyright 2026 Diagnostyka S.A. \u2014 All rights reserved"
+  }
+}

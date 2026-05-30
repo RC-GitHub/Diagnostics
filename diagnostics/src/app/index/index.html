@@ -2,15 +2,22 @@
 
   <app-header></app-header>
 
-  <!-- HERO -->
   <section class="hero-section">
     <div class="hero-content">
-      <span class="badge">Platforma Medyczna</span>
-      <h1>Twoje badania.<br>Twój lekarz.<br>Jedno miejsce.</h1>
-      <p>Umawiaj wizyty diagnostyczne, śledź swoje wyniki i udostępniaj je lekarzowi — wszystko przez bezpieczną platformę.</p>
+      <span class="badge">{{ text().HERO?.BADGE }}</span>
+      <h1>
+        {{ text().HERO?.TITLE_LINE1 }}<br>
+        {{ text().HERO?.TITLE_LINE2 }}<br>
+        {{ text().HERO?.TITLE_LINE3 }}
+      </h1>
+      <p>{{ text().HERO?.DESCRIPTION }}</p>
       <div class="cta-group">
-        <button class="btn-primary" (click)="navigateToRegister()">Utwórz konto</button>
-        <button class="btn-secondary" (click)="navigateToLogin()">Zaloguj się →</button>
+        <button class="btn btn-secondary" (click)="navigateToRegister()">
+          {{ text().HERO?.CTA_REGISTER }}
+        </button>
+        <button class="btn btn-tertiary" (click)="navigateToLogin()">
+          {{ text().HERO?.CTA_LOGIN }}
+        </button>
       </div>
     </div>
 
@@ -18,141 +25,142 @@
       <div class="mock-card">
         <div class="mock-card-header">
           <div class="mock-dot ok"></div>
-          <span>Morfologia — wyniki gotowe</span>
+          <span>{{ text().MOCK_CARD?.HEADER }}</span>
         </div>
         <div class="mock-result-row">
-          <span class="mr-name">Hemoglobina (HGB)</span>
-          <span class="mr-val">14.2 g/dL</span>
-          <span class="badge-status ok">Normal</span>
+          <span class="mr-name">{{ text().MOCK_CARD?.RESULT_1 }}</span>
+          <span class="mr-val">14.2 g/dL</span> <span class="badge-status ok">{{ text().MOCK_CARD?.STATUS_NORMAL }}</span>
         </div>
         <div class="mock-result-row">
-          <span class="mr-name">Leukocyty (WBC)</span>
-          <span class="mr-val">11.8 ×10³</span>
-          <span class="badge-status warn">Warning</span>
+          <span class="mr-name">{{ text().MOCK_CARD?.RESULT_2 }}</span>
+          <span class="mr-val">Białko: (+)</span> <span class="badge-status warn">{{ text().MOCK_CARD?.STATUS_WARNING }}</span>
         </div>
         <div class="mock-result-row">
-          <span class="mr-name">TSH</span>
-          <span class="mr-val">0.12 mIU/L</span>
-          <span class="badge-status crit">Critical</span>
+          <span class="mr-name">{{ text().MOCK_CARD?.RESULT_3 }}</span>
+          <span class="mr-val">Zmiany ogniskowe</span> <span class="badge-status crit">{{ text().MOCK_CARD?.STATUS_CRITICAL }}</span>
         </div>
         <div class="mock-card-footer">
-          <span class="qr-hint">Wynik dostępny przez link QR</span>
+          <span class="qr-hint">{{ text().MOCK_CARD?.FOOTER }}</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- STATS -->
   <div class="stats-strip">
     <div class="stat-item">
-      <strong>2 role</strong>
-      <span>Pacjent i Lekarz</span>
+      <strong>{{ text().STATS?.ROLES_TITLE }}</strong>
+      <span>{{ text().STATS?.ROLES_DESC }}</span>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item">
-      <strong>Cookie auth</strong>
-      <span>HTTP-only, szyfrowane</span>
+      <strong>{{ text().STATS?.AUTH_TITLE }}</strong>
+      <span>{{ text().STATS?.AUTH_DESC }}</span>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item">
-      <strong>QR &amp; hash</strong>
-      <span>Publiczne linki do wyników</span>
+      <strong>{{ text().STATS?.QR_TITLE }}</strong>
+      <span>{{ text().STATS?.QR_DESC }}</span>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item">
-      <strong>PESEL</strong>
-      <span>Maskowany i szyfrowany</span>
+      <strong>{{ text().STATS?.PESEL_TITLE }}</strong>
+      <span>{{ text().STATS?.PESEL_DESC }}</span>
     </div>
   </div>
 
-  <!-- HOW IT WORKS -->
   <section id="how-it-works" class="section steps-section">
     <div class="section-header">
-      <span class="eyebrow">Jak to działa</span>
-      <h2>Od rejestracji do wyniku</h2>
+      <span class="eyebrow">{{ text().HOW_IT_WORKS?.EYEBROW }}</span>
+      <h2>{{ text().HOW_IT_WORKS?.TITLE }}</h2>
     </div>
 
     <div class="steps-grid">
       <div class="step-card">
         <div class="step-number">01</div>
-        <h3>Zarejestruj konto</h3>
-        <p>Wybierz rolę — <strong>Pacjent</strong> lub <strong>Lekarz</strong>. Po zalogowaniu uzupełnij profil: imię, nazwisko oraz (dla pacjentów) numer PESEL.</p>
+        <h3>{{ text().HOW_IT_WORKS?.STEP_1?.TITLE }}</h3>
+        <p [innerHTML]="text().HOW_IT_WORKS?.STEP_1?.DESC"></p>
       </div>
       <div class="step-arrow">&rarr;</div>
       <div class="step-card">
         <div class="step-number">02</div>
-        <h3>Umów badanie</h3>
-        <p>Pacjent wybiera badanie z dostępnej listy i wysyła zgłoszenie. System automatycznie przypisuje dostępnego lekarza z odpowiednią specjalizacją.</p>
+        <h3>{{ text().HOW_IT_WORKS?.STEP_2?.TITLE }}</h3>
+        <p>{{ text().HOW_IT_WORKS?.STEP_2?.DESC }}</p>
       </div>
       <div class="step-arrow">&rarr;</div>
       <div class="step-card">
         <div class="step-number">03</div>
-        <h3>Lekarz wystawia wynik</h3>
-        <p>Lekarz widzi swój harmonogram, uzupełnia wynik badania i opcjonalne notatki. Pacjent otrzymuje powiadomienie e-mail o gotowym wyniku.</p>
+        <h3>{{ text().HOW_IT_WORKS?.STEP_3?.TITLE }}</h3>
+        <p>{{ text().HOW_IT_WORKS?.STEP_3?.DESC }}</p>
       </div>
       <div class="step-arrow">&rarr;</div>
       <div class="step-card">
         <div class="step-number">04</div>
-        <h3>Wynik przez link lub QR</h3>
-        <p>Gotowy wynik jest dostępny publicznie przez unikalny hash — jako strona www lub kod QR w formacie PNG, bez konieczności logowania.</p>
+        <h3>{{ text().HOW_IT_WORKS?.STEP_4?.TITLE }}</h3>
+        <p>{{ text().HOW_IT_WORKS?.STEP_4?.DESC }}</p>
       </div>
     </div>
   </section>
 
-  <!-- ROLES -->
   <section id="roles" class="section roles-section">
     <div class="section-header">
-      <span class="eyebrow">Dla kogo</span>
-      <h2>Dwie role, jeden system</h2>
+      <span class="eyebrow">{{ text().ROLES?.EYEBROW }}</span>
+      <h2>{{ text().ROLES?.TITLE }}</h2>
     </div>
 
     <div class="roles-grid">
       <div class="role-card">
-        <div class="role-icon patient-icon">P</div>
-        <h3>Pacjent</h3>
+        <div class="role-icon patient-icon">{{ text().ROLES?.PATIENT?.LETTER }}</div>
+        <h3>{{ text().ROLES?.PATIENT?.TITLE }}</h3>
         <ul class="role-list">
-          <li>Uzupełnia profil z imieniem i numerem PESEL</li>
-          <li>Przegląda dostępne badania</li>
-          <li>Umawia i anuluje wizyty</li>
-          <li>Śledzi historię badań i wyniki</li>
-          <li>Udostępnia wynik przez link lub QR</li>
+          <li>{{ text().ROLES?.PATIENT?.LI_1 }}</li>
+          <li>{{ text().ROLES?.PATIENT?.LI_2 }}</li>
+          <li>{{ text().ROLES?.PATIENT?.LI_3 }}</li>
+          <li>{{ text().ROLES?.PATIENT?.LI_4 }}</li>
+          <li>{{ text().ROLES?.PATIENT?.LI_5 }}</li>
         </ul>
-        <button class="btn-role" (click)="navigateToRegister()">Zarejestruj się jako pacjent</button>
+        <button class="btn-role" (click)="navigateToRegister()">
+          {{ text().ROLES?.PATIENT?.CTA }}
+        </button>
       </div>
 
       <div class="role-card">
-        <div class="role-icon doctor-icon">L</div>
-        <h3>Lekarz</h3>
+        <div class="role-icon doctor-icon">{{ text().ROLES?.DOCTOR?.LETTER }}</div>
+        <h3>{{ text().ROLES?.DOCTOR?.TITLE }}</h3>
         <ul class="role-list">
-          <li>Uzupełnia profil ze specjalizacją</li>
-          <li>Deklaruje obsługiwane badania</li>
-          <li>Przegląda aktywny harmonogram wizyt</li>
-          <li>Wystawia wyniki i notatki</li>
-          <li>Powiadamia pacjenta e-mailem automatycznie</li>
+          <li>{{ text().ROLES?.DOCTOR?.LI_1 }}</li>
+          <li>{{ text().ROLES?.DOCTOR?.LI_2 }}</li>
+          <li>{{ text().ROLES?.DOCTOR?.LI_3 }}</li>
+          <li>{{ text().ROLES?.DOCTOR?.LI_4 }}</li>
+          <li>{{ text().ROLES?.DOCTOR?.LI_5 }}</li>
         </ul>
-        <button class="btn-role" (click)="navigateToRegister()">Zarejestruj się jako lekarz</button>
+        <button class="btn-role" (click)="navigateToRegister()">
+          {{ text().ROLES?.DOCTOR?.CTA }}
+        </button>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="cta-section">
-    <h2>Gotowy do działania?</h2>
-    <p>Utwórz konto i zacznij korzystać z platformy.</p>
+    <h2>{{ text().CTA_SECTION?.TITLE }}</h2>
+    <p>{{ text().CTA_SECTION?.DESC }}</p>
     <div class="cta-group">
-      <button class="btn-primary" (click)="navigateToRegister()">Utwórz konto</button>
-      <button class="btn-secondary" (click)="navigateToLogin()">Mam już konto →</button>
+      <button class="btn btn-primary" (click)="navigateToRegister()">
+        {{ text().CTA_SECTION?.CTA_REGISTER }}
+      </button>
+      <button class="btn btn-secondary" (click)="navigateToLogin()">
+        {{ text().CTA_SECTION?.CTA_LOGIN }}
+      </button>
     </div>
   </section>
 
   <section class="newsletter-section">
     <div class="newsletter-content">
-      <h2>Jeszcze więcej dla Ciebie<br>w naszym <span class="accent">newsletterze</span></h2>
-      <p>Zapisz się do naszego newslettera, a na Twoją skrzynkę będą trafiać informacje dotyczące usług i nowości w ofercie badań.</p>
+      <h2>{{ text().NEWSLETTER?.TITLE_MAIN }}<br> <span class="accent">{{ text().NEWSLETTER?.TITLE_ACCENT }}</span></h2>
+      <p>{{ text().NEWSLETTER?.DESC }}</p>
       <div class="newsletter-form">
-        <input type="text" placeholder="Imię" class="nl-input" />
-        <input type="email" placeholder="Adres e-mail" class="nl-input" />
-        <button class="btn-nl">Zapisz się</button>
+        <input type="text" [placeholder]="text().NEWSLETTER?.PLACEHOLDER_NAME" class="nl-input" />
+        <input type="email" [placeholder]="text().NEWSLETTER?.PLACEHOLDER_EMAIL" class="nl-input" />
+        <button class="btn-nl">{{ text().NEWSLETTER?.BUTTON }}</button>
       </div>
     </div>
     <div class="newsletter-visual">
@@ -160,73 +168,37 @@
     </div>
   </section>
 
-  <!-- EU LOGOS -->
   <div class="eu-strip">
     <div class="eu-logo">
       <div class="eu-flag-block fe">&#9733;</div>
       <div class="eu-logo-text">
-        <strong>Fundusze Europejskie</strong>
-        <span>Inteligentny Rozwój</span>
+        <strong>{{ text().EU_LOGOS?.FE_TITLE }}</strong>
+        <span>{{ text().EU_LOGOS?.FE_SUB }}</span>
       </div>
     </div>
     <div class="eu-divider"></div>
     <div class="eu-logo">
       <div class="eu-flag-block pl"><div class="pl-flag"></div></div>
       <div class="eu-logo-text">
-        <strong>Rzeczpospolita Polska</strong>
+        <strong>{{ text().EU_LOGOS?.PL_TITLE }}</strong>
       </div>
     </div>
     <div class="eu-divider"></div>
     <div class="eu-logo">
       <div class="eu-logo-text ncbr">
-        <strong>NCBR</strong>
-        <span>Narodowe Centrum Badań i Rozwoju</span>
+        <strong>{{ text().EU_LOGOS?.NCBR_TITLE }}</strong>
+        <span>{{ text().EU_LOGOS?.NCBR_SUB }}</span>
       </div>
     </div>
     <div class="eu-divider"></div>
     <div class="eu-logo">
       <div class="eu-flag-block eu">&#9733;&#9733;&#9733;</div>
       <div class="eu-logo-text">
-        <strong>Unia Europejska</strong>
-        <span>Europejski Fundusz Rozwoju Regionalnego</span>
+        <strong>{{ text().EU_LOGOS?.EU_TITLE }}</strong>
+        <span>{{ text().EU_LOGOS?.EU_SUB }}</span>
       </div>
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-main">
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <span class="logo-mark">D</span>
-          Diagnostyka
-        </div>
-      </div>
-      <div class="footer-col">
-        <span class="footer-col-title">Pacjent</span>
-        <a href="#">Oferta badań</a>
-        <a href="#">Umów wizytę</a>
-        <a href="#">Historia wyników</a>
-        <a href="#">Sprawdź wynik QR</a>
-      </div>
-      <div class="footer-col">
-        <span class="footer-col-title">Dla lekarza</span>
-        <a href="#">Harmonogram</a>
-        <a href="#">Wystaw wynik</a>
-        <a href="#">Profil i specjalizacja</a>
-      </div>
-      <div class="footer-col">
-        <span class="footer-col-title">Platforma</span>
-        <a href="#how-it-works">Jak to działa</a>
-        <a href="#roles">Dla kogo</a>
-        <a href="#">Kontakt</a>
-        <a href="#">FAQ</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>Regulamin i polityka prywatności &nbsp;|&nbsp; RODO &nbsp;|&nbsp; Pliki cookie</span>
-      <span>Copyright 2026 Diagnostyka S.A. &mdash; All rights reserved</span>
-    </div>
-  </footer>
-
+  <app-footer></app-footer>
 </div>

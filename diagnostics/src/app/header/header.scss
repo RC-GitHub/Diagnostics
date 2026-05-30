@@ -57,17 +57,6 @@
       padding: 0.55rem 1.15rem;
       font-size: 0.875rem;
     }
-
-    .btn-login {
-      background: colors.get(muted);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.15s;
-      &:hover { opacity: 0.85; }
-    }
   }
 }
 
@@ -77,7 +66,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 0.4rem 0.65rem;
+  padding: 0.55rem 1.15rem;
   border: 1px solid colors.get(border);
   border-radius: 7px;
   font-size: 0.8rem;

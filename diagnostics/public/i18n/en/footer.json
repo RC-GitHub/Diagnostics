@@ -1,0 +1,30 @@
+{
+  "FOOTER": {
+    "LETTER": "D",
+    "BRAND_NAME": "Diagnostics",
+    "COL_TITLES": {
+      "PATIENT": "Patient",
+      "DOCTOR": "For Doctors",
+      "PLATFORM": "Platform"
+    },
+    "NAV_PATIENT": {
+      "OFFER": "Test Offer",
+      "BOOKING": "Book Appointment",
+      "HISTORY": "Results History",
+      "QR_CHECK": "Verify QR Result"
+    },
+    "NAV_DOCTOR": {
+      "SCHEDULE": "Schedule",
+      "ISSUE_RESULT": "Issue Result",
+      "PROFILE": "Profile & Specialization"
+    },
+    "NAV_PLATFORM": {
+      "HOW_IT_WORKS": "How it works",
+      "FOR_WHOM": "Who is it for",
+      "CONTACT": "Contact",
+      "FAQ": "FAQ"
+    },
+    "LEGAL": "Terms & Privacy Policy \u00A0|\u00A0 GDPR \u00A0|\u00A0 Cookie Files",
+    "COPYRIGHT": "Copyright 2026 Diagnostics S.A. \u2014 All rights reserved"
+  }
+}

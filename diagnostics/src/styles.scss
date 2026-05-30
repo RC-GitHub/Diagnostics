@@ -10,32 +10,58 @@ body {
 }
 
 // ─── Buttons (shared) ────────────────────────────────────────────────────
-.btn-primary {
-  background: colors.get(primary);
-  color: white;
+.btn {
   border: none;
   padding: 0.75rem 1.75rem;
-  border: 3px solid colors.get(primary);
-  border-radius: 9px;
+  /* border: 3px solid colors.get(primary); */
+  border-radius: 4px;
   font-size: 0.925rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s;
-  &:hover { background: colors.get(primary-dark); }
+}
+
+.btn-primary {
+  background: colors.get(primary);
+  color: colors.get(bg);
+  outline: 3px solid colors.get(primary);
+  transition: background 0.25s;
+  &:hover {
+    transition: background 0.25s;
+    outline: 3px solid colors.get(muted);
+    background-color: colors.get(muted);
+    text-shadow: 0 0 1px colors.get(bg);
+  }
 }
 
 .btn-secondary {
+  background: colors.get(bg);
+  color: colors.get(text);
+  outline: 3px solid colors.get(primary);
+  transition: background 0.25s;
+  &:hover {
+    transition: background 0.25s;
+    color: colors.get(primary);
+    text-shadow: 0 0 5px colors.get(border);
+    box-shadow: 0 0 5px colors.get(border);
+  }
+}
+
+.btn-tertiary {
   background: colors.get(muted);
   color: colors.get(bg);
-  border: 3px solid colors.get(bg);
-  padding: 0.75rem 1.5rem;
-  border-radius: 9px;
-  font-size: 0.925rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: border-color 0.15s, background 0.15s;
+  transition: background 0.25s;
   &:hover {
-    background: colors.get(text);
-    border-color: colors.get(muted);
+    transition: background 0.25s;
+    text-shadow: 0 0 1px colors.get(bg);
+    background-color: colors.get(primary-dark);
   }
+}
+
+
+// Vertical stats divider
+.stat-divider {
+  width: 1px;
+  height: 40px;
+  background: colors.get(border);
+  flex-shrink: 0;
 }

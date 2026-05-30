@@ -9,7 +9,10 @@
     "CTA_LOGIN": "Sign In →"
   },
   "MOCK_CARD": {
-    "HEADER": "Blood work — results ready",
+    "HEADER": "Results ready",
+    "RESULT_1": "Full Blood Count",
+    "RESULT_2": "Urinalysis",
+    "RESULT_3": "Abdominal Ultrasound",
     "STATUS_NORMAL": "Normal",
     "STATUS_WARNING": "Warning",
     "STATUS_CRITICAL": "Critical",
@@ -49,6 +52,7 @@
     "EYEBROW": "Who is it for",
     "TITLE": "Two roles, one system",
     "PATIENT": {
+      "LETTER": "P",
       "TITLE": "Patient",
       "LI_1": "Completes profile details with name and PESEL ID number",
       "LI_2": "Browses the catalog of available diagnostic tests",
@@ -58,12 +62,14 @@
       "CTA": "Register as a patient"
     },
     "DOCTOR": {
+      "LETTER": "D",
       "TITLE": "Doctor",
       "LI_1": "Completes profile setup with medical specialization",
       "LI_2": "Declares supported diagnostic procedures",
       "LI_3": "Reviews their active real-time visit schedule",
       "LI_4": "Issues official test metrics and custom clinical notes",
-      "LI_5": "Notifies the patient via automated email workflows"
+      "LI_5": "Notifies the patient via automated email workflows",
+      "CTA": "Register as a doctor"
     }
   },
   "CTA_SECTION": {

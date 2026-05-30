@@ -51,6 +51,10 @@
       z-index: 1;
     }
 
+    .btn-secondary {
+      outline: 0 !important;
+    }
+
     .hero-content {
       flex: 1;
       max-width: 560px;
@@ -95,7 +99,7 @@
       flex: 0 0 auto;
 
       .mock-card {
-        width: 360px;
+        width: 420px;
         background: white;
         border-radius: 16px;
         border: 1px solid colors.get(border);
@@ -109,7 +113,7 @@
           padding: 0.9rem 1.25rem;
           border-bottom: 1px solid colors.get(border);
           font-size: 0.82rem;
-          font-weight: 600;
+          font-weight: 800;
           color: colors.get(muted);
 
           .mock-dot {
@@ -182,13 +186,6 @@
         font-size: 0.8rem;
         color: colors.get(muted);
       }
-    }
-
-    .stat-divider {
-      width: 1px;
-      height: 40px;
-      background: colors.get(border);
-      flex-shrink: 0;
     }
   }
 

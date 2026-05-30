@@ -9,10 +9,13 @@
     "CTA_LOGIN": "Zaloguj się →"
   },
   "MOCK_CARD": {
-    "HEADER": "Morfologia — wyniki gotowe",
-    "STATUS_NORMAL": "Normal",
-    "STATUS_WARNING": "Warning",
-    "STATUS_CRITICAL": "Critical",
+    "HEADER": "Wyniki gotowe",
+    "RESULT_1": "Morfologia krwi",
+    "RESULT_2": "Badanie ogólne moczu",
+    "RESULT_3": "USG jamy brzusznej",
+    "STATUS_NORMAL": "W normie",
+    "STATUS_WARNING": "Poza normą",
+    "STATUS_CRITICAL": "Alarmowy",
     "QR_HINT": "Wynik dostępny przez link QR"
   },
   "STATS": {
@@ -49,6 +52,7 @@
     "EYEBROW": "Dla kogo",
     "TITLE": "Dwie role, jeden system",
     "PATIENT": {
+      "LETTER": "P",
       "TITLE": "Pacjent",
       "LI_1": "Uzupełnia profil z imieniem i numerem PESEL",
       "LI_2": "Przegląda dostępne badania",
@@ -58,6 +62,7 @@
       "CTA": "Zarejestruj się jako pacjent"
     },
     "DOCTOR": {
+      "LETTER": "L",
       "TITLE": "Lekarz",
       "LI_1": "Uzupełnia profil ze specjalizacją",
       "LI_2": "Deklaruje obsługiwane badania",

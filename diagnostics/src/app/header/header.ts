@@ -28,6 +28,10 @@ export class Header {
       this.isLangOpen.set(false);
     }
 
+    getLanguageName(lang: string): string {
+      return this.text().HEADER?.LANGUAGES?.[lang.toUpperCase()] ?? lang;
+    }
+
     // Routes
     navigateToLogin(): void {
       this.router.navigate(['/login']);
