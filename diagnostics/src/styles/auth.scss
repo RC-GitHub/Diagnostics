@@ -85,6 +85,39 @@
         }
       }
 
+      .checkbox-grid-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        .checkbox-wrapper-label {
+          background-color: rgba(colors.get(primary), 0.1);
+          border-radius: 0.5rem;
+          padding: 0.5rem;
+          display: flex;
+          gap: 0.25rem;
+          align-items: center;
+          border: 2px solid rgba(colors.get(primary), 0.3);
+
+          &:hover {
+            border-color: colors.get(primary);
+            background-color: rgba(colors.get(primary), 0.15);
+          }
+
+          input {
+            display: none;
+          }
+
+          &:has(input:checked) {
+            border-color: colors.get(primary-dark);
+            background-color: rgba(colors.get(primary), 0.25);
+            color: colors.get(primary-dark);
+            font-weight: bold;
+          }
+        }
+
+      }
+
       .help-text {
         font-size: 0.8rem;
         color: colors.get(text-light);

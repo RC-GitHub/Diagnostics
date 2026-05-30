@@ -66,6 +66,11 @@ export class CompleteSetup implements OnInit {
         this.http.get<UserStatusResponse>(`${this.baseUrl}/api/me`)
       );
 
+      if (status.profile_complete) {
+        this.router.navigate(['/profile']);
+        return;
+      }
+
       if (!status.authenticated) {
         this.router.navigate(['/login']);
         return;
@@ -138,11 +143,16 @@ export class CompleteSetup implements OnInit {
     this.isSubmitting.set(true);
 
     try {
-      const profile: any = await firstValueFrom(
+      const updatedData: any = await firstValueFrom(
         this.http.patch(`${this.baseUrl}${endpoint}`, payload)
       );
 
-      this.profileService.setProfile(profile);
+      console.log(updatedData, updatedData.profile);
+
+      if (updatedData.message === "profile updated successfully") {
+        await this.profileService.checkCurrentSession();
+      }
+
       this.router.navigate(['/profile']);
     } catch (error) {
       this.handleErrorResponse(error);

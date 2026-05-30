@@ -2,17 +2,34 @@
 <div class="dashboard-container">
   <aside class="sidebar">
     <div class="user-profile">
-      <div class="avatar">{{ userName.charAt(0) }}</div>
+      <div class="avatar">{{ profileService.profile()?.firstName?.charAt(0) }}</div>
       <div class="user-info">
-        <h4>{{ userName }}</h4>
-        <p>ID: #482-991-AC</p>
+        <h4>{{ profileService.profile()?.firstName }} {{ profileService.profile()?.lastName }}</h4>
+        <p><strong>{{ profileService.profile()?.email }}</strong></p>
+        <br>
+        @if(profileService.userRole() === 'patient') {
+          <p>{{ text().PROFILE?.PESEL }}{{ profileService.profile()?.pesel }}</p>
+        }
       </div>
     </div>
 
+    @if(profileService.userRole() === 'doctor') {
+      <div class="user-spec">
+        <h3 class="user-spec-header">
+          <strong>{{ profileService.profile()?.specialization }}</strong>
+          <hr>
+        </h3>
+
+        @for(examination of profileService.profile()?.managed_exams; track examination.name) {
+          <p class="user-exam"><strong>{{ examination.name }}</strong></p>
+        }
+      </div>
+    }
+
     <nav class="nav-menu">
-      <a routerLink="#" class="active"><span class="icon">🗓️</span> {{ text().PROFILE?.PATIENT?.TABS?.ACTIVE }}</a>
-      <a routerLink="#"><span class="icon">📄</span> {{ text().PROFILE?.PATIENT?.TABS?.HISTORY }}</a>
-      <a routerLink="#"><span class="icon">⚙️</span> {{ text().PROFILE?.PATIENT?.TABS?.SETTINGS }}</a>
+      <a routerLink="#" class="active"><span class="icon">🗓️</span> {{ text().PROFILE?.TABS?.ACTIVE }}</a>
+      <a routerLink="#"><span class="icon">📄</span> {{ text().PROFILE?.TABS?.HISTORY }}</a>
+      <a routerLink="#"><span class="icon">⚙️</span> {{ text().PROFILE?.TABS?.SETTINGS }}</a>
     </nav>
   </aside>
 

@@ -1,16 +1,13 @@
 {
   "PROFILE": {
-    "PATIENT": {
-      "PROFILE": {
-        "NAME": "Imię: ",
-        "SURNAME": "Nazwisko: ",
-        "PESEL": "PESEL: "
-      },
-      "TABS": {
-        "ACTIVE": "Aktywne",
-        "HISTORY": "Historia",
-        "SETTINGS": "Ustawienia"
-      }
+    "NAME": "Imię: ",
+    "SURNAME": "Nazwisko: ",
+    "PESEL": "PESEL: ",
+    "SPECIALIZATION": "Specjalizacja: ",
+    "TABS": {
+      "ACTIVE": "Aktywne",
+      "HISTORY": "Historia",
+      "SETTINGS": "Ustawienia"
     }
   }
 }

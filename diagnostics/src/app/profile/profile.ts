@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LanguageService } from '../core/services/language';
+import { ProfileService } from '../core/services/user';
 
 import { Header } from '../header/header';
 import { Footer } from '../footer/footer';
@@ -24,10 +25,11 @@ interface TestResult {
 })
 export class ProfileComponent implements OnInit {
   private languageService = inject(LanguageService);
+  readonly profileService = inject(ProfileService);
   readonly text = this.languageService.text;
 
   // Global App States
-  userName: string = 'Jan Kowalski';
+  // userName: string = 'Jan Kowalski';
   selectedCategory: string = 'All';
   searchQuery: string = '';
 

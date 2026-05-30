@@ -9,6 +9,11 @@ interface UserStatusResponse {
   user_id: number;
 }
 
+export interface GoUserProfile extends UserProfile {
+  first_name: string;
+  last_name: string;
+}
+
 export interface UserProfile {
   id: number;
   email: string;
@@ -18,6 +23,13 @@ export interface UserProfile {
   pesel?: string;
   specialization?: string;
   examination_ids?: number[];
+  managed_exams?: Exam[];
+}
+
+export interface Exam {
+  name: string;
+  id: number;
+  price: number;
 }
 
 @Injectable({
@@ -31,13 +43,23 @@ export class ProfileService {
 
   readonly userRole = signal<'patient' | 'doctor' | null>(null);
   readonly isProfileComplete = signal<boolean>(false);
-  readonly profile = signal<{ firstName?: string; lastName?: string } | null>(null);
+  readonly profile = signal<UserProfile | null>(null);
 
-  setProfile(data: UserProfile): void {
+  normalizeGoProfile(data: GoUserProfile) {
+    return {
+      ...data,
+      firstName: data.first_name,
+      lastName: data.last_name,
+      first_name: undefined,
+      last_name: undefined
+    };
+  }
+
+  setProfile(data: GoUserProfile): void {
     this.profileState.set(data);
     this.userRole.set(data.role);
-    this.isProfileComplete.set(!!data.firstName);
-    this.profile.set({ firstName: data.firstName, lastName: data.lastName });
+    this.isProfileComplete.set(!!data.first_name);
+    this.profile.set(this.normalizeGoProfile(data));
 
     sessionStorage.setItem('user_profile', JSON.stringify(data));
   }
@@ -54,11 +76,11 @@ export class ProfileService {
     const saved = sessionStorage.getItem('user_profile');
     if (saved) {
       try {
-        const data = JSON.parse(saved) as UserProfile;
+        const data = JSON.parse(saved) as GoUserProfile;
         this.profileState.set(data);
         this.userRole.set(data.role);
         this.isProfileComplete.set(!!data.firstName);
-        this.profile.set({ firstName: data.firstName, lastName: data.lastName });
+        this.profile.set(this.normalizeGoProfile(data));
       } catch {
         this.clearProfile();
       }
@@ -80,6 +102,19 @@ export class ProfileService {
       if (status.authenticated) {
         this.userRole.set(status.role);
         this.isProfileComplete.set(status.profile_complete);
+
+        if (status.profile_complete) {
+          const profileEndpoint = status.role === 'patient' ? '/api/patient/profile' : '/api/doctor/profile';
+
+          const data = await firstValueFrom(
+            this.http.get<any>(`${this.baseUrl}${profileEndpoint}`, { withCredentials: true })
+          );
+
+          this.profile.set(this.normalizeGoProfile(data));
+
+          console.log(this.profile())
+        }
+
       } else {
         this.clearProfile();
       }

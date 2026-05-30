@@ -59,12 +59,28 @@
         color: white;
         border-radius: 50%;
         font-weight: bold;
+        font-size: 1.2rem;
         @include flex-center;
       }
 
       .user-info {
-        h4 { margin: 0 0 0.2rem 0; font-size: 0.95rem; }
-        p { margin: 0; color: colors.get(muted); font-size: 0.8rem; }
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        h4 { margin: 0 0 0.2rem 0; font-size: 1.2rem; }
+        p { margin: 0; color: colors.get(muted); font-size: 0.9rem; }
+      }
+    }
+
+    .user-spec {
+      background-color: colors.get(primary-dark);
+      color: colors.get(bg);
+      padding: 1rem;
+      border-radius: 12px;
+
+      .user-exam {
+        border-left: 4px solid colors.get(primary);
+        padding-left: 1rem;
       }
     }
 
@@ -86,8 +102,15 @@
         transition: all 0.2s ease-in-out;
 
         &:hover, &.active {
-          background-color: #eff6ff;
           color: colors.get(primary);
+        }
+
+        &:hover {
+          background-color: rgba(colors.get(ok-bg), 0.6);
+        }
+
+        &.active {
+          background-color: colors.get(bg);
         }
       }
     }
