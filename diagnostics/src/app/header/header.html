@@ -1,0 +1,27 @@
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <span class="logo-mark">D</span>
+      {{ text().HEADER?.BRAND_NAME }}
+    </div>
+    <nav class="nav-actions">
+      <a href="#how-it-works"><button class="btn btn-primary">{{ text().HEADER?.NAV?.HOW_IT_WORKS }}</button></a>
+      <a href="#roles"><button class="btn btn-primary">{{ text().HEADER?.NAV?.FOR_WHOM }}</button></a>
+      <a href="#contact"><button class="btn btn-primary">{{ text().HEADER?.NAV?.CONTACT }}</button></a>
+      <a href="#faq"><button class="btn btn-primary">{{ text().HEADER?.NAV?.FAQ }}</button></a>
+
+      <div class="lang-dropdown" (click)="toggleLang()" [class.open]="isLangOpen()">
+        <span class="lang-current">{{ currentLang() }}</span>
+        <span class="lang-caret">&#x25BE;</span>
+        @if (isLangOpen()) {
+          <ul class="lang-menu" (click)="$event.stopPropagation()">
+            @for (lang of languages; track lang) {
+              <li [class.active]="lang === currentLang()" (click)="changeLang(lang)">{{ lang }}</li>
+            }
+          </ul>
+        }
+      </div>
+
+      <button class="btn btn-login" (click)="navigateToLogin()">{{ text().HEADER?.ACTIONS?.LOGIN }}</button>
+    </nav>
+  </header>

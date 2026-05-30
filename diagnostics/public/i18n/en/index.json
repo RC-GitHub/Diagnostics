@@ -1,0 +1,113 @@
+{
+  "HERO": {
+    "BADGE": "Medical Platform",
+    "TITLE_LINE1": "Your lab tests.",
+    "TITLE_LINE2": "Your doctor.",
+    "TITLE_LINE3": "One single place.",
+    "DESCRIPTION": "Schedule diagnostic visits, track your results, and share them with your doctor — all through one secure platform.",
+    "CTA_REGISTER": "Create account",
+    "CTA_LOGIN": "Sign In →"
+  },
+  "MOCK_CARD": {
+    "HEADER": "Blood work — results ready",
+    "STATUS_NORMAL": "Normal",
+    "STATUS_WARNING": "Warning",
+    "STATUS_CRITICAL": "Critical",
+    "QR_HINT": "Result accessible via QR link"
+  },
+  "STATS": {
+    "ROLES_TITLE": "2 roles",
+    "ROLES_DESC": "Patient and Doctor",
+    "AUTH_TITLE": "Cookie auth",
+    "AUTH_DESC": "HTTP-only, encrypted",
+    "QR_TITLE": "QR & hash",
+    "QR_DESC": "Public links to results",
+    "PESEL_TITLE": "PESEL ID",
+    "PESEL_DESC": "Masked and encrypted"
+  },
+  "HOW_IT_WORKS": {
+    "EYEBROW": "How it works",
+    "TITLE": "From registration to results",
+    "STEP_1": {
+      "TITLE": "Register an account",
+      "DESC": "Choose your role — <strong>Patient</strong> or <strong>Doctor</strong>. Once logged in, complete your profile: first name, last name, and (for patients) PESEL identification number."
+    },
+    "STEP_2": {
+      "TITLE": "Book an appointment",
+      "DESC": "The patient selects a medical test from the available list and submits a request. The system automatically assigns an available doctor with the matching specialization."
+    },
+    "STEP_3": {
+      "TITLE": "Doctor issues results",
+      "DESC": "The doctor views their active schedule, fills out the test results, and adds optional clinical notes. The patient receives an automatic email notification when ready."
+    },
+    "STEP_4": {
+      "TITLE": "Access via link or QR code",
+      "DESC": "The completed test result is publicly accessible via a unique secure hash — either as a webpage or a PNG format QR code, with no login required."
+    }
+  },
+  "ROLES": {
+    "EYEBROW": "Who is it for",
+    "TITLE": "Two roles, one system",
+    "PATIENT": {
+      "TITLE": "Patient",
+      "LI_1": "Completes profile details with name and PESEL ID number",
+      "LI_2": "Browses the catalog of available diagnostic tests",
+      "LI_3": "Schedules and cancels appointments autonomously",
+      "LI_4": "Tracks test history and past diagnostic reports",
+      "LI_5": "Shares medical results via unique secure link or QR code",
+      "CTA": "Register as a patient"
+    },
+    "DOCTOR": {
+      "TITLE": "Doctor",
+      "LI_1": "Completes profile setup with medical specialization",
+      "LI_2": "Declares supported diagnostic procedures",
+      "LI_3": "Reviews their active real-time visit schedule",
+      "LI_4": "Issues official test metrics and custom clinical notes",
+      "LI_5": "Notifies the patient via automated email workflows"
+    }
+  },
+  "CTA_SECTION": {
+    "TITLE": "Ready to get started?",
+    "DESC": "Create an account and start managing your medical data today.",
+    "CTA_REGISTER": "Create account",
+    "CTA_LOGIN": "I already have an account →"
+  },
+  "NEWSLETTER": {
+    "TITLE_MAIN": "Get even more insights",
+    "TITLE_ACCENT": "in our newsletter",
+    "DESC": "Subscribe to our newsletter to receive up-to-date information regarding our latest services, clinical updates, and test offers straight to your inbox.",
+    "PLACEHOLDER_NAME": "First name",
+    "PLACEHOLDER_EMAIL": "Email address",
+    "BUTTON": "Subscribe"
+  },
+  "EU_LOGOS": {
+    "FE_TITLE": "European Funds",
+    "FE_SUB": "Smart Growth",
+    "PL_TITLE": "Republic of Poland",
+    "NCBR_TITLE": "NCBR",
+    "NCBR_SUB": "The National Centre for Research and Development",
+    "EU_TITLE": "European Union",
+    "EU_SUB": "European Regional Development Fund"
+  },
+  "FOOTER": {
+    "BRAND": "Diagnostics",
+    "COL_PATIENT": "Patient",
+    "COL_DOCTOR": "For Doctors",
+    "COL_PLATFORM": "Platform",
+    "LINKS": {
+      "OFFER": "Test Catalog",
+      "BOOK": "Book Appointment",
+      "HISTORY": "Result History",
+      "CHECK_QR": "Verify QR Result",
+      "SCHEDULE": "Work Schedule",
+      "ADD_RESULT": "Issue New Result",
+      "PROFILE": "Profile & Specialty",
+      "HOW_IT_WORKS": "How It Works",
+      "FOR_WHOM": "Target Audience",
+      "CONTACT": "Contact Us",
+      "FAQ": "FAQ"
+    },
+    "LEGAL": "Terms & Privacy Policy &nbsp;|&nbsp; GDPR &nbsp;|&nbsp; Cookie Policy",
+    "COPYRIGHT": "Copyright 2026 Diagnostics S.A. &mdash; All rights reserved"
+  }
+}

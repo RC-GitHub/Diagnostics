@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+@use './styles/_colors.scss' as colors;
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
@@ -7,4 +7,35 @@ body {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+}
+
+// ─── Buttons (shared) ────────────────────────────────────────────────────
+.btn-primary {
+  background: colors.get(primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.75rem;
+  border: 3px solid colors.get(primary);
+  border-radius: 9px;
+  font-size: 0.925rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  &:hover { background: colors.get(primary-dark); }
+}
+
+.btn-secondary {
+  background: colors.get(muted);
+  color: colors.get(bg);
+  border: 3px solid colors.get(bg);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9px;
+  font-size: 0.925rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  &:hover {
+    background: colors.get(text);
+    border-color: colors.get(muted);
+  }
 }

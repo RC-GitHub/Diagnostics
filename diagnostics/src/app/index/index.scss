@@ -1,154 +1,12 @@
-@use 'sass:map';
-
-$c: (
-  primary:       #2563eb,
-  primary-dark:  #1d4ed8,
-  bg:            #ffffff,
-  bg-alt:        #f8fafc,
-  text:          #0f172a,
-  muted:         #33435b,
-  border:        #e2e8f0,
-  ok-bg:         #f0fdf4,
-  ok-text:       #15803d,
-  warn-bg:       #fffbeb,
-  warn-text:     #b45309,
-  crit-bg:       #fef2f2,
-  crit-text:     #dc2626,
-);
-
-@function c($key) { @return map.get($c, $key); }
+@use '../../styles/_colors.scss' as colors;
 
 // ─── Reset helpers ────────────────────────────────────────────────────────────
 *, *::before, *::after { box-sizing: border-box; }
 
 .landing-wrapper {
-  /* font-family: 'Inter', system-ui, -apple-system, sans-serif; */
-  color: c(text);
-  /* background: c(bg); */
+  color: colors.get(text);
   background: linear-gradient(180deg, rgba(0, 95, 250, 0.3) 20%, #ffffff 100%);
   line-height: 1.6;
-
-  // ─── Navbar ──────────────────────────────────────────────────────────────
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 6%;
-    border-bottom: 1px solid c(border);
-    position: sticky;
-    top: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    z-index: 100;
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1.3rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      text-decoration: none;
-      color: c(text);
-
-      .logo-mark {
-        width: 30px;
-        height: 30px;
-        background: c(primary);
-        color: white;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.9rem;
-        font-weight: 900;
-      }
-
-      .dot { color: c(primary); }
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 1.75rem;
-
-      .nav-link {
-        color: c(muted);
-        text-decoration: none;
-        font-size: 0.9rem;
-        font-weight: 500;
-        transition: color 0.15s;
-        &:hover { color: c(text); }
-      }
-
-      .btn-login-trigger {
-        background: c(muted);
-        color: #fff;
-        border: none;
-        padding: 0.55rem 1.15rem;
-        border-radius: 8px;
-        font-size: 0.875rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: opacity 0.15s;
-        &:hover { opacity: 0.85; }
-      }
-    }
-  }
-
-  // ─── Language dropdown ───────────────────────────────────────────────────
-  .lang-dropdown {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 0.4rem 0.65rem;
-    border: 1px solid c(border);
-    border-radius: 7px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    user-select: none;
-    transition: border-color 0.15s, background 0.15s;
-
-    &:hover { background: c(bg-alt); }
-    &.open  { border-color: #94a3b8; background: c(bg-alt); }
-
-    .lang-caret {
-      font-size: 0.65rem;
-      color: c(muted);
-      transition: transform 0.15s;
-    }
-
-    &.open .lang-caret { transform: rotate(180deg); }
-
-    .lang-menu {
-      position: absolute;
-      top: calc(100% + 6px);
-      right: 0;
-      background: white;
-      border: 1px solid c(border);
-      border-radius: 8px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-      list-style: none;
-      margin: 0;
-      padding: 4px;
-      min-width: 70px;
-      z-index: 200;
-
-      li {
-        padding: 0.45rem 0.75rem;
-        font-size: 0.82rem;
-        font-weight: 500;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background 0.1s;
-
-        &:hover  { background: c(bg-alt); }
-        &.active { color: c(primary); font-weight: 700; }
-      }
-    }
-  }
 
   // ─── Hero ────────────────────────────────────────────────────────────────
   .hero-section {
@@ -184,8 +42,8 @@ $c: (
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       z-index: 0;
-      border: 1px solid c(bg-alt);
-      border-radius: 50px;
+      border: 1px solid colors.get(bg-alt);
+      border-radius: 20px;
     }
 
     > * {
@@ -200,7 +58,7 @@ $c: (
       .badge {
         display: inline-block;
         background: #eff6ff;
-        color: c(primary);
+        color: colors.get(primary);
         font-size: 0.78rem;
         font-weight: 700;
         padding: 0.3rem 0.75rem;
@@ -210,7 +68,7 @@ $c: (
       }
 
       h1 {
-        color: c(text);
+        color: colors.get(text);
         font-size: 2.75rem;
         font-weight: 800;
         line-height: 1.15;
@@ -219,7 +77,7 @@ $c: (
       }
 
       p {
-        color: c(muted);
+        color: colors.get(muted);
         font-size: 1.05rem;
         margin: 0 0 2rem;
         max-width: 460px;
@@ -240,7 +98,7 @@ $c: (
         width: 360px;
         background: white;
         border-radius: 16px;
-        border: 1px solid c(border);
+        border: 1px solid colors.get(border);
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
         overflow: hidden;
 
@@ -249,10 +107,10 @@ $c: (
           align-items: center;
           gap: 0.5rem;
           padding: 0.9rem 1.25rem;
-          border-bottom: 1px solid c(border);
+          border-bottom: 1px solid colors.get(border);
           font-size: 0.82rem;
           font-weight: 600;
-          color: c(muted);
+          color: colors.get(muted);
 
           .mock-dot {
             width: 8px;
@@ -267,31 +125,31 @@ $c: (
           align-items: center;
           justify-content: space-between;
           padding: 0.7rem 1.25rem;
-          border-bottom: 1px solid c(border);
+          border-bottom: 1px solid colors.get(border);
           gap: 0.5rem;
 
           &:last-of-type { border-bottom: none; }
 
           .mr-name { font-size: 0.82rem; font-weight: 500; flex: 1; }
-          .mr-val { font-size: 0.82rem; color: c(muted); }
+          .mr-val { font-size: 0.82rem; color: colors.get(muted); }
 
           .badge-status {
             font-size: 0.7rem;
             font-weight: 700;
             padding: 0.2rem 0.5rem;
             border-radius: 4px;
-            &.ok   { background: c(ok-bg);   color: c(ok-text);   }
-            &.warn { background: c(warn-bg);  color: c(warn-text); }
-            &.crit { background: c(crit-bg);  color: c(crit-text); }
+            &.ok   { background: colors.get(ok-bg);   color: colors.get(ok-text);   }
+            &.warn { background: colors.get(warn-bg);  color: colors.get(warn-text); }
+            &.crit { background: colors.get(crit-bg);  color: colors.get(crit-text); }
           }
         }
 
         .mock-card-footer {
           padding: 0.75rem 1.25rem;
-          background: c(bg-alt);
+          background: colors.get(bg-alt);
           .qr-hint {
             font-size: 0.75rem;
-            color: c(muted);
+            color: colors.get(muted);
           }
         }
       }
@@ -303,9 +161,9 @@ $c: (
     display: flex;
     align-items: center;
     padding: 6rem 6%;
-    border-top: 1px solid c(border);
-    border-bottom: 1px solid c(border);
-    background: c(bg-alt);
+    border-top: 1px solid colors.get(border);
+    border-bottom: 1px solid colors.get(border);
+    background: colors.get(bg-alt);
     gap: 0;
 
     .stat-item {
@@ -318,18 +176,18 @@ $c: (
       strong {
         font-size: 1.25rem;
         font-weight: 700;
-        color: c(text);
+        color: colors.get(text);
       }
       span {
         font-size: 0.8rem;
-        color: c(muted);
+        color: colors.get(muted);
       }
     }
 
     .stat-divider {
       width: 1px;
       height: 40px;
-      background: c(border);
+      background: colors.get(border);
       flex-shrink: 0;
     }
   }
@@ -347,7 +205,7 @@ $c: (
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.08em;
-        color: c(primary);
+        color: colors.get(primary);
         margin-bottom: 0.5rem;
       }
 
@@ -359,7 +217,7 @@ $c: (
       }
 
       p {
-        color: c(muted);
+        color: colors.get(muted);
         font-size: 0.95rem;
         margin: 0;
         max-width: 520px;
@@ -380,7 +238,7 @@ $c: (
         min-width: 220px;
         padding: 2rem 1.75rem;
         background: white;
-        border: 1px solid c(border);
+        border: 1px solid colors.get(border);
         border-radius: 12px;
         transition: transform 0.2s, box-shadow 0.2s;
 
@@ -392,7 +250,7 @@ $c: (
         .step-number {
           font-size: 1.15rem;
           font-weight: 800;
-          color: c(primary);
+          color: colors.get(primary);
           letter-spacing: 0.05em;
           margin-bottom: 0.75rem;
         }
@@ -405,10 +263,10 @@ $c: (
 
         p {
           font-size: 0.875rem;
-          color: c(muted);
+          color: colors.get(muted);
           margin: 0;
           line-height: 1.65;
-          strong { color: c(text); font-weight: 600; }
+          strong { color: colors.get(text); font-weight: 600; }
         }
       }
 
@@ -416,7 +274,7 @@ $c: (
         flex-shrink: 0;
         padding: 0 0.75rem;
         font-size: 1.25rem;
-        color: c(primary);
+        color: colors.get(primary);
         line-height: 1;
         align-self: center; // środek całego flex row
         margin-top: 0;      // usuń stary margin-top: 2.5rem
@@ -437,10 +295,10 @@ $c: (
       gap: 1.25rem;
 
       .feature-card {
-        border: 1px solid c(border);
+        border: 1px solid colors.get(border);
         border-radius: 12px;
         padding: 1.75rem;
-        background: c(bg);
+        background: colors.get(bg);
         transition: border-color 0.2s;
 
         &:hover { border-color: #bfdbfe; }
@@ -450,13 +308,13 @@ $c: (
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.06em;
-          color: c(primary);
+          color: colors.get(primary);
           margin-bottom: 0.6rem;
         }
 
         p {
           font-size: 0.875rem;
-          color: c(muted);
+          color: colors.get(muted);
           margin: 0;
           line-height: 1.7;
 
@@ -475,7 +333,7 @@ $c: (
 
   // ─── Roles ───────────────────────────────────────────────────────────────
   .roles-section {
-    /* background: c(bg-alt); */
+    /* background: colors.get(bg-alt); */
 
     .roles-grid {
       display: grid;
@@ -484,7 +342,7 @@ $c: (
 
       .role-card {
         background: white;
-        border: 1px solid c(border);
+        border: 1px solid colors.get(border);
         border-radius: 16px;
         padding: 2.25rem;
         display: flex;
@@ -502,7 +360,7 @@ $c: (
           font-weight: 900;
           color: white;
 
-          &.patient-icon { background: c(primary); }
+          &.patient-icon { background: colors.get(primary); }
           &.doctor-icon  { background: #0f766e; }
         }
 
@@ -522,15 +380,15 @@ $c: (
 
           li {
             font-size: 0.875rem;
-            color: c(muted);
+            color: colors.get(muted);
             line-height: 1.5;
           }
         }
 
         .btn-role {
-          background: c(muted);
+          background: colors.get(muted);
           border: 0;
-          color: c(bg);
+          color: colors.get(bg);
           padding: 0.65rem 1.25rem;
           border-radius: 8px;
           font-size: 0.875rem;
@@ -541,7 +399,7 @@ $c: (
           margin-top: 0.5rem;
 
           &:hover {
-            background: c(primary);
+            background: colors.get(primary);
             border-color: #94a3b8;
           }
         }
@@ -563,7 +421,7 @@ $c: (
     }
 
     p {
-      color: c(muted);
+      color: colors.get(muted);
       font-size: 1rem;
       margin: 0 0 2rem;
     }
@@ -576,37 +434,6 @@ $c: (
     }
   }
 
-  // ─── Buttons (shared) ────────────────────────────────────────────────────
-  .btn-primary {
-    background: c(primary);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.75rem;
-    border: 3px solid c(primary);
-    border-radius: 9px;
-    font-size: 0.925rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.15s;
-    &:hover { background: c(primary-dark); }
-  }
-
-  .btn-secondary {
-    background: c(muted);
-    color: c(bg);
-    border: 3px solid c(bg);
-    padding: 0.75rem 1.5rem;
-    border-radius: 9px;
-    font-size: 0.925rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-    &:hover {
-      background: c(text);
-      border-color: c(muted);
-    }
-  }
-
   // ─── Newsletter ───────────────────────────────────────────────────────────
   .newsletter-section {
     display: flex;
@@ -614,8 +441,8 @@ $c: (
     justify-content: space-between;
     gap: 3rem;
     padding: 4rem 6%;
-    background: c(bg-alt);
-    border-top: 1px solid c(border);
+    background: colors.get(bg-alt);
+    border-top: 1px solid colors.get(border);
 
     .newsletter-content {
       flex: 1;
@@ -628,11 +455,11 @@ $c: (
         margin: 0 0 0.75rem;
         letter-spacing: -0.5px;
 
-        .accent { color: c(primary); }
+        .accent { color: colors.get(primary); }
       }
 
       p {
-        color: c(muted);
+        color: colors.get(muted);
         font-size: 0.875rem;
         margin: 0 0 1.5rem;
         max-width: 480px;
@@ -647,20 +474,20 @@ $c: (
           flex: 1;
           min-width: 160px;
           padding: 0.7rem 1rem;
-          border: 1px solid c(border);
+          border: 1px solid colors.get(border);
           border-radius: 8px;
           font-size: 0.875rem;
           background: white;
           outline: none;
-          color: c(text);
+          color: colors.get(text);
           transition: border-color 0.15s;
 
-          &:focus { border-color: c(primary); }
-          &::placeholder { color: c(muted); }
+          &:focus { border-color: colors.get(primary); }
+          &::placeholder { color: colors.get(muted); }
         }
 
         .btn-nl {
-          background: c(primary);
+          background: colors.get(primary);
           color: white;
           border: none;
           padding: 0.7rem 1.5rem;
@@ -670,7 +497,7 @@ $c: (
           cursor: pointer;
           white-space: nowrap;
           transition: background 0.15s;
-          &:hover { background: c(primary-dark); }
+          &:hover { background: colors.get(primary-dark); }
         }
       }
     }
@@ -681,7 +508,7 @@ $c: (
       .mail-icon-wrap {
         width: 110px;
         height: 110px;
-        background: c(primary);
+        background: colors.get(primary);
         border-radius: 20px;
         display: flex;
         align-items: center;
@@ -699,8 +526,8 @@ $c: (
     align-items: center;
     justify-content: center;
     padding: 2.5rem 6%;
-    border-top: 1px solid c(border);
-    border-bottom: 1px solid c(border);
+    border-top: 1px solid colors.get(border);
+    border-bottom: 1px solid colors.get(border);
     flex-wrap: wrap;
     gap: 0;
 
@@ -723,7 +550,7 @@ $c: (
         &.eu  { background: #003399; color: #ffcc00; font-size: 0.55rem; letter-spacing: 1px; }
         &.pl  {
           overflow: hidden;
-          border: 1px solid c(border);
+          border: 1px solid colors.get(border);
           padding: 0;
           .pl-flag { width: 100%; height: 100%; background: linear-gradient(to bottom, white 50%, #dc143c 50%); }
         }
@@ -734,8 +561,8 @@ $c: (
         flex-direction: column;
         gap: 1px;
 
-        strong { font-size: 0.8rem; font-weight: 700; color: c(text); line-height: 1.3; }
-        span   { font-size: 0.7rem; color: c(muted); line-height: 1.3; }
+        strong { font-size: 0.8rem; font-weight: 700; color: colors.get(text); line-height: 1.3; }
+        span   { font-size: 0.7rem; color: colors.get(muted); line-height: 1.3; }
 
         &.ncbr strong { font-size: 1.4rem; font-weight: 900; letter-spacing: -0.5px; color: #003399; }
       }
@@ -744,7 +571,7 @@ $c: (
     .eu-divider {
       width: 1px;
       height: 40px;
-      background: c(border);
+      background: colors.get(border);
       flex-shrink: 0;
     }
   }
@@ -770,7 +597,7 @@ $c: (
           width: 26px;
           height: 26px;
           background: white;
-          color: c(primary);
+          color: colors.get(primary);
           border-radius: 6px;
           display: flex;
           align-items: center;

@@ -1,31 +1,6 @@
 <div class="landing-wrapper">
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="logo">
-      <span class="logo-mark">D</span>
-      Diagnostyka
-    </div>
-    <nav class="nav-actions">
-      <a href="#how-it-works" class="nav-link">Jak to działa</a>
-      <a href="#features" class="nav-link">Funkcje</a>
-      <a href="#roles" class="nav-link">Dla kogo</a>
-
-      <div class="lang-dropdown" (click)="toggleLang()" [class.open]="isLangOpen()">
-        <span class="lang-current">{{ currentLang() }}</span>
-        <span class="lang-caret">&#x25BE;</span>
-        @if (isLangOpen()) {
-          <ul class="lang-menu" (click)="$event.stopPropagation()">
-            @for (lang of languages; track lang) {
-              <li [class.active]="lang === currentLang()" (click)="selectLang(lang)">{{ lang }}</li>
-            }
-          </ul>
-        }
-      </div>
-
-      <button class="btn-login-trigger" (click)="navigateToLogin()">Zaloguj się</button>
-    </nav>
-  </header>
+  <app-header></app-header>
 
   <!-- HERO -->
   <section class="hero-section">

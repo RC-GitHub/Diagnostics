@@ -1,0 +1,114 @@
+{
+  "HERO": {
+    "BADGE": "Platforma Medyczna",
+    "TITLE_LINE1": "Twoje badania.",
+    "TITLE_LINE2": "Twój lekarz.",
+    "TITLE_LINE3": "Jedno miejsce.",
+    "DESCRIPTION": "Umawiaj wizyty diagnostyczne, śledź swoje wyniki i udostępniaj je lekarzowi — wszystko przez bezpieczną platformę.",
+    "CTA_REGISTER": "Utwórz konto",
+    "CTA_LOGIN": "Zaloguj się →"
+  },
+  "MOCK_CARD": {
+    "HEADER": "Morfologia — wyniki gotowe",
+    "STATUS_NORMAL": "Normal",
+    "STATUS_WARNING": "Warning",
+    "STATUS_CRITICAL": "Critical",
+    "QR_HINT": "Wynik dostępny przez link QR"
+  },
+  "STATS": {
+    "ROLES_TITLE": "2 role",
+    "ROLES_DESC": "Pacjent i Lekarz",
+    "AUTH_TITLE": "Cookie auth",
+    "AUTH_DESC": "HTTP-only, szyfrowane",
+    "QR_TITLE": "QR & hash",
+    "QR_DESC": "Publiczne linki do wyników",
+    "PESEL_TITLE": "PESEL",
+    "PESEL_DESC": "Maskowany i szyfrowany"
+  },
+  "HOW_IT_WORKS": {
+    "EYEBROW": "Jak to działa",
+    "TITLE": "Od rejestracji do wyniku",
+    "STEP_1": {
+      "TITLE": "Zarejestruj konto",
+      "DESC": "Wybierz rolę — <strong>Pacjent</strong> lub <strong>Lekarz</strong>. Po zalogowaniu uzupełnij profil: imię, nazwisko oraz (dla pacjentów) numer PESEL."
+    },
+    "STEP_2": {
+      "TITLE": "Umów badanie",
+      "DESC": "Pacjent wybiera badanie z dostępnej listy i wysyła zgłoszenie. System automatycznie przypisuje dostępnego lekarza z odpowiednią specjalizacją."
+    },
+    "STEP_3": {
+      "TITLE": "Lekarz wystawia wynik",
+      "DESC": "Lekarz widzi swój harmonogram, uzupełnia wynik badania i opcjonalne notatki. Pacjent otrzymuje powiadomienie e-mail o gotowym wyniku."
+    },
+    "STEP_4": {
+      "TITLE": "Wynik przez link lub QR",
+      "DESC": "Gotowy wynik jest dostępny publicznie przez unikalny hash — jako strona www lub kod QR w formacie PNG, bez konieczności logowania."
+    }
+  },
+  "ROLES": {
+    "EYEBROW": "Dla kogo",
+    "TITLE": "Dwie role, jeden system",
+    "PATIENT": {
+      "TITLE": "Pacjent",
+      "LI_1": "Uzupełnia profil z imieniem i numerem PESEL",
+      "LI_2": "Przegląda dostępne badania",
+      "LI_3": "Umawia i anuluje wizyty",
+      "LI_4": "Śledzi historię badań i wyniki",
+      "LI_5": "Udostępnia wynik przez link lub QR",
+      "CTA": "Zarejestruj się jako pacjent"
+    },
+    "DOCTOR": {
+      "TITLE": "Lekarz",
+      "LI_1": "Uzupełnia profil ze specjalizacją",
+      "LI_2": "Deklaruje obsługiwane badania",
+      "LI_3": "Przegląda aktywny harmonogram wizyt",
+      "LI_4": "Wystawia wyniki i notatki",
+      "LI_5": "Powiadamia pacjenta e-mailem automatycznie",
+      "CTA": "Zarejestruj się jako lekarz"
+    }
+  },
+  "CTA_SECTION": {
+    "TITLE": "Gotowy do działania?",
+    "DESC": "Utwórz konto i zacznij korzystać z platformy.",
+    "CTA_REGISTER": "Utwórz konto",
+    "CTA_LOGIN": "Mam już konto →"
+  },
+  "NEWSLETTER": {
+    "TITLE_MAIN": "Jeszcze więcej dla Ciebie",
+    "TITLE_ACCENT": "w naszym newsletterze",
+    "DESC": "Zapisz się do naszego newslettera, a na Twoją skrzynkę będą trafiać informacje dotyczące usług i nowości w ofercie badań.",
+    "PLACEHOLDER_NAME": "Imię",
+    "PLACEHOLDER_EMAIL": "Adres e-mail",
+    "BUTTON": "Zapisz się"
+  },
+  "EU_LOGOS": {
+    "FE_TITLE": "Fundusze Europejskie",
+    "FE_SUB": "Inteligentny Rozwój",
+    "PL_TITLE": "Rzeczpospolita Polska",
+    "NCBR_TITLE": "NCBR",
+    "NCBR_SUB": "Narodowe Centrum Badań i Rozwoju",
+    "EU_TITLE": "Unia Europejska",
+    "EU_SUB": "Europejski Fundusz Rozwoju Regionalnego"
+  },
+  "FOOTER": {
+    "BRAND": "Diagnostyka",
+    "COL_PATIENT": "Pacjent",
+    "COL_DOCTOR": "Dla lekarza",
+    "COL_PLATFORM": "Platforma",
+    "LINKS": {
+      "OFFER": "Oferta badań",
+      "BOOK": "Umów wizytę",
+      "HISTORY": "Historia wyników",
+      "CHECK_QR": "Sprawdź wynik QR",
+      "SCHEDULE": "Harmonogram",
+      "ADD_RESULT": "Wystaw wynik",
+      "PROFILE": "Profil i specjalizacja",
+      "HOW_IT_WORKS": "Jak to działa",
+      "FOR_WHOM": "Dla kogo",
+      "CONTACT": "Kontakt",
+      "FAQ": "FAQ"
+    },
+    "LEGAL": "Regulamin i polityka prywatności &nbsp;|&nbsp; RODO &nbsp;|&nbsp; Pliki cookie",
+    "COPYRIGHT": "Copyright 2026 Diagnostyka S.A. &mdash; All rights reserved"
+  }
+}

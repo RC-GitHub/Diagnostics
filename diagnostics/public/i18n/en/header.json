@@ -1,0 +1,20 @@
+{
+  "HEADER": {
+    "BRAND_NAME": "Diagnostics",
+    "NAV": {
+      "HOW_IT_WORKS": "How it works",
+      "FOR_WHOM": "Who is it for",
+      "CONTACT": "Contact",
+      "FAQ": "FAQ"
+    },
+    "ACTIONS": {
+      "LOGIN": "Sign In",
+      "REGISTER": "Create account",
+      "LOGOUT": "Sign Out"
+    },
+    "LANGUAGES": {
+      "PL": "Polski",
+      "EN": "English"
+    }
+  }
+}

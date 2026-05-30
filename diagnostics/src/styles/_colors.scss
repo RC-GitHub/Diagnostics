@@ -1,0 +1,19 @@
+@use 'sass:map';
+
+$c: (
+  primary:       #2563eb,
+  primary-dark:  #1d4ed8,
+  bg:            #ffffff,
+  bg-alt:        #f8fafc,
+  text:          #0f172a,
+  muted:         #33435b,
+  border:        #e2e8f0,
+  ok-bg:         #f0fdf4,
+  ok-text:       #15803d,
+  warn-bg:       #fffbeb,
+  warn-text:     #b45309,
+  crit-bg:       #fef2f2,
+  crit-text:     #dc2626,
+);
+
+@function get($key) { @return map.get($c, $key); }
