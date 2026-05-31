@@ -55,7 +55,7 @@
       .avatar {
         width: 44px;
         height: 44px;
-        background-color: colors.get(primary);
+        background-color: colors.get(primary-dark);
         color: white;
         border-radius: 50%;
         font-weight: bold;
@@ -77,10 +77,25 @@
       color: colors.get(bg);
       padding: 1rem;
       border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .user-spec-header {
+        margin: 0;
+        font-size: 1.1rem;
+        hr {
+          border: 0;
+          border-top: 1px solid rgba(colors.get(bg), 0.2);
+          margin-top: 0.5rem;
+        }
+      }
 
       .user-exam {
         border-left: 4px solid colors.get(primary);
         padding-left: 1rem;
+        margin: 0;
+        font-size: 0.95rem;
       }
     }
 
@@ -183,150 +198,266 @@
     }
 
     // ==========================================================================
-    // 5. Grid Vitals and Dynamic Status Badges
+    // 5. Raw Data Tables & Actions
     // ==========================================================================
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      margin-top: 1rem;
+      background-color: colors.get(bg);
+      outline: 1px solid colors.get(border);
+      overflow: hidden;
 
-      .metric-card {
-        background-color: colors.get(bg);
-        padding: 1.5rem;
-        border-radius: 16px;
-        border-left: 5px solid colors.get(border);
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      th, td {
+        padding: 1.2rem 1rem;
+        border-bottom: 1px solid colors.get(border);
+      }
 
-        .card-header {
-          display: flex;
-          justify-content: space-between;
-          color: colors.get(muted);
-          font-size: 0.875rem;
-          margin-bottom: 1rem;
+      th {
+        color: colors.get(muted);
+        font-weight: 600;
+        font-size: 0.875rem;
+        background-color: #f8fafc;
+      }
 
-          .trend-badge {
-            background-color: #f1f5f9;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-          }
-        }
+      td {
+        font-size: 0.95rem;
 
-        .card-body {
-          display: flex;
-          align-items: baseline;
-          gap: 0.25rem;
+        &.font-bold { font-weight: 600; }
+        &.text-muted { color: colors.get(muted); }
+        &.diagnostic-val { font-family: monospace; font-size: 1rem; }
+      }
 
-          .value { margin: 0; font-size: 1.8rem; font-weight: 700; }
-          .unit { color: colors.get(muted); font-size: 0.85rem; }
-        }
+      .category-tag {
+        background-color: #f1f5f9;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+      }
 
-        // Contextual Border Variants
-        &.success  { border-left-color: #10b981; }
-        &.warning  { border-left-color: #f59e0b; }
-        &.critical { border-left-color: #ef4444; }
+      // Contextual state maps
+      .status-pill {
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        display: inline-block;
+
+        &.normal, &.completed { background-color: colors.get(ok-bg); color: colors.get(ok-text); }
+        &.warning, &.pending { background-color: colors.get(warn-bg); color: colors.get(warn-text); }
+        &.critical, &.incomplete { background-color: colors.get(crit-bg); color: colors.get(crit-text); }
+        &.cancelled { background-color: #e2e8f0; color: #64748b; }
+      }
+
+      .btn-view {
+        background: none;
+        border: none;
+        color: colors.get(primary);
+        font-weight: 600;
+        cursor: pointer;
+        &:hover { text-decoration: underline; }
+      }
+
+      .btn-danger {
+        background-color: colors.get(crit-bg);
+        color: colors.get(crit-text);
+        border: none;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        &:hover { opacity: 0.85; }
+      }
+
+      .btn-complete {
+        background-color: colors.get(ok-bg);
+        color: colors.get(primary);
+        border: none;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        &:hover { opacity: 0.85; }
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 4rem;
+        color: colors.get(muted);
+        font-size: 1rem;
       }
     }
 
     // ==========================================================================
-    // 6. Medical Analytical Table Panel
+    // 6. Overlays and Overlay Modals Subsystem
     // ==========================================================================
-    .results-section {
-      background-color: colors.get(bg);
-      border-radius: 16px;
-      padding: 2rem;
-      border: 1px solid colors.get(border);
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      @include flex-center;
 
-      .section-header {
+      .modal-content {
+        background-color: colors.get(bg);
+        padding: 2rem;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1.5rem;
+        flex-direction: column;
+        gap: 1.5rem;
 
-        h3 { margin: 0; }
+        h3 {
+          margin: 0;
+          font-size: 1.4rem;
+          color: colors.get(text);
+          border-bottom: 1px solid colors.get(border);
+          padding-bottom: 0.75rem;
+        }
 
-        .filter-tabs {
-          button {
-            background: none;
-            border: none;
-            padding: 0.5rem 1rem;
-            margin-left: 0.5rem;
-            cursor: pointer;
-            font-weight: 600;
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+
+          label {
+            font-size: 0.875rem;
+            font-weight: 500;
             color: colors.get(text);
-            border-radius: 6px;
-            transition: all 0.2s;
 
-            &:hover { background-color: #f1f5f9; }
-            &.active {
-              background-color: colors.get(text);
+            .required { color: colors.get(crit-text); }
+          }
+
+          input, textarea {
+            padding: 0.75rem 1rem;
+            border: 1px solid colors.get(border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background-color: colors.get(bg);
+            color: colors.get(text);
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.2s;
+
+            &:focus { border-color: colors.get(primary); }
+          }
+        }
+
+        .modal-actions {
+          display: flex;
+          justify-content: flex-end;
+          gap: 0.75rem;
+          margin-top: 0.5rem;
+
+          .btn-cancel-modal {
+            background-color: #e2e8f0;
+            color: colors.get(text);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            &:hover { background-color: #cbd5e1; }
+          }
+
+          .btn-submit {
+            background-color: colors.get(primary);
+            color: colors.get(bg);
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, opacity 0.2s;
+
+            &:hover:not(:disabled) { background-color: colors.get(primary-dark); }
+            &:disabled { opacity: 0.45; cursor: not-allowed; }
+          }
+        }
+
+        // Available spec list wrapper
+        .examination-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          max-height: 300px;
+          overflow-y: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+
+          li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid colors.get(border);
+
+            span {
+              font-weight: 500;
+              font-size: 0.95rem;
+            }
+
+            .btn-book {
+              background-color: colors.get(primary);
               color: white;
+              border: none;
+              padding: 0.4rem 1rem;
+              border-radius: 6px;
+              font-weight: 600;
+              cursor: pointer;
+              transition: background 0.2s;
+              &:hover { background-color: colors.get(primary-dark); }
             }
           }
         }
-      }
 
-      .table-responsive {
-        overflow-x: auto;
+        // QR Node Layout Container
+        .qr-container {
+          @include flex-center;
+          background-color: #f8fafc;
+          padding: 1.5rem;
+          border-radius: 12px;
+          border: 1px dashed colors.get(border);
 
-        .data-table {
-          width: 100%;
-          border-collapse: collapse;
-          text-align: left;
-
-          th, td {
-            padding: 1rem;
-            border-bottom: 1px solid colors.get(border);
+          img {
+            max-width: 200px;
+            height: auto;
+            aspect-ratio: 1/1;
           }
+        }
 
-          th {
-            color: colors.get(muted);
-            font-weight: 600;
-            font-size: 0.875rem;
-          }
+        .text-muted {
+          margin: 0;
+          text-align: center;
+          font-size: 0.85rem;
+          color: colors.get(muted);
+        }
 
-          td {
-            font-size: 0.95rem;
-
-            &.font-bold { font-weight: 600; }
-            &.text-muted { color: colors.get(muted); }
-            &.diagnostic-val { font-family: monospace; font-size: 1rem; }
-          }
-
-          .category-tag {
-            background-color: #f1f5f9;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-          }
-
-          .status-pill {
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-
-            &.normal   { background-color: colors.get(ok-bg); color: colors.get(ok-text); }
-            &.warning  { background-color: colors.get(warn-bg); color: colors.get(warn-text); }
-            &.critical { background-color: colors.get(crit-bg); color: colors.get(crit-text); }
-          }
-
-          .btn-view {
-            background: none;
-            border: none;
-            color: colors.get(primary);
-            font-weight: 600;
-            cursor: pointer;
-            &:hover { text-decoration: underline; }
-          }
-
-          .empty-state {
-            text-align: center;
-            padding: 3rem;
-            color: colors.get(muted);
-          }
+        // Generic exit button alignment
+        & > button:last-child {
+          align-self: flex-end;
+          background-color: #e2e8f0;
+          color: colors.get(text);
+          border: none;
+          padding: 0.6rem 1.2rem;
+          border-radius: 8px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background 0.2s;
+          &:hover { background-color: #cbd5e1; }
         }
       }
     }

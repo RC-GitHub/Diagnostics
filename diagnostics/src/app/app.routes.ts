@@ -24,7 +24,7 @@ export const routes: Routes = [
     {
       path: 'profile',
       loadComponent: () => import('./profile/profile').then(m => m.ProfileComponent),
-      title: 'Diagnostyka - Profile'
+      title: 'Diagnostyka - Profile',
     },
     {
       path: '**',

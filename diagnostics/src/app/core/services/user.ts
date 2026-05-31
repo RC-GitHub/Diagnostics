@@ -41,6 +41,8 @@ export class ProfileService {
 
   private readonly profileState = signal<UserProfile | null>(null);
 
+  readonly isLoading = signal<boolean>(true);
+
   readonly userRole = signal<'patient' | 'doctor' | null>(null);
   readonly isProfileComplete = signal<boolean>(false);
   readonly profile = signal<UserProfile | null>(null);
@@ -79,7 +81,7 @@ export class ProfileService {
         const data = JSON.parse(saved) as GoUserProfile;
         this.profileState.set(data);
         this.userRole.set(data.role);
-        this.isProfileComplete.set(!!data.firstName);
+        this.isProfileComplete.set(!!data.first_name);
         this.profile.set(this.normalizeGoProfile(data));
       } catch {
         this.clearProfile();
@@ -94,32 +96,26 @@ export class ProfileService {
 
   async checkCurrentSession(): Promise<void> {
     try {
-      // Pobieramy status bezpośrednio z Twojego endpointu w Go
       const status = await firstValueFrom(
         this.http.get<UserStatusResponse>(`${this.baseUrl}/api/me`, { withCredentials: true }),
       );
-
       if (status.authenticated) {
         this.userRole.set(status.role);
         this.isProfileComplete.set(status.profile_complete);
-
         if (status.profile_complete) {
           const profileEndpoint = status.role === 'patient' ? '/api/patient/profile' : '/api/doctor/profile';
-
           const data = await firstValueFrom(
             this.http.get<any>(`${this.baseUrl}${profileEndpoint}`, { withCredentials: true })
           );
-
           this.profile.set(this.normalizeGoProfile(data));
-
-          console.log(this.profile())
         }
-
       } else {
         this.clearProfile();
       }
     } catch (error) {
       this.clearProfile();
+    } finally {
+      this.isLoading.set(false); // ← THIS is what was missing
     }
   }
 }
