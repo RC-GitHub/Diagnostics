@@ -1,0 +1,238 @@
+@use '../../styles/_colors.scss' as colors;
+
+$primary: colors.get(primary);
+$bg: colors.get(bg);
+
+.results-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, rgba($primary, 0.2) 10%, $bg 100%);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 3rem 1.25rem;
+}
+
+.results-card-wrapper {
+  width: 100%;
+  max-width: 640px;
+}
+
+.state-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 4rem 2rem;
+  color: colors.get(muted);
+  font-size: 1rem;
+
+  &.error {
+    color: colors.get(crit-text);
+    .state-icon { font-size: 2.5rem; }
+  }
+
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid colors.get(border);
+    border-top-color: colors.get(primary);
+    border-radius: 50%;
+    animation: spin 0.75s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.results-card {
+  background: colors.get(bg);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 640px;
+  overflow: hidden;
+  border: 1px solid colors.get(border);
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background-color: colors.get(primary-dark);
+    color: colors.get(bg);
+
+    .brand {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .header-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.2rem;
+
+      .meta-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 0.6;
+      }
+
+      .meta-date {
+        font-size: 0.875rem;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+    }
+  }
+
+  .examination-hero {
+    padding: 2rem 2rem 1.5rem;
+    border-bottom: 1px solid colors.get(border);
+
+    .hero-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: colors.get(muted);
+      margin: 0 0 0.4rem;
+    }
+
+    .hero-name {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: colors.get(text);
+      margin: 0;
+      line-height: 1.2;
+    }
+  }
+
+  .parties-grid {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid colors.get(border);
+    gap: 1.5rem;
+
+    .party-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      flex: 1;
+
+      .party-role {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: colors.get(muted);
+      }
+
+      .party-name {
+        font-size: 1rem;
+        font-weight: 600;
+        color: colors.get(text);
+      }
+    }
+
+    .party-divider {
+      width: 1px;
+      height: 36px;
+      background-color: colors.get(border);
+      flex-shrink: 0;
+    }
+  }
+
+  .section {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid colors.get(border);
+
+    &:last-of-type { border-bottom: none; }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: colors.get(muted);
+      margin-bottom: 0.75rem;
+
+      .label-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: colors.get(primary);
+        flex-shrink: 0;
+
+        &.notes { background-color: colors.get(primary-dark); }
+      }
+    }
+
+    .result-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: colors.get(text);
+      line-height: 1.5;
+    }
+
+    .notes-value {
+      font-size: 0.95rem;
+      color: colors.get(text);
+      line-height: 1.75;
+      white-space: pre-wrap;
+    }
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: colors.get(primary);
+    border-top: 1px solid colors.get(border);
+    font-size: 0.75rem;
+    color: colors.get(bg);
+  }
+}
+
+@media (max-width: 640px) {
+  .results-page { padding: 0; align-items: flex-start; }
+
+  .results-card {
+    border-radius: 0;
+    min-height: 100vh;
+    box-shadow: none;
+
+    .card-header { padding: 1.25rem; }
+
+    .examination-hero {
+      padding: 1.5rem 1.25rem 1.25rem;
+      .hero-name { font-size: 1.4rem; }
+    }
+
+    .parties-grid {
+      padding: 1.25rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+
+      .party-divider { width: 100%; height: 1px; }
+    }
+
+    .section { padding: 1.25rem; }
+
+    .card-footer {
+      padding: 1rem 1.25rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+  }
+}

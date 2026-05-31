@@ -1,0 +1,15 @@
+{
+  "RESULTS": {
+    "LOADING": "Ładowanie wyników diagnostycznych...",
+    "ERROR_NOT_FOUND": "Wynik nie został znaleziony lub nie jest jeszcze dostępny.",
+    "ERROR_GENERIC": "Nie udało się załadować wyników.",
+    "REPORT_LABEL": "Raport diagnostyczny",
+    "EXAMINATION_LABEL": "Badanie",
+    "PATIENT_LABEL": "Pacjent",
+    "PHYSICIAN_LABEL": "Lekarz",
+    "RESULT_LABEL": "Wynik",
+    "NOTES_LABEL": "Notatki diagnostyczne",
+    "FOOTER_BRAND": "Ten raport został wygenerowany przez portal Diagnostyka.",
+    "RECORD": "Rekord"
+  }
+}

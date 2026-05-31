@@ -25,7 +25,7 @@ export class LanguageService {
   readonly translationTextSignal = signal<any>({});
   readonly text = this.translationTextSignal.asReadonly();
 
-  private readonly translationModules = ['header', 'index', 'footer', 'auth', 'profile'];
+  private readonly translationModules = ['header', 'index', 'footer', 'auth', 'profile', 'results'];
 
   private fetchAllTranslationFiles(lang: string): void {
     const requests = this.translationModules.map(module =>

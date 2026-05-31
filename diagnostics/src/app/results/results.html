@@ -1,0 +1,70 @@
+<div class="results-page">
+  <div class="results-card-wrapper">
+
+    @if (loading()) {
+      <div class="state-box">
+        <div class="spinner"></div>
+        <p>{{ text().RESULTS?.LOADING }}</p>
+      </div>
+    }
+
+    @if (error()) {
+      <div class="state-box error">
+        <span class="state-icon">⚠️</span>
+        <p>{{ error() }}</p>
+      </div>
+    }
+
+    @if (result()) {
+      <div class="results-card">
+        <div class="card-header">
+          <div class="brand">{{ text().HEADER?.BRAND_NAME }}</div>
+          <div class="header-meta">
+            <span class="meta-label">{{ text().RESULTS?.REPORT_LABEL }}</span>
+            <span class="meta-date">{{ result()!.date | date:'dd.MM.yyyy' }}</span>
+          </div>
+        </div>
+
+        <div class="examination-hero">
+          <p class="hero-label">{{ text().RESULTS?.EXAMINATION_LABEL }}</p>
+          <h1 class="hero-name">{{ result()!.examination }}</h1>
+        </div>
+
+        <div class="parties-grid">
+          <div class="party-card">
+            <span class="party-role">{{ text().RESULTS?.PATIENT_LABEL }}</span>
+            <span class="party-name">{{ result()!.patient_name }}</span>
+          </div>
+          <div class="party-divider"></div>
+          <div class="party-card">
+            <span class="party-role">{{ text().RESULTS?.PHYSICIAN_LABEL }}</span>
+            <span class="party-name">{{ result()!.doctor_name }}</span>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">
+            <span class="label-dot"></span>
+            {{ text().RESULTS?.RESULT_LABEL }}
+          </div>
+          <div class="result-value">{{ result()!.diagnostic_result }}</div>
+        </div>
+
+        @if (result()!.notes) {
+          <div class="section">
+            <div class="section-label">
+              <span class="label-dot notes"></span>
+              {{ text().RESULTS?.NOTES_LABEL }}
+            </div>
+            <div class="notes-value">{{ result()!.notes }}</div>
+          </div>
+        }
+
+        <div class="card-footer">
+          <span>{{ text().RESULTS?.FOOTER_BRAND }}</span>
+        </div>
+      </div>
+    }
+
+  </div>
+</div>
