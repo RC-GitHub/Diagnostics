@@ -299,41 +299,6 @@
         &:hover { text-decoration: underline; }
       }
 
-      .btn-notes {
-        background: none;
-        border: none;
-        color: colors.get(primary);
-        font-weight: 600;
-        font-size: 0.875rem;
-        cursor: pointer;
-        padding: 0;
-        &:hover { text-decoration: underline; }
-      }
-
-      .btn-danger {
-        background-color: colors.get(crit-bg);
-        color: colors.get(crit-text);
-        border: none;
-        padding: 0.4rem 0.8rem;
-        border-radius: 6px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: opacity 0.2s;
-        &:hover { opacity: 0.85; }
-      }
-
-      .btn-complete {
-        background-color: colors.get(ok-bg);
-        color: colors.get(primary);
-        border: none;
-        padding: 0.4rem 0.8rem;
-        border-radius: 6px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: opacity 0.2s;
-        &:hover { opacity: 0.85; }
-      }
-
       .empty-state {
         text-align: center;
         padding: 4rem;

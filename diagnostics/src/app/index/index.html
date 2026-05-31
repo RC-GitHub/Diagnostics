@@ -19,26 +19,59 @@
     </div>
 
     <div class="hero-visual">
-      <div class="mock-card">
+      <div class="mock-card wide-layout">
+
         <div class="mock-card-header">
           <div class="mock-dot ok"></div>
-          <span>{{ text().MOCK_CARD?.HEADER }}</span>
+          <span>{{ text().MOCK_CARD?.TABLE_HEADER || 'System Badań i Dokumentacji' }}</span>
         </div>
-        <div class="mock-result-row">
-          <span class="mr-name">{{ text().MOCK_CARD?.RESULT_1 }}</span>
-          <span class="mr-val">14.2 g/dL</span> <span class="badge-status ok">{{ text().MOCK_CARD?.STATUS_NORMAL }}</span>
+
+        <div class="table-scroll-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>{{ text().PROFILE?.TABLE?.EXAMINATION || 'Badanie' }}</th>
+                <th>{{ text().PROFILE?.TABLE?.DATE || 'Data' }}</th>
+                <th>{{ text().PROFILE?.TABLE?.ACTION || 'Akcja' }}</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <td class="font-bold mr-id">1</td>
+                <td class="font-bold mr-name">{{ text().MOCK_CARD?.EXAM_1 || 'Morfologia krwi' }}</td>
+                <td class="text-muted mr-date">24.05.2026 08:30</td>
+                <td>
+                  <button class="btn-complete">{{ text().PROFILE?.ACTIONS?.COMPLETE }}</button>
+                </td>
+
+              <tr>
+                <td class="font-bold mr-id">2</td>
+                <td class="font-bold mr-name">{{ text().MOCK_CARD?.EXAM_2 || 'Badanie moczu' }}</td>
+                <td class="text-muted mr-date">20.05.2026 12:30</td>
+                <td>
+                  <button class="btn-danger">{{ text().PROFILE?.ACTIONS?.CANCEL }}</button>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="font-bold mr-id">3</td>
+                <td class="font-bold mr-name">{{ text().MOCK_CARD?.EXAM_3 || 'USG Jamy Brzusznej' }}</td>
+                <td class="text-muted mr-date">18.05.2026 14:15</td>
+                <td>
+                  <button class="btn-complete">{{ text().PROFILE?.ACTIONS?.COMPLETE }}</button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
         </div>
-        <div class="mock-result-row">
-          <span class="mr-name">{{ text().MOCK_CARD?.RESULT_2 }}</span>
-          <span class="mr-val">Białko: (+)</span> <span class="badge-status warn">{{ text().MOCK_CARD?.STATUS_WARNING }}</span>
-        </div>
-        <div class="mock-result-row">
-          <span class="mr-name">{{ text().MOCK_CARD?.RESULT_3 }}</span>
-          <span class="mr-val">Zmiany ogniskowe</span> <span class="badge-status crit">{{ text().MOCK_CARD?.STATUS_CRITICAL }}</span>
-        </div>
+
         <div class="mock-card-footer">
-          <span class="qr-hint">{{ text().MOCK_CARD?.FOOTER }}</span>
+          <span class="qr-hint">{{ text().MOCK_CARD?.FOOTER || 'Widok demonstracyjny panelu pacjenta' }}</span>
         </div>
+
       </div>
     </div>
   </section>
