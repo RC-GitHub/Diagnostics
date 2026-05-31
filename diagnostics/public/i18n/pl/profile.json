@@ -1,13 +1,89 @@
 {
   "PROFILE": {
-    "NAME": "Imię: ",
-    "SURNAME": "Nazwisko: ",
     "PESEL": "PESEL: ",
-    "SPECIALIZATION": "Specjalizacja: ",
+    "ALERT": {
+      "TITLE": "Błąd",
+      "OK": "Zamknij"
+    },
     "TABS": {
       "ACTIVE": "Aktywne",
       "HISTORY": "Historia",
       "SETTINGS": "Ustawienia"
+    },
+    "SIDEBAR": {
+      "SEARCH": "Szukaj...",
+      "SYNC": "Synchronizuj",
+      "NEW": "+ Nowe"
+    },
+    "TABLE": {
+      "ID": "Id",
+      "EXAMINATION": "Badanie",
+      "DOCTOR": "Lekarz",
+      "PATIENT": "Pacjent",
+      "DATE": "Data",
+      "RESULT": "Wynik",
+      "NOTES": "Notatki",
+      "ACTION": "Akcja",
+      "PENDING": "Oczekuje",
+      "EMPTY": "Brak rekordów spełniających kryteria."
+    },
+    "BOOKING_MODAL": {
+      "TITLE": "Dostępne badania",
+      "CLOSE": "Zamknij",
+      "BOOK": "Zarezerwuj"
+    },
+    "COMPLETE_MODAL": {
+      "TITLE": "Zakończ wizytę",
+      "RESULT_LABEL": "Wynik",
+      "RESULT_PLACEHOLDER": "np. Prawidłowy, Podwyższona glukoza...",
+      "NOTES_LABEL": "Notatki diagnostyczne",
+      "NOTES_PLACEHOLDER": "Dodatkowe obserwacje, zalecenia...",
+      "OPTIONAL": "opcjonalne",
+      "CANCEL": "Anuluj",
+      "SUBMIT": "Zatwierdź"
+    },
+    "NOTES_MODAL": {
+      "TITLE": "Notatki diagnostyczne",
+      "CLOSE": "Zamknij",
+      "VIEW": "Zobacz notatki"
+    },
+    "PESEL_MODAL": {
+      "TITLE": "Odkryj PESEL",
+      "DESCRIPTION": "Wprowadź hasło, aby odszyfrować numer PESEL.",
+      "PASSWORD_LABEL": "Hasło",
+      "PASSWORD_PLACEHOLDER": "Hasło do konta...",
+      "CANCEL": "Anuluj",
+      "SUBMIT": "Odkryj",
+      "VERIFYING": "Weryfikacja...",
+      "REVEALED_LABEL": "Twój pełny numer PESEL:",
+      "CLOSE": "Zamknij",
+      "ERROR_WRONG_PASSWORD": "Nieprawidłowe hasło.",
+      "ERROR_GENERIC": "Coś poszło nie tak."
+    },
+    "QR_MODAL": {
+      "TITLE": "Kod QR",
+      "DESCRIPTION": "Zeskanuj kod QR, aby uzyskać dostęp do wyników.",
+      "SHOW": "Pokaż QR",
+      "CLOSE": "Zamknij"
+    },
+    "SETTINGS": {
+      "TITLE": "Ustawienia konta",
+      "FIRST_NAME": "Imię",
+      "LAST_NAME": "Nazwisko",
+      "EMAIL": "Email",
+      "EMAIL_HINT": "Adres email nie może być tutaj zmieniony.",
+      "PESEL_LABEL": "Nowy PESEL",
+      "PESEL_HINT": "zostaw puste, aby zachować obecny",
+      "SPECIALIZATION": "Specjalizacja",
+      "EXAMINATIONS": "Zarządzane badania",
+      "SAVE": "Zapisz zmiany",
+      "SAVING": "Zapisywanie...",
+      "SUCCESS": "Zmiany zostały zapisane.",
+      "CANCEL_CONFIRM": "Czy na pewno chcesz anulować tę wizytę?"
+    },
+    "ACTIONS": {
+      "CANCEL": "Anuluj",
+      "COMPLETE": "Zakończ"
     }
   }
 }

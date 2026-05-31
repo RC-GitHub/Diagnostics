@@ -3,13 +3,10 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { LanguageService } from '../core/services/language';
 
-import { Header } from '../header/header';
-import { Footer } from '../footer/footer';
-
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [CommonModule, Header, Footer],
+  imports: [CommonModule],
   templateUrl: './index.html',
   styleUrl: './index.scss'
 })

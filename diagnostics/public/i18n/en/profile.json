@@ -1,13 +1,89 @@
 {
   "PROFILE": {
-    "NAME": "Name: ",
-    "SURNAME": "Surname: ",
-    "PESEL": "PESEL Id: ",
-    "SPECIALIZATION": "Specialization: ",
+    "PESEL": "PESEL: ",
+    "ALERT": {
+      "TITLE": "Error",
+      "OK": "Close"
+    },
     "TABS": {
       "ACTIVE": "Active",
       "HISTORY": "History",
       "SETTINGS": "Settings"
+    },
+    "SIDEBAR": {
+      "SEARCH": "Search...",
+      "SYNC": "Sync Data",
+      "NEW": "+ New"
+    },
+    "TABLE": {
+      "ID": "Id",
+      "EXAMINATION": "Examination",
+      "DOCTOR": "Doctor",
+      "PATIENT": "Patient",
+      "DATE": "Date",
+      "RESULT": "Result",
+      "NOTES": "Notes",
+      "ACTION": "Action",
+      "PENDING": "Pending",
+      "EMPTY": "No records matching the selection criteria."
+    },
+    "BOOKING_MODAL": {
+      "TITLE": "Available examinations",
+      "CLOSE": "Close",
+      "BOOK": "Book"
+    },
+    "COMPLETE_MODAL": {
+      "TITLE": "Complete appointment",
+      "RESULT_LABEL": "Result",
+      "RESULT_PLACEHOLDER": "e.g. Normal, Elevated glucose...",
+      "NOTES_LABEL": "Diagnostic notes",
+      "NOTES_PLACEHOLDER": "Additional observations, recommendations...",
+      "OPTIONAL": "optional",
+      "CANCEL": "Cancel",
+      "SUBMIT": "Submit"
+    },
+    "NOTES_MODAL": {
+      "TITLE": "Diagnostic notes",
+      "CLOSE": "Close",
+      "VIEW": "View notes"
+    },
+    "PESEL_MODAL": {
+      "TITLE": "Reveal PESEL",
+      "DESCRIPTION": "Enter your password to decrypt your PESEL number.",
+      "PASSWORD_LABEL": "Password",
+      "PASSWORD_PLACEHOLDER": "Your account password...",
+      "CANCEL": "Cancel",
+      "SUBMIT": "Reveal",
+      "VERIFYING": "Verifying...",
+      "REVEALED_LABEL": "Your full PESEL number:",
+      "CLOSE": "Close",
+      "ERROR_WRONG_PASSWORD": "Incorrect password.",
+      "ERROR_GENERIC": "Something went wrong."
+    },
+    "QR_MODAL": {
+      "TITLE": "QR Code",
+      "DESCRIPTION": "Scan QR to access public diagnostic results.",
+      "SHOW": "Show QR",
+      "CLOSE": "Close"
+    },
+    "SETTINGS": {
+      "TITLE": "Account settings",
+      "FIRST_NAME": "First name",
+      "LAST_NAME": "Last name",
+      "EMAIL": "Email",
+      "EMAIL_HINT": "Email cannot be changed here.",
+      "PESEL_LABEL": "New PESEL",
+      "PESEL_HINT": "leave blank to keep current",
+      "SPECIALIZATION": "Specialization",
+      "EXAMINATIONS": "Managed examinations",
+      "SAVE": "Save changes",
+      "SAVING": "Saving...",
+      "SUCCESS": "Changes saved successfully.",
+      "CANCEL_CONFIRM": "Are you sure you want to cancel this appointment?"
+    },
+    "ACTIONS": {
+      "CANCEL": "Cancel",
+      "COMPLETE": "Complete"
     }
   }
 }

@@ -6,13 +6,10 @@ import { Router, RouterLink } from '@angular/router';
 import { LanguageService } from '../core/services/language';
 import { firstValueFrom } from 'rxjs';
 
-import { Header } from '../header/header';
-import { Footer } from '../footer/footer';
-
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, Header, Footer],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './register.html',
   styleUrl: '../../styles/auth.scss'
 })

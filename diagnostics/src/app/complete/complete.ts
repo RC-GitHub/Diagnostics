@@ -7,9 +7,6 @@ import { firstValueFrom } from 'rxjs';
 import { LanguageService } from '../core/services/language';
 import { ProfileService } from '../core/services/user';
 
-import { Header } from '../header/header';
-import { Footer } from '../footer/footer';
-
 interface UserStatusResponse {
   authenticated: boolean;
   profile_complete: boolean;
@@ -27,7 +24,7 @@ interface Examination {
 @Component({
   selector: 'app-profile-setup',
   standalone: true,
-  imports: [CommonModule, FormsModule, Header, Footer],
+  imports: [CommonModule, FormsModule],
   templateUrl: './complete.html',
   styleUrl: '../../styles/auth.scss'
 })

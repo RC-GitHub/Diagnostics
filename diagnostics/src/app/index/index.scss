@@ -358,7 +358,7 @@
           color: white;
 
           &.patient-icon { background: colors.get(primary); }
-          &.doctor-icon  { background: #0f766e; }
+          &.doctor-icon  { background: colors.get(primary-dark); }
         }
 
         h3 {

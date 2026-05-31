@@ -1,6 +1,6 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 
 interface UserStatusResponse {
   authenticated: boolean;
@@ -117,5 +117,18 @@ export class ProfileService {
     } finally {
       this.isLoading.set(false); // ← THIS is what was missing
     }
+  }
+
+  revealPesel(password: string): Observable<{ pesel: string }> {
+    return this.http.post<{ pesel: string }>(
+      `${this.baseUrl}/api/patient/profile/pesel`,
+      { password },
+      { withCredentials: true }
+    );
+  }
+
+  updateProfile(body: Partial<{ first_name: string; last_name: string; pesel: string; specialization: string; examination_ids: number[] }>): Observable<any> {
+    const endpoint = this.userRole() === 'patient' ? '/api/patient/profile' : '/api/doctor/profile';
+    return this.http.patch<any>(`${this.baseUrl}${endpoint}`, body, { withCredentials: true });
   }
 }

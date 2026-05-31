@@ -1,172 +1,307 @@
-<app-header></app-header>
 <div class="dashboard-container">
   <aside class="sidebar">
     <div class="user-profile">
-      <div class="avatar">{{ profileService.profile()?.firstName?.charAt(0) }}{{ profileService.profile()?.lastName?.charAt(0) }}</div>
+      <div class="avatar"
+        [class.doctor-icon]="profileService.userRole() === 'doctor'"
+        [class.patient-icon]="profileService.userRole() === 'patient'">
+        {{ profileService.profile()?.firstName?.charAt(0) }}{{ profileService.profile()?.lastName?.charAt(0) }}
+      </div>
       <div class="user-info">
         <h4>{{ profileService.profile()?.firstName }} {{ profileService.profile()?.lastName }}</h4>
         <p><strong>{{ profileService.profile()?.email }}</strong></p>
         <br>
-        @if(profileService.userRole() === 'patient') {
-          <p>{{ text().PROFILE?.PESEL }}{{ profileService.profile()?.pesel }}</p>
+        @if (profileService.userRole() === 'patient') {
+          <p class="pesel-row">
+            {{ text().PROFILE?.PESEL }}{{ profileService.profile()?.pesel }}
+            <button class="btn-icon" (click)="openPeselModal()" title="Reveal full PESEL">🔍</button>
+          </p>
         }
       </div>
     </div>
 
-    @if(profileService.userRole() === 'doctor') {
+    @if (profileService.userRole() === 'doctor') {
       <div class="user-spec">
         <h3 class="user-spec-header">
           <strong>{{ profileService.profile()?.specialization }}</strong>
           <hr>
         </h3>
-
-        @for(examination of profileService.profile()?.managed_exams; track examination.name) {
+        @for (examination of profileService.profile()?.managed_exams; track examination.name) {
           <p class="user-exam"><strong>{{ examination.name }}</strong></p>
         }
       </div>
     }
 
     <nav class="nav-menu">
-      <a (click)="switchTab('active')" [class.active]="currentTab === 'active'" style="cursor: pointer;">
+      <a (click)="switchTab('active')" [class.active]="currentTab === 'active'">
         <span class="icon">🗓️</span> {{ text().PROFILE?.TABS?.ACTIVE }}
       </a>
-      <a (click)="switchTab('history')" [class.active]="currentTab === 'history'" style="cursor: pointer;">
+      <a (click)="switchTab('history')" [class.active]="currentTab === 'history'">
         <span class="icon">📄</span> {{ text().PROFILE?.TABS?.HISTORY }}
       </a>
-      <a routerLink="#"><span class="icon">⚙️</span> {{ text().PROFILE?.TABS?.SETTINGS }}</a>
+      <a (click)="switchTab('settings')" [class.active]="currentTab === 'settings'">
+        <span class="icon">⚙️</span> {{ text().PROFILE?.TABS?.SETTINGS }}
+      </a>
     </nav>
   </aside>
 
   <main class="main-content">
 
-    <header class="top-bar">
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input
-          type="text"
-          placeholder="Search appointments or results..."
-          [(ngModel)]="searchQuery"
-          (input)="applyFilters()" />
-      </div>
-      <div class="actions">
-        <button class="btn-refresh" (click)="loadTabItems()">🔄 Sync Data</button>
-
-        @if (profileService.userRole() !== 'doctor' && currentTab === 'active') {
-          <button class="btn-primary" (click)="openBookingModal()">+ New</button>
-        }
-      </div>
-    </header>
-
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Examination Name</th>
-          <th>@if (profileService.userRole() !== 'doctor') { Doctor Name } @else { Patient Name }</th>
-          <th>Date Specified</th>
-          @if (currentTab !== 'active') {
-            <th>Result</th>
-            <th>Notes</th>
+    @if (currentTab === 'active' || currentTab === 'history') {
+      <header class="top-bar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="{{ text().PROFILE?.SIDEBAR?.SEARCH }}"
+            [(ngModel)]="searchQuery" (input)="applyFilters()" />
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" (click)="loadTabItems()">🔄 {{ text().PROFILE?.SIDEBAR?.SYNC }}</button>
+          @if (profileService.userRole() !== 'doctor' && currentTab === 'active') {
+            <button class="btn btn-primary" (click)="openBookingModal()">{{ text().PROFILE?.SIDEBAR?.NEW }}</button>
           }
-          @if (currentTab === 'active') {
-            <th>Action</th>
-          }
-        </tr>
-      </thead>
-      <tbody>
-        @for (row of filteredResults(); track row.id) {
-          <tr>
-            <td class="font-bold">{{ row.id }}</td>
-            <td class="font-bold">{{ row.examination_name }}</td>
-            <td class="font-bold">{{ row.doctor_name || row.patient_name }}</td>
-            <td class="text-muted">{{ row.date ? (row.date | date: 'medium') : 'Pending Execution' }}</td>
-            @if (currentTab !== 'active') {
-              <td class="diagnostic-val">{{ row.results || 'N/A' }}</td>
-              <td>{{ row.notes || 'N/A' }}</td>
-            }
-            @if (currentTab === 'active') {
-              <td>
+        </div>
+      </header>
+
+      <div class="table-scroll-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>{{ text().PROFILE?.TABLE?.ID }}</th>
+              <th>{{ text().PROFILE?.TABLE?.EXAMINATION }}</th>
+              <th>{{ profileService.userRole() !== 'doctor' ? text().PROFILE?.TABLE?.DOCTOR : text().PROFILE?.TABLE?.PATIENT }}</th>
+              <th>{{ text().PROFILE?.TABLE?.DATE }}</th>
+              @if (currentTab === 'history') {
+                <th>{{ text().PROFILE?.TABLE?.RESULT }}</th>
                 @if (profileService.userRole() === 'patient') {
-                  <button class="btn-danger" (click)="cancelAppointment(row.id)">Cancel</button>
+                  <th>{{ text().PROFILE?.TABLE?.NOTES }}</th>
                 }
-                @else {
-                  <button class="btn-complete" (click)="openCompleteModal(row.id)">Complete</button>
+              }
+              @if (currentTab === 'active') {
+                <th>{{ text().PROFILE?.TABLE?.ACTION }}</th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of filteredResults(); track row.id) {
+              <tr>
+                <td class="font-bold">{{ row.id }}</td>
+                <td class="font-bold">{{ row.examination_name }}</td>
+                <td class="font-bold">{{ row.doctor_name || row.patient_name }}</td>
+                <td class="text-muted">{{ row.date ? (row.date | date:'dd.MM.yyyy HH:mm:ss') : text().PROFILE?.TABLE?.PENDING }}</td>
+                @if (currentTab === 'history') {
+                  <td class="diagnostic-val">{{ row.result || 'N/A' }}</td>
+                  @if (profileService.userRole() === 'patient') {
+                    <td>
+                      @if (row.notes) {
+                        <button class="btn-notes" (click)="openNotesModal(row.notes)">{{ text().PROFILE?.NOTES_MODAL?.VIEW }}</button>
+                      } @else {
+                        <span class="text-muted">N/A</span>
+                      }
+                    </td>
+                  }
                 }
-              </td>
+                @if (currentTab === 'active') {
+                  <td>
+                    @if (profileService.userRole() === 'patient') {
+                      <button class="btn-danger" (click)="cancelAppointment(row.id)">{{ text().PROFILE?.ACTIONS?.CANCEL }}</button>
+                    } @else {
+                      <button class="btn-complete" (click)="openCompleteModal(row.id)">{{ text().PROFILE?.ACTIONS?.COMPLETE }}</button>
+                    }
+                  </td>
+                }
+              </tr>
+            } @empty {
+              <tr>
+                <td [attr.colspan]="currentTab === 'history' ? 6 : 5" class="empty-state">
+                  {{ text().PROFILE?.TABLE?.EMPTY }}
+                </td>
+              </tr>
             }
-          </tr>
-        } @empty {
-          <tr>
-            <td colspan="7" class="empty-state">
-              No records matching the selection criteria were pulled down.
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
+          </tbody>
+        </table>
+      </div>
+    }
 
-    @if (showExaminationsModal()) {
-      <div class="modal-backdrop" (click)="closeModals()">
-        <div class="modal-content" (click)="$event.stopPropagation()">
-          <h3>Examinations list modal</h3>
-          <ul class="examination-list">
-            @for (exam of availableExaminations(); track exam.id) {
-              <li>
-                <span>{{ exam.name }}</span>
-                <button class="btn-book" (click)="bookAppointment(exam.id)">Book</button>
-              </li>
-            }
-          </ul>
-          <button (click)="closeModals()">Close</button>
+    @if (currentTab === 'settings') {
+      <div class="settings-panel">
+        <h2 class="settings-title">{{ text().PROFILE?.SETTINGS?.TITLE }}</h2>
+
+        <div class="settings-grid">
+          <div class="form-group">
+            <label>{{ text().PROFILE?.SETTINGS?.FIRST_NAME }}</label>
+            <input type="text" [(ngModel)]="settingsFirstName" />
+          </div>
+          <div class="form-group">
+            <label>{{ text().PROFILE?.SETTINGS?.LAST_NAME }}</label>
+            <input type="text" [(ngModel)]="settingsLastName" />
+          </div>
+          <div class="form-group full-width">
+            <label>
+              {{ text().PROFILE?.SETTINGS?.EMAIL }}
+              <span class="field-hint">({{ text().PROFILE?.SETTINGS?.EMAIL_HINT }})</span>
+            </label>
+            <input type="email" [(ngModel)]="settingsEmail" disabled />
+          </div>
+
+          @if (profileService.userRole() === 'patient') {
+            <div class="form-group full-width">
+              <label>
+                {{ text().PROFILE?.SETTINGS?.PESEL_LABEL }}
+                <span class="field-hint">({{ text().PROFILE?.SETTINGS?.PESEL_HINT }})</span>
+              </label>
+              <input type="text" [(ngModel)]="settingsPesel" maxlength="11" />
+            </div>
+          }
+
+          @if (profileService.userRole() === 'doctor') {
+            <div class="form-group full-width">
+              <label>{{ text().PROFILE?.SETTINGS?.SPECIALIZATION }}</label>
+              <input type="text" [(ngModel)]="settingsSpecialization" />
+            </div>
+            <div class="form-group full-width">
+              <label>{{ text().PROFILE?.SETTINGS?.EXAMINATIONS }}</label>
+              <div class="exam-grid">
+                @for (exam of allExaminations(); track exam.id) {
+                  <label class="exam-checkbox" [class.selected]="settingsExamIds.includes(exam.id)">
+                    <input type="checkbox"
+                      [checked]="settingsExamIds.includes(exam.id)"
+                      (change)="toggleExam(exam.id)" />
+                    {{ exam.name }}
+                  </label>
+                }
+              </div>
+            </div>
+          }
+        </div>
+
+        @if (settingsError) {
+          <p class="settings-error">{{ settingsError }}</p>
+        }
+        @if (settingsSaved) {
+          <p class="settings-success">{{ text().PROFILE?.SETTINGS?.SUCCESS }}</p>
+        }
+
+        <div class="settings-actions">
+          <button class="btn btn-tertiary" [disabled]="settingsSaving" (click)="saveSettings()">
+            {{ settingsSaving ? text().PROFILE?.SETTINGS?.SAVING : text().PROFILE?.SETTINGS?.SAVE }}
+          </button>
         </div>
       </div>
     }
 
+    <!-- Booking modal -->
+    @if (showExaminationsModal()) {
+      <div class="modal-backdrop" (click)="closeModals()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+          <h3>{{ text().PROFILE?.BOOKING_MODAL?.TITLE }}</h3>
+          <ul class="examination-list">
+            @for (exam of availableExaminations(); track exam.id) {
+              <li>
+                <span>{{ exam.name }}</span>
+                <button class="btn-book" (click)="bookAppointment(exam.id)">{{ text().PROFILE?.BOOKING_MODAL?.BOOK }}</button>
+              </li>
+            }
+          </ul>
+          <button (click)="closeModals()">{{ text().PROFILE?.BOOKING_MODAL?.CLOSE }}</button>
+        </div>
+      </div>
+    }
+
+    <!-- Complete modal -->
     @if (showCompleteModal()) {
       <div class="modal-backdrop" (click)="closeModals()">
         <div class="modal-content" (click)="$event.stopPropagation()">
-          <h3>Complete appointment</h3>
+          <h3>{{ text().PROFILE?.COMPLETE_MODAL?.TITLE }}</h3>
           <div class="form-group">
-            <label>Result <span class="required">*</span></label>
-            <input
-              type="text"
-              placeholder="e.g. Normal, Elevated glucose, Fracture detected..."
+            <label>{{ text().PROFILE?.COMPLETE_MODAL?.RESULT_LABEL }} <span class="required">*</span></label>
+            <input type="text" [placeholder]="text().PROFILE?.COMPLETE_MODAL?.RESULT_PLACEHOLDER"
               [(ngModel)]="completionResult" />
           </div>
           <div class="form-group">
-            <label>Diagnostic notes</label>
-            <textarea
-              rows="4"
-              placeholder="Additional observations, recommendations..."
-              [(ngModel)]="completionNotes">
-            </textarea>
+            <label>
+              {{ text().PROFILE?.COMPLETE_MODAL?.NOTES_LABEL }}
+              <span class="field-hint">{{ text().PROFILE?.COMPLETE_MODAL?.OPTIONAL }}</span>
+            </label>
+            <textarea rows="4" [placeholder]="text().PROFILE?.COMPLETE_MODAL?.NOTES_PLACEHOLDER"
+              [(ngModel)]="completionNotes"></textarea>
           </div>
           <div class="modal-actions">
-            <button class="btn-cancel-modal" (click)="closeModals()">Cancel</button>
-            <button
-              class="btn-submit"
-              [disabled]="!completionResult.trim()"
-              (click)="submitCompletion()">
-              Submit
+            <button class="btn-cancel-modal" (click)="closeModals()">{{ text().PROFILE?.COMPLETE_MODAL?.CANCEL }}</button>
+            <button class="btn-submit" [disabled]="!completionResult.trim()" (click)="submitCompletion()">
+              {{ text().PROFILE?.COMPLETE_MODAL?.SUBMIT }}
             </button>
           </div>
         </div>
       </div>
     }
 
+    <!-- Notes modal -->
+    @if (showNotesModal()) {
+      <div class="modal-backdrop" (click)="closeModals()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+          <h3>{{ text().PROFILE?.NOTES_MODAL?.TITLE }}</h3>
+          <p class="notes-body">{{ selectedNotes }}</p>
+          <button (click)="closeModals()">{{ text().PROFILE?.NOTES_MODAL?.CLOSE }}</button>
+        </div>
+      </div>
+    }
+
+    <!-- PESEL modal -->
+    @if (showPeselModal()) {
+      <div class="modal-backdrop" (click)="closeModals()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+          <h3>{{ text().PROFILE?.PESEL_MODAL?.TITLE }}</h3>
+          @if (!revealedPesel()) {
+            <p class="text-muted">{{ text().PROFILE?.PESEL_MODAL?.DESCRIPTION }}</p>
+            <div class="form-group">
+              <label>{{ text().PROFILE?.PESEL_MODAL?.PASSWORD_LABEL }}</label>
+              <input type="password" [(ngModel)]="peselPassword"
+                (keyup.enter)="submitPeselReveal()"
+                [placeholder]="text().PROFILE?.PESEL_MODAL?.PASSWORD_PLACEHOLDER" />
+            </div>
+            @if (peselError()) {
+              <p class="settings-error">{{ peselError() }}</p>
+            }
+            <div class="modal-actions">
+              <button class="btn-cancel-modal" (click)="closeModals()">{{ text().PROFILE?.PESEL_MODAL?.CANCEL }}</button>
+              <button class="btn-submit" [disabled]="!peselPassword.trim() || peselLoading" (click)="submitPeselReveal()">
+                {{ peselLoading ? text().PROFILE?.PESEL_MODAL?.VERIFYING : text().PROFILE?.PESEL_MODAL?.SUBMIT }}
+              </button>
+            </div>
+          } @else {
+            <p class="text-muted">{{ text().PROFILE?.PESEL_MODAL?.REVEALED_LABEL }}</p>
+            <div class="pesel-reveal-box">{{ revealedPesel() }}</div>
+            <button (click)="closeModals()">{{ text().PROFILE?.PESEL_MODAL?.CLOSE }}</button>
+          }
+        </div>
+      </div>
+    }
+
+    <!-- QR modal -->
     @if (showQrModal() && selectedQrCodeUrl) {
       <div class="modal-backdrop" (click)="closeModals()">
         <div class="modal-content" (click)="$event.stopPropagation()">
-          <h3>QR Code Modal</h3>
+          <h3>{{ text().PROFILE?.QR_MODAL?.TITLE }}</h3>
           <div class="qr-container">
-            <img [src]="selectedQrCodeUrl" alt="Scan QR Code to access public diagnostic results directly" />
+            <img [src]="selectedQrCodeUrl" alt="QR Code" />
           </div>
-          <p class="text-muted">Scan QR to route straight into public outcomes mapping node.</p>
-          <button (click)="closeModals()">Close</button>
+          <p class="text-muted">{{ text().PROFILE?.QR_MODAL?.DESCRIPTION }}</p>
+          <button (click)="closeModals()">{{ text().PROFILE?.QR_MODAL?.CLOSE }}</button>
+        </div>
+      </div>
+    }
+
+    <!-- Alert modal -->
+    @if (alertMessage()) {
+      <div class="modal-backdrop" (click)="closeModals()">
+        <div class="modal-content modal-alert" (click)="$event.stopPropagation()">
+          <h3>{{ text().PROFILE?.ALERT?.TITLE }}</h3>
+          <p class="alert-body">{{ alertMessage() }}</p>
+          <div class="modal-actions">
+            <button class="btn-submit" (click)="closeModals()">{{ text().PROFILE?.ALERT?.OK }}</button>
+          </div>
         </div>
       </div>
     }
 
   </main>
 </div>
-<app-footer></app-footer>

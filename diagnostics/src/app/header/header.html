@@ -45,7 +45,11 @@
       <div class="profile-dropdown" (click)="toggleProfile(); $event.stopPropagation()" [class.open]="isProfileOpen()">
         <div class="profile-trigger">
 
-          <div class="avatar" [class.incomplete]="!profileService.isProfileComplete()">
+          <div class="avatar"
+            [class.incomplete]="!profileService.isProfileComplete()"
+            [class.doctor-icon]="profileService.userRole() === 'doctor'"
+            [class.patient-icon]="profileService.userRole() === 'patient'">
+
             @if (profileService.isProfileComplete()) {
               {{ profileService.profile()?.firstName?.charAt(0) }}{{ profileService.profile()?.lastName?.charAt(0) }}
             } @else {

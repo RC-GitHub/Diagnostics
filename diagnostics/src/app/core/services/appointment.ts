@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 
 export interface Appointment {
   id: number;
+  date: Date;
+  notes?: string;
+  result?: string;
+  results?: string;
   patient_name?: string;
   doctor_name?: string;
   examination_name: string;
-  date: Date;
-  notes?: string;
-  results?: string;
 }
 
 export interface Examination {

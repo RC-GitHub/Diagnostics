@@ -7,13 +7,10 @@ import { LanguageService } from '../core/services/language';
 import { ProfileService } from '../core/services/user';
 import { firstValueFrom } from 'rxjs';
 
-import { Header } from '../header/header';
-import { Footer } from '../footer/footer';
-
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, Header, Footer],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: '../../styles/auth.scss'
 })
