@@ -7,6 +7,7 @@
   color: colors.get(text);
   background: linear-gradient(180deg, rgba(colors.get(primary), 0.2) 10%, colors.get(bg) 100%);
   line-height: 1.6;
+  min-height: 90vh;
 
   // ─── Hero ────────────────────────────────────────────────────────────────
   .hero-section {

@@ -24,7 +24,11 @@
       "CONTACT": "Kontakt",
       "FAQ": "FAQ"
     },
-    "LEGAL": "Regulamin i polityka prywatności \u00A0|\u00A0 RODO \u00A0|\u00A0 Pliki cookie",
-    "COPYRIGHT": "Copyright 2026 Diagnostyka S.A. \u2014 All rights reserved"
+    "BOTTOM": {
+      "TERMS": "Regulamin i polityka prywatności",
+      "GDPR": "RODO",
+      "COOKIES": "Pliki cookie",
+      "COPYRIGHT": "Copyright 2026 Diagnostics S.A. \u2014 All rights reserved"
+    }
   }
 }

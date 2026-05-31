@@ -7,6 +7,9 @@ import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
+import { InfoModalService, ModalKey } from '../core/services/modal';
+import { InfoModalComponent } from '../modal/modal';
+
 import { Logo } from '../logo/logo';
 
 @Component({
@@ -54,6 +57,10 @@ export class Header {
   readonly languages = this.languageService.languages;
   readonly currentLang = this.languageService.currentLang;
   readonly text = this.languageService.text;
+
+  readonly infoModal = inject(InfoModalService);
+
+  open(key: ModalKey): void { this.infoModal.open(key); }
 
   protected isMobile = signal<boolean>(false);
   protected readonly isLangOpen = signal<boolean>(false);

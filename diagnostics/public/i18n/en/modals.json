@@ -1,0 +1,120 @@
+{
+  "MODALS": {
+    "HOW_IT_WORKS": {
+      "TITLE": "How it works",
+      "CONTENT": [
+        { "heading": "1. Register", "body": "Create an account as a patient or doctor. Registration takes less than a minute and only requires an email address." },
+        { "heading": "2. Complete your profile", "body": "Patients provide their national ID number. Doctors select their specialization and the examinations they perform in the system." },
+        { "heading": "3. Book an examination", "body": "The patient selects an examination type from the list of available services. The system automatically assigns an attending physician." },
+        { "heading": "4. Receive results", "body": "After the appointment, the doctor enters the results. The patient receives an email notification and a QR code providing public access to the report." }
+      ]
+    },
+    "FOR_WHO": {
+      "TITLE": "Who it's for",
+      "CONTENT": [
+        { "heading": "For patients", "body": "The platform enables convenient booking of diagnostic examinations, tracking appointment history, and secure access to results anytime, anywhere." },
+        { "heading": "For doctors", "body": "Doctors manage their appointment schedule, issue examination results, and maintain medical records in one place." },
+        { "heading": "For medical facilities", "body": "The Diagnostyka system streamlines documentation flow and communication between staff and patients, reducing administrative processing time." }
+      ]
+    },
+    "CONTACT": {
+      "TITLE": "Contact",
+      "CONTENT": [
+        { "heading": "Technical support", "body": "For platform issues, contact us at: support@diagnostyka.pl" },
+        { "heading": "Customer service", "body": "Questions about your account, bookings, or results: kontakt@diagnostyka.pl — we respond within 24 hours on business days." },
+        { "heading": "Address", "body": "Diagnostyka S.A., ul. Medyczna 12, 00-001 Warsaw, Poland." }
+      ]
+    },
+    "FAQ": {
+      "TITLE": "FAQ",
+      "CONTENT": [
+        { "heading": "Is my data secure?", "body": "Yes. All data is stored in an encrypted database. The national ID number is encrypted and never shared with third parties." },
+        { "heading": "How do I access my results?", "body": "Results are available in the History tab on your profile. You can also use the QR code, which links to a public report." },
+        { "heading": "What if no doctor is available?", "body": "The system assigns a doctor automatically based on specialization. If no doctor is available for the selected examination, you will be notified." },
+        { "heading": "Can I cancel an appointment?", "body": "Yes, active appointments can be cancelled from the Active tab on your profile before they are carried out." }
+      ]
+    },
+    "EXAM_OFFER": {
+      "TITLE": "Examination offer",
+      "CONTENT": [
+        { "heading": "Laboratory tests", "body": "Blood count, glucose, cholesterol, liver function tests, thyroid hormones, and many other biochemical tests." },
+        { "heading": "Imaging diagnostics", "body": "X-ray, ultrasound, and other imaging examinations performed by qualified specialists." },
+        { "heading": "Cardiac examinations", "body": "ECG, Holter monitoring, stress tests, and cardiology consultations available through the platform." },
+        { "heading": "Preventive screenings", "body": "Screening packages tailored to the patient's age and gender, supporting early disease detection." }
+      ]
+    },
+    "BOOK_VISIT": {
+      "TITLE": "Book an appointment",
+      "CONTENT": [
+        { "heading": "How to book?", "body": "Log in to your account, go to the Active tab, and click '+ New'. Select an examination from the list of available services." },
+        { "heading": "When will the appointment take place?", "body": "After booking, the system assigns a doctor. Appointment details will appear in the Active tab of your profile." },
+        { "heading": "Cancelling a booking", "body": "You can cancel an appointment at any time before it takes place using the Cancel button next to the entry." }
+      ]
+    },
+    "RESULTS_HISTORY": {
+      "TITLE": "Results history",
+      "CONTENT": [
+        { "heading": "Where are my results?", "body": "All completed examinations are available in the History tab on your profile. The result and doctor's notes are shown." },
+        { "heading": "QR code for results", "body": "Each completed result has a unique QR code. It provides access to a public report without logging in — you can share it with a doctor or employer." },
+        { "heading": "How long are results stored?", "body": "Results are stored indefinitely on your account, in accordance with medical documentation requirements." }
+      ]
+    },
+    "QR_CHECK": {
+      "TITLE": "Check QR result",
+      "CONTENT": [
+        { "heading": "What is the QR code for?", "body": "The QR code is a quick way to share examination results without needing to log in. Simply scan the code to view the report." },
+        { "heading": "Where to find the QR code?", "body": "The QR code is available next to each completed examination in the History tab on your profile." },
+        { "heading": "Is the result public?", "body": "Yes, the report accessible via QR code is public — anyone with the link can view it. Do not share the code with unauthorised persons." }
+      ]
+    },
+    "SCHEDULE": {
+      "TITLE": "Schedule",
+      "CONTENT": [
+        { "heading": "Schedule overview", "body": "The Active tab shows all upcoming appointments assigned to your doctor account." },
+        { "heading": "Completed appointments", "body": "The history of all completed examinations is available in the History tab. You can review entered results and notes." },
+        { "heading": "Managing examinations", "body": "In your profile settings you can update the list of examinations you perform, which affects automatic patient assignment." }
+      ]
+    },
+    "ISSUE_RESULT": {
+      "TITLE": "Issue a result",
+      "CONTENT": [
+        { "heading": "How to issue a result?", "body": "In the Active tab, click the Complete button next to the selected appointment. Fill in the Result field (required) and optional Diagnostic Notes." },
+        { "heading": "What happens after issuing?", "body": "The system automatically marks the appointment as completed, generates a QR code, and sends an email notification to the patient." },
+        { "heading": "Can a result be edited?", "body": "Once issued, a result cannot be edited. In case of an error, contact the system administrator." }
+      ]
+    },
+    "PROFILE_SPEC": {
+      "TITLE": "Profile & specialization",
+      "CONTENT": [
+        { "heading": "Complete your profile", "body": "Go to the Settings tab on your profile to fill in your first name, last name, and medical specialization." },
+        { "heading": "Managing examinations", "body": "In settings you can select the examinations you perform. The system uses this to automatically assign patients to you." },
+        { "heading": "Profile visibility", "body": "Your specialization and list of examinations are visible to patients when booking an appointment." }
+      ]
+    },
+    "TERMS": {
+      "TITLE": "Terms & privacy policy",
+      "CONTENT": [
+        { "heading": "Terms of use", "body": "Using the Diagnostyka platform implies acceptance of these terms. The platform is intended only for registered adult users." },
+        { "heading": "Personal data protection", "body": "The data controller is Diagnostyka S.A. Data is processed in accordance with GDPR for the purpose of providing medical services." },
+        { "heading": "Liability", "body": "Diagnostyka S.A. is not liable for medical decisions made based on results available on the platform without consulting a doctor." }
+      ]
+    },
+    "RODO": {
+      "TITLE": "GDPR",
+      "CONTENT": [
+        { "heading": "Data controller", "body": "The controller of your personal data is Diagnostyka S.A., based in Warsaw." },
+        { "heading": "Purpose of processing", "body": "Data is processed to provide diagnostic services, manage user accounts, and communicate regarding appointments and results." },
+        { "heading": "Your rights", "body": "You have the right to access, correct, delete, and transfer your data. You may also withdraw consent to processing at any time." },
+        { "heading": "DPO contact", "body": "For data protection matters, contact our Data Protection Officer: iod@diagnostyka.pl" }
+      ]
+    },
+    "COOKIES": {
+      "TITLE": "Cookies",
+      "CONTENT": [
+        { "heading": "What are cookies?", "body": "Cookies are small text files saved on your device by the browser. They enable the platform to function correctly and remember your preferences." },
+        { "heading": "Which cookies do we use?", "body": "We use only essential cookies for authentication session management (access_token, refresh_token). We do not use advertising or tracking cookies." },
+        { "heading": "Managing cookies", "body": "You can disable cookies in your browser settings, however this may prevent you from logging in to the platform." }
+      ]
+    }
+  }
+}

@@ -49,5 +49,14 @@ a {
     font-size: 0.75rem;
     flex-wrap: wrap;
     gap: 0.5rem;
+
+    a {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }

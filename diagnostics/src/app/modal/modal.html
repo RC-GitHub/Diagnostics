@@ -1,0 +1,23 @@
+@if (modalService.activeModal()) {
+  <div class="info-backdrop" (click)="modalService.close()">
+    <div class="info-modal" (click)="$event.stopPropagation()">
+
+      @if (modalData) {
+        <div class="info-header">
+          <h2>{{ modalData.TITLE }}</h2>
+          <button class="close-btn" (click)="modalService.close()">✕</button>
+        </div>
+
+        <div class="info-body">
+          @for (block of modalData.CONTENT; track block.heading) {
+            <div class="info-block">
+              <h3>{{ block.heading }}</h3>
+              <p>{{ block.body }}</p>
+            </div>
+          }
+        </div>
+      }
+
+    </div>
+  </div>
+}

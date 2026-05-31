@@ -6,27 +6,31 @@
     </div>
     <div class="footer-col">
       <span class="footer-col-title">{{ text().FOOTER?.COL_TITLES?.PATIENT }}</span>
-      <a routerLink="#">{{ text().FOOTER?.NAV_PATIENT?.OFFER }}</a>
-      <a routerLink="#">{{ text().FOOTER?.NAV_PATIENT?.BOOKING }}</a>
-      <a routerLink="#">{{ text().FOOTER?.NAV_PATIENT?.HISTORY }}</a>
-      <a routerLink="#">{{ text().FOOTER?.NAV_PATIENT?.QR_CHECK }}</a>
+      <a (click)="open('EXAM_OFFER')">{{ text().FOOTER?.NAV_PATIENT?.OFFER }}</a>
+      <a (click)="open('BOOK_VISIT')">{{ text().FOOTER?.NAV_PATIENT?.BOOKING }}</a>
+      <a (click)="open('RESULTS_HISTORY')">{{ text().FOOTER?.NAV_PATIENT?.HISTORY }}</a>
+      <a (click)="open('QR_CHECK')">{{ text().FOOTER?.NAV_PATIENT?.QR_CHECK }}</a>
     </div>
     <div class="footer-col">
       <span class="footer-col-title">{{ text().FOOTER?.COL_TITLES?.DOCTOR }}</span>
-      <a routerLink="#">{{ text().FOOTER?.NAV_DOCTOR?.SCHEDULE }}</a>
-      <a routerLink="#">{{ text().FOOTER?.NAV_DOCTOR?.ISSUE_RESULT }}</a>
-      <a routerLink="#">{{ text().FOOTER?.NAV_DOCTOR?.PROFILE }}</a>
+      <a (click)="open('SCHEDULE')">{{ text().FOOTER?.NAV_DOCTOR?.SCHEDULE }}</a>
+      <a (click)="open('ISSUE_RESULT')">{{ text().FOOTER?.NAV_DOCTOR?.ISSUE_RESULT }}</a>
+      <a (click)="open('PROFILE_SPEC')">{{ text().FOOTER?.NAV_DOCTOR?.PROFILE }}</a>
     </div>
     <div class="footer-col">
       <span class="footer-col-title">{{ text().FOOTER?.COL_TITLES?.PLATFORM }}</span>
-      <a routerLink="#how-it-works">{{ text().FOOTER?.NAV_PLATFORM?.HOW_IT_WORKS }}</a>
-      <a routerLink="#roles">{{ text().FOOTER?.NAV_PLATFORM?.FOR_WHOM }}</a>
-      <a routerLink="#">{{ text().FOOTER?.NAV_PLATFORM?.CONTACT }}</a>
-      <a routerLink="#">{{ text().FOOTER?.NAV_PLATFORM?.FAQ }}</a>
+      <a (click)="open('HOW_IT_WORKS')">{{ text().FOOTER?.NAV_PLATFORM?.HOW_IT_WORKS }}</a>
+      <a (click)="open('FOR_WHO')">{{ text().FOOTER?.NAV_PLATFORM?.FOR_WHOM }}</a>
+      <a (click)="open('CONTACT')">{{ text().FOOTER?.NAV_PLATFORM?.CONTACT }}</a>
+      <a (click)="open('FAQ')">{{ text().FOOTER?.NAV_PLATFORM?.FAQ }}</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>{{ text().FOOTER?.LEGAL }}</span>
-    <span>{{ text().FOOTER?.COPYRIGHT }}</span>
+    <span>
+      <a (click)="open('TERMS')">{{ text().FOOTER?.BOTTOM?.TERMS }}</a>|
+      <a (click)="open('RODO')">{{ text().FOOTER?.BOTTOM?.GDPR }}</a>|
+      <a (click)="open('COOKIES')">{{ text().FOOTER?.BOTTOM?.COOKIES }}</a>
+    </span>
+    <span>{{ text().FOOTER?.BOTTOM?.COPYRIGHT }}</span>
   </div>
 </footer>

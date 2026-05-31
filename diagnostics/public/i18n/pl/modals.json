@@ -1,0 +1,120 @@
+{
+  "MODALS": {
+    "HOW_IT_WORKS": {
+      "TITLE": "Jak to działa",
+      "CONTENT": [
+        { "heading": "1. Zarejestruj się", "body": "Utwórz konto jako pacjent lub lekarz. Rejestracja zajmuje mniej niż minutę i wymaga jedynie adresu e-mail." },
+        { "heading": "2. Uzupełnij profil", "body": "Pacjenci podają swój numer PESEL. Lekarze wybierają specjalizację oraz badania, które prowadzą w systemie." },
+        { "heading": "3. Umów badanie", "body": "Pacjent wybiera rodzaj badania z listy dostępnych usług. System automatycznie przypisuje lekarza prowadzącego." },
+        { "heading": "4. Odbierz wyniki", "body": "Po zakończeniu wizyty lekarz wprowadza wyniki. Pacjent otrzymuje powiadomienie e-mail oraz kod QR umożliwiający publiczny dostęp do raportu." }
+      ]
+    },
+    "FOR_WHO": {
+      "TITLE": "Dla kogo",
+      "CONTENT": [
+        { "heading": "Dla pacjentów", "body": "Platforma umożliwia wygodne umawianie badań diagnostycznych, śledzenie historii wizyt oraz bezpieczny dostęp do wyników w dowolnym miejscu i czasie." },
+        { "heading": "Dla lekarzy", "body": "Lekarze zarządzają harmonogramem przyjęć, wystawiają wyniki badań oraz prowadzą dokumentację medyczną w jednym miejscu." },
+        { "heading": "Dla placówek medycznych", "body": "System Diagnostyka usprawnia przepływ dokumentacji i komunikację między personelem a pacjentami, redukując czas obsługi administracyjnej." }
+      ]
+    },
+    "CONTACT": {
+      "TITLE": "Kontakt",
+      "CONTENT": [
+        { "heading": "Wsparcie techniczne", "body": "W przypadku problemów z platformą skontaktuj się z nami pod adresem: support@diagnostyka.pl" },
+        { "heading": "Obsługa klienta", "body": "Pytania dotyczące konta, rezerwacji lub wyników: kontakt@diagnostyka.pl — odpowiadamy w ciągu 24 godzin w dni robocze." },
+        { "heading": "Adres", "body": "Diagnostyka S.A., ul. Medyczna 12, 00-001 Warszawa, Polska." }
+      ]
+    },
+    "FAQ": {
+      "TITLE": "FAQ",
+      "CONTENT": [
+        { "heading": "Czy moje dane są bezpieczne?", "body": "Tak. Wszystkie dane są przechowywane w zaszyfrowanej bazie danych. Numer PESEL jest szyfrowany i nigdy nie jest udostępniany osobom trzecim." },
+        { "heading": "Jak uzyskać dostęp do wyników?", "body": "Wyniki są dostępne w zakładce Historia na Twoim profilu. Możesz również skorzystać z kodu QR, który kieruje do publicznego raportu." },
+        { "heading": "Co zrobić, jeśli lekarz nie jest dostępny?", "body": "System przypisuje lekarza automatycznie na podstawie specjalizacji. Jeśli żaden lekarz nie jest dostępny dla wybranego badania, zostaniesz o tym poinformowany." },
+        { "heading": "Czy mogę anulować wizytę?", "body": "Tak, aktywne wizyty można anulować z poziomu zakładki Aktywne na swoim profilu, przed ich realizacją." }
+      ]
+    },
+    "EXAM_OFFER": {
+      "TITLE": "Oferta badań",
+      "CONTENT": [
+        { "heading": "Badania laboratoryjne", "body": "Morfologia krwi, glukoza, cholesterol, próby wątrobowe, hormony tarczycy i wiele innych badań biochemicznych." },
+        { "heading": "Badania obrazowe", "body": "RTG, USG oraz inne badania diagnostyki obrazowej wykonywane przez wykwalifikowanych specjalistów." },
+        { "heading": "Badania kardiologiczne", "body": "EKG, Holter, próba wysiłkowa i konsultacje kardiologiczne dostępne w ramach platformy." },
+        { "heading": "Badania profilaktyczne", "body": "Pakiety badań przesiewowych dostosowane do wieku i płci pacjenta, wspierające wczesne wykrywanie chorób." }
+      ]
+    },
+    "BOOK_VISIT": {
+      "TITLE": "Umów wizytę",
+      "CONTENT": [
+        { "heading": "Jak umówić wizytę?", "body": "Zaloguj się na swoje konto, przejdź do zakładki Aktywne i kliknij przycisk '+ Nowe'. Wybierz badanie z listy dostępnych usług." },
+        { "heading": "Kiedy odbędzie się wizyta?", "body": "Po zarezerwowaniu badania system przypisuje lekarza. Szczegóły wizyty pojawią się w Twoim profilu w zakładce Aktywne." },
+        { "heading": "Anulowanie rezerwacji", "body": "Wizytę możesz anulować w dowolnym momencie przed jej realizacją, korzystając z przycisku Anuluj przy danej pozycji." }
+      ]
+    },
+    "RESULTS_HISTORY": {
+      "TITLE": "Historia wyników",
+      "CONTENT": [
+        { "heading": "Gdzie znajdę wyniki?", "body": "Wszystkie zakończone badania są dostępne w zakładce Historia na Twoim profilu. Widoczne są wynik oraz notatki lekarza." },
+        { "heading": "Kod QR do wyników", "body": "Każdy zakończony wynik posiada unikalny kod QR. Umożliwia on dostęp do publicznego raportu bez logowania — możesz go udostępnić lekarzowi lub pracodawcy." },
+        { "heading": "Jak długo przechowywane są wyniki?", "body": "Wyniki przechowywane są bezterminowo na Twoim koncie, zgodnie z wymogami dokumentacji medycznej." }
+      ]
+    },
+    "QR_CHECK": {
+      "TITLE": "Sprawdź wynik QR",
+      "CONTENT": [
+        { "heading": "Do czego służy kod QR?", "body": "Kod QR to szybki sposób na udostępnienie wyników badania bez konieczności logowania. Wystarczy zeskanować kod, aby zobaczyć raport." },
+        { "heading": "Gdzie znaleźć kod QR?", "body": "Kod QR dostępny jest przy każdym zakończonym badaniu w zakładce Historia na Twoim profilu." },
+        { "heading": "Czy wynik jest publiczny?", "body": "Tak, raport dostępny przez kod QR jest publiczny — każda osoba posiadająca link może go wyświetlić. Nie udostępniaj kodu osobom niepowołanym." }
+      ]
+    },
+    "SCHEDULE": {
+      "TITLE": "Harmonogram",
+      "CONTENT": [
+        { "heading": "Przegląd harmonogramu", "body": "W zakładce Aktywne widoczne są wszystkie nadchodzące wizyty przypisane do Twojego konta lekarskiego." },
+        { "heading": "Zakończone wizyty", "body": "Historia wszystkich przeprowadzonych badań dostępna jest w zakładce Historia. Możesz przeglądać wprowadzone wyniki i notatki." },
+        { "heading": "Zarządzanie badaniami", "body": "W ustawieniach profilu możesz zaktualizować listę prowadzonych badań, co wpływa na automatyczne przypisywanie pacjentów." }
+      ]
+    },
+    "ISSUE_RESULT": {
+      "TITLE": "Wystaw wynik",
+      "CONTENT": [
+        { "heading": "Jak wystawić wynik?", "body": "W zakładce Aktywne kliknij przycisk Zakończ przy wybranej wizycie. Wypełnij pole Wynik (wymagane) oraz opcjonalne Notatki diagnostyczne." },
+        { "heading": "Co po wystawieniu wyniku?", "body": "System automatycznie oznacza wizytę jako zakończoną, generuje kod QR i wysyła powiadomienie e-mail do pacjenta." },
+        { "heading": "Czy można edytować wynik?", "body": "Raz wystawiony wynik nie może być edytowany. W razie pomyłki skontaktuj się z administratorem systemu." }
+      ]
+    },
+    "PROFILE_SPEC": {
+      "TITLE": "Profil i specjalizacja",
+      "CONTENT": [
+        { "heading": "Uzupełnij profil", "body": "Przejdź do zakładki Ustawienia na swoim profilu, aby uzupełnić imię, nazwisko oraz specjalizację medyczną." },
+        { "heading": "Zarządzanie badaniami", "body": "W ustawieniach możesz wybrać badania, które prowadzisz. System na tej podstawie przypisuje Ci pacjentów automatycznie." },
+        { "heading": "Widoczność profilu", "body": "Twoja specjalizacja i lista prowadzonych badań są widoczne dla pacjentów przy rezerwacji wizyty." }
+      ]
+    },
+    "TERMS": {
+      "TITLE": "Regulamin i polityka prywatności",
+      "CONTENT": [
+        { "heading": "Warunki korzystania", "body": "Korzystanie z platformy Diagnostyka oznacza akceptację niniejszego regulaminu. Platforma przeznaczona jest wyłącznie dla zarejestrowanych użytkowników pełnoletnich." },
+        { "heading": "Ochrona danych osobowych", "body": "Administratorem danych osobowych jest Diagnostyka S.A. Dane przetwarzane są zgodnie z RODO w celu świadczenia usług medycznych." },
+        { "heading": "Odpowiedzialność", "body": "Diagnostyka S.A. nie ponosi odpowiedzialności za decyzje medyczne podjęte na podstawie wyników dostępnych na platformie bez konsultacji z lekarzem." }
+      ]
+    },
+    "RODO": {
+      "TITLE": "RODO",
+      "CONTENT": [
+        { "heading": "Administrator danych", "body": "Administratorem Twoich danych osobowych jest Diagnostyka S.A. z siedzibą w Warszawie." },
+        { "heading": "Cel przetwarzania", "body": "Dane przetwarzane są w celu świadczenia usług diagnostycznych, obsługi konta użytkownika oraz komunikacji związanej z wizytami i wynikami." },
+        { "heading": "Twoje prawa", "body": "Masz prawo do dostępu, sprostowania, usunięcia oraz przenoszenia swoich danych. Możesz również wycofać zgodę na przetwarzanie w dowolnym momencie." },
+        { "heading": "Kontakt z IOD", "body": "W sprawach dotyczących ochrony danych skontaktuj się z Inspektorem Ochrony Danych: iod@diagnostyka.pl" }
+      ]
+    },
+    "COOKIES": {
+      "TITLE": "Pliki cookie",
+      "CONTENT": [
+        { "heading": "Czym są pliki cookie?", "body": "Pliki cookie to małe pliki tekstowe zapisywane na Twoim urządzeniu przez przeglądarkę. Umożliwiają prawidłowe działanie platformy i zapamiętywanie preferencji." },
+        { "heading": "Jakich cookies używamy?", "body": "Używamy wyłącznie niezbędnych plików cookie do obsługi sesji uwierzytelniania (access_token, refresh_token). Nie stosujemy cookies reklamowych ani śledzących." },
+        { "heading": "Zarządzanie cookies", "body": "Możesz wyłączyć obsługę plików cookie w ustawieniach przeglądarki, jednak może to uniemożliwić logowanie do platformy." }
+      ]
+    }
+  }
+}
