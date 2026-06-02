@@ -15,7 +15,7 @@ import { AppointmentService, Appointment, Examination } from '../core/services/a
 })
 export class ProfileComponent {
   readonly router = inject(Router);
-  
+
   private languageService = inject(LanguageService);
   private appointmentService = inject(AppointmentService);
   readonly profileService = inject(ProfileService);
@@ -74,9 +74,11 @@ export class ProfileComponent {
       const loading = this.profileService.isLoading();
       const role = this.profileService.userRole();
       const profileComplete = this.profileService.isProfileComplete();
+      console.log('[effect]', { loading, role });
 
       if (!loading) {
         if (!role) {
+          console.log('[effect] redirecting to login');
           this.router.navigate(['/login']);
         } else if (!profileComplete) {
           this.router.navigate(['/complete']);

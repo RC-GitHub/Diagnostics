@@ -96,9 +96,11 @@ export class ProfileService {
 
   async checkCurrentSession(): Promise<void> {
     try {
+      console.log('[session] checking...');
       const status = await firstValueFrom(
         this.http.get<UserStatusResponse>(`${this.baseUrl}/api/me`, { withCredentials: true }),
       );
+      console.log('[session] /api/me response:', status);
       if (status.authenticated) {
         this.userRole.set(status.role);
         this.isProfileComplete.set(status.profile_complete);
@@ -110,12 +112,16 @@ export class ProfileService {
           this.profile.set(this.normalizeGoProfile(data));
         }
       } else {
+        console.log('[session] not authenticated, clearing');
         this.clearProfile();
       }
-    } catch (error) {
-      this.clearProfile();
+    } catch (error: any) {
+      console.log('[session] error:', error.status, error.message);
+      if (error.status === 401 || error.status === 403) {
+        this.clearProfile();
+      }
     } finally {
-      this.isLoading.set(false); // ← THIS is what was missing
+      this.isLoading.set(false);
     }
   }
 
