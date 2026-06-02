@@ -16,16 +16,16 @@ services:
   # ── Go/Gin API ────────────────────────────────────────────────────────────
   api:
     build:
-      context: ../Diagnostyka-App
+      context: https://github.com/Hosokava/Diagnostyka-App.git#main
       dockerfile: Dockerfile
     container_name: diagnostics_api
     restart: unless-stopped
     ports:
       - "8080:8080"
-    env_file:
-      - ../Diagnostyka-App/.env
+    volumes:
+        - ./.env:/app/.env
     environment:
-      DB_HOST: postgres_db          # override localhost → Docker service name
+      DB_HOST: postgres_db
     depends_on:
       postgres_db:
         condition: service_healthy
@@ -42,11 +42,11 @@ services:
     container_name: diagnostics_postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: diagnostics_pass
-      POSTGRES_DB: diagnostics
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
-      - "5432:5432"
+      - "5432:${DB_PORT}"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
