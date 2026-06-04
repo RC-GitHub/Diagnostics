@@ -21,7 +21,14 @@ Docker ensures the app runs exactly the same on Windows and Linux without worryi
 
    # IMPORTANT: Complete the "Environment Configuration" section below first!
    
+   # Linux / macOS
    docker compose up
+   
+   # Windows (PowerShell - bypasses Docker Bake remote path bug)
+   $env:DOCKER_BUILDKIT=0; $env:COMPOSE_DOCKER_CLI_BUILD=0; docker compose up
+   
+   # Windows (CMD - bypasses Docker Bake remote path bug)
+   set DOCKER_BUILDKIT=0 && set COMPOSE_DOCKER_CLI_BUILD=0 && docker compose up
    ```
 
 ---
@@ -93,7 +100,10 @@ The application relies on a `.env` file. **This step must be completed before ru
 ## Running & Testing
 
 ### Using Docker
-* **Start Server:** `docker compose up`
+* **Start Server:** 
+  * **Linux / macOS:** `docker compose up`
+  * **Windows (PowerShell):** `$env:DOCKER_BUILDKIT=0; $env:COMPOSE_DOCKER_CLI_BUILD=0; docker compose up`
+  * **Windows (CMD):** `set DOCKER_BUILDKIT=0 && set COMPOSE_DOCKER_CLI_BUILD=0 && docker compose up`
 * **View Logs:** `docker compose logs -f`
 
 ### Using Manual Setup
