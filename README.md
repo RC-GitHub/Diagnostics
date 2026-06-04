@@ -38,13 +38,14 @@ Docker ensures the app runs exactly the same on Windows and Linux without worryi
 2. **Database Setup:**
    Open **pgAdmin** (installed with PostgreSQL) and run:
    ```sql
-   CREATE DATABASE diagnostics;
-   CREATE USER myuser WITH PASSWORD 'mypassword';
-   GRANT ALL PRIVILEGES ON DATABASE diagnostics TO myuser;
+   CREATE DATABASE <DB_NAME>;
+   CREATE USER <DB_USER> WITH PASSWORD <DB_PASSWORD>;
+   GRANT ALL PRIVILEGES ON DATABASE <DB_NAME> TO <DB_USER>;
    ```
    You will use these credentials (`DB_USER`, `DB_PASSWORD`) in the `.env` file during the Environment Configuration step below.
 3. **Install API:** Install Diagnostyka-App API from [the official repository](https://github.com/Hosokava/Diagnostyka-App) by following the instructions in its [FRONTEND_HANDOFF.md](https://github.com/Hosokava/Diagnostyka-App/blob/main/FRONTEND_HANDOFF.md).
 4. **Clone Front-end:**
+   In a different location (preferably inside of API's parent folder) clone this repository and install necessary dependencies:
    ```powershell
    git clone 'https://github.com/RC-GitHub/Diagnostics.git'
    cd Diagnostics
@@ -59,12 +60,19 @@ Docker ensures the app runs exactly the same on Windows and Linux without worryi
    * **Debian-based:** `sudo apt update && sudo apt install nodejs npm build-essential postgresql postgresql-contrib`
 3. **Database Setup:**
    ```bash
-   sudo -u postgres psql -c "CREATE DATABASE diagnostics;"
-   sudo -u postgres psql -c "CREATE USER myuser WITH PASSWORD 'mypassword';"
-   sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE diagnostics TO myuser;"
+   sudo systemctl start postgresql
+
+   # Ensure the service is running:
+   sudo systemctl status postgresql
+
+   # Then create the required database structure:
+   sudo -u postgres psql -c "CREATE DATABASE <DB_NAME>;"
+   sudo -u postgres psql -c "CREATE USER <DB_USER> WITH PASSWORD <DB_PASSWORD>;"
+   sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE <DB_NAME> TO <DB_USER>;"
    ```
    You will use these credentials (`DB_USER`, `DB_PASSWORD`) in the `.env` file during the Environment Configuration step below.
 4. **Clone Front-end:**
+   In a different location (preferably inside of API's parent folder) clone this repository and install necessary dependencies:
    ```bash
    git clone https://github.com/RC-GitHub/Diagnostics.git
    cd Diagnostics
@@ -77,7 +85,11 @@ The application relies on a `.env` file. **This step must be completed before ru
 
 1. **Create the file:**
    ```bash
-   cd ../ # Make sure you're in the 'Diagnostics' directory
+   # Make sure you're in the 'Diagnostics' directory!
+   # If you followed the manual setup, you will need to move up a directory:
+   # cd ../
+
+   # Then:
    
    # Linux/macOS/Git Bash
    cp .env.example .env
@@ -100,7 +112,7 @@ The application relies on a `.env` file. **This step must be completed before ru
 ## Running & Testing
 
 ### Using Docker
-* **Start Server:** 
+* **Run the app:** 
   * **Linux / macOS:** `docker compose up`
   * **Windows (PowerShell):** `$env:DOCKER_BUILDKIT=0; $env:COMPOSE_DOCKER_CLI_BUILD=0; docker compose up`
   * **Windows (CMD):** `set DOCKER_BUILDKIT=0 && set COMPOSE_DOCKER_CLI_BUILD=0 && docker compose up`
@@ -110,7 +122,7 @@ The application relies on a `.env` file. **This step must be completed before ru
 
 1. Run PostgreSQL database with correct credentials.
 2. Head to `Diagnostyka-App` folder and run the API with `go run server.go`.
-3. Head back to `Diagnostics` folder, then `diagnostics` subfolder.
+3. Head back to `Diagnostics` folder, then `diagnostics` subfolder. Then:
 
 #### Development server
 
